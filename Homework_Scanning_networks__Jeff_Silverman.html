@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Scanning networks homework - Jeff Silverman</title>
+    <meta name="generator" content="vi">
+    <meta name="author" content="Jeff Silverman">
+    <link rel="stylesheet" type="text/css" href="homepage.css">
+  </head>
+  <body>
+    <h1><a id="mozTocId142030" class="mozTocH1"></a> Scanning networks at
+      Ashworth Manor</h1>
+    <p style="text-align: center;">By Jeff Silverman&nbsp; <a href="mailto:jeffsilverm@gmail.com">jeffsilverm@gmail.com</a>.</p>
+    <h2><a id="mozTocId349124" class="mozTocH2"></a> Finding the default router,
+      IPv4 </h2>
+    <p> The <kbd>ifconfig</kbd> command was deprecated years ago. The <kbd>ip</kbd>
+      command is the preferred replacement. </p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo$ <acronym>ip route list</acronym>
+<samp>default via 192.168.0.1 dev enp5s0 onlink 
+default via 192.168.0.1 dev wlx00c0caae60b3 proto dhcp metric 600 
+169.254.0.0/16 dev enp5s0 scope link metric 1000 
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown 
+172.18.0.0/16 dev br-54e9a7bd854d proto kernel scope link src 172.18.0.1 linkdown 
+192.168.0.0/24 dev enp5s0 proto kernel scope link src 192.168.0.149 </samp>
+<samp>192.168.0.0/24 dev wlx00c0caae60b3 proto kernel scope link src 192.168.0.6 metric 600 </samp>
+jeffs@jeffs-desktop:~/Coding_DoJo$ 
+
+</pre>
+    <h2><a id="mozTocId944873" class="mozTocH2"></a>Finding the netmask, IPv4<br>
+    </h2>
+    <p>The default gateway is 192.168.0.1.&nbsp; However, the netmask comes from
+      the definitions of devices <tt>enp5s0</tt> and <tt>wlx00c0caae60b3</tt>
+      , /24, or 255.255.255.0, or in the range of 0-255.&nbsp; 0 is not used.
+      255 is the broadcast IPv4 address, don't use that.</p>
+    <h2><a id="mozTocId648708" class="mozTocH2"></a>Port scan, IPv4</h2>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo$ <acronym>nmap -sT 192.168.0.1-254 -T insane</acronym>
+<samp>Starting Nmap 7.80 ( https://nmap.org ) at 2021-11-09 03:12 PST
+Nmap scan report for local-router (192.168.0.1)
+Host is up (0.011s latency).
+Not shown: 993 closed ports
+PORT      STATE SERVICE
+53/tcp    open  domain
+80/tcp    open  http
+443/tcp   open  https
+5000/tcp  open  upnp
+5001/tcp  open  commplex-link
+8080/tcp  open  http-proxy
+49152/tcp open  unknown
+
+Nmap scan report for 192.168.0.6
+Host is up (0.00044s latency).
+Not shown: 992 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+111/tcp  open  rpcbind
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+631/tcp  open  ipp
+2049/tcp open  nfs
+5357/tcp open  wsdapi
+
+Nmap scan report for jeffs-desktop (192.168.0.149)
+Host is up (0.00041s latency).
+Not shown: 992 closed ports
+PORT     STATE SERVICE
+22/tcp   open  ssh
+80/tcp   open  http
+111/tcp  open  rpcbind
+139/tcp  open  netbios-ssn
+445/tcp  open  microsoft-ds
+631/tcp  open  ipp
+2049/tcp open  nfs
+5357/tcp open  wsdapi
+
+Nmap scan report for raspberry (192.168.0.159)
+Host is up (0.0014s latency).
+Not shown: 996 closed ports
+PORT    STATE SERVICE
+22/tcp  open  ssh
+80/tcp  open  http
+81/tcp  open  hosts2-ns
+443/tcp open  https
+
+Nmap done: 254 IP addresses (4 hosts up) scanned in 1.92 seconds</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo$ 
+
+</pre>
+    <p>The router has some other ideas: It knows about a Nintendo, MAC
+      98:B6:e9:01:09:57, IP address 192.168.0.8.&nbsp; There may be devices that
+      have open TCP ports, a TCP scan would miss them.&nbsp; Let's try a ping
+      scan.</p>
+    <pre>jeffs@jeffs-desktop:~$<acronym> nmap -sn 192.168.0.1-254</acronym>
+<samp>Starting Nmap 7.80 ( https://nmap.org ) at 2021-11-10 01:46 PST
+Nmap scan report for local-router (192.168.0.1)
+Host is up (0.0025s latency).
+Nmap scan report for 192.168.0.6
+Host is up (0.00027s latency).
+Nmap scan report for jeffs-desktop (192.168.0.149)
+Host is up (0.00015s latency).
+Nmap scan report for raspberry (192.168.0.159)
+Host is up (0.0030s latency).
+Nmap done: 254 IP addresses (4 hosts up) scanned in 2.42 seconds</samp>
+jeffs@jeffs-desktop:~$ 
+</pre>
+    <p>Perhaps 1:45 AM isn't the best time to do this sort of work.</p>
+    <table style="width: 100%;" border="1">
+      <tbody>
+        <tr>
+          <td>Device</td>
+          <td>MAC</td>
+          <td>IPv4</td>
+          <td>IPv6</td>
+          <td>Open ports</td>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>The router</td>
+          <td><br>
+          </td>
+          <td>192.168.0.1</td>
+          <td><br>
+          </td>
+          <td>53,80,443,5000,5001,8080.49152</td>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>jeffs-desktop (WiFi)</td>
+          <td><br>
+          </td>
+          <td>192.168.0.6</td>
+          <td><br>
+          </td>
+          <td>22,80,111,139,445,631,2049,5357</td>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>jeffs-desktop (Wired)</td>
+          <td><br>
+          </td>
+          <td style="height: 19px;">192.168.0.149</td>
+          <td><br>
+          </td>
+          <td>22,80,111,139,445,631,2049,5357</td>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>raspberry </td>
+          <td><br>
+          </td>
+          <td>192.168.0.159</td>
+          <td><br>
+          </td>
+          <td>22,80,81 (hosts2-ns),443</td>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <h3><a id="mozTocId555998" class="mozTocH3"></a>What are the non-well-known
+      ports?</h3>
+    <p>81,5000,5001,5357,8080,49152</p>
+    <h4><a id="mozTocId463219" class="mozTocH4"></a>raspberry, 192.168.0.159</h4>
+    <p>Raspberry is listening on both port 80 and port 81 and using http.&nbsp;
+      Port 81 is connected a flask server.</p>
+    <h4><a id="mozTocId872448" class="mozTocH4"></a>jeffs-desktop, 192.168.0.6
+      and 192.168.0.149</h4>
+    <p>port 111 is the original RPC (remote procedure call) port.&nbsp; That was
+      where NFS, yp, NIS, and NIS+ came in.</p>
+    <p>port 445 is Microsoft-ds. TCP/IP MS Networking access without the need
+      for a NetBIOS layer. This service is only implemented in the more recent
+      verions of Windows (e.g. Windows 2K / XP). The SMB (Server Message Block)
+      protocol is used among other things for file sharing in Windows NT/2K/XP.
+      In Windows NT it ran on top of NetBT (NetBIOS over TCP/IP, ports 137, 139
+      and 138/udp). In Windows 2K/XP, Microsoft added the possibility to run SMB
+      directly over TCP/IP, without the extra layer of NetBT. For this they use
+      TCP port 445.<sup><a id="fn_001" href="#footnote_001">[1]</a></sup></p>
+    <p>port 681 is the Internet Printing Protocol, which is implemented using
+      CUPS 2.3.1</p>
+    <p>port 2049 is NFS</p>
+    <p>port 5357 is Microsoft Network Discovery.&nbsp; IANA has registered it
+      for Web Services for Devices (WSD or WSDAPI)</p>
+    <p><br>
+    </p>
+    <pre><br></pre>
+    <p> </p>
+    <h3><a id="mozTocId374840" class="mozTocH3"></a>The search for the Deco and
+      the Nintendo</h3>
+    <p>My son got his own WiFi AP, a Deco X20</p>
+    <pre>jeffs@jeffs-desktop:~$ <acronym>sudo nmap -PE 192.168.0.1-254 -T insane</acronym>
+...
+
+<samp>Nmap scan report for 192.168.0.8
+Host is up (0.11s latency).
+All 1000 scanned ports on 192.168.0.8 are filtered
+MAC Address: 98:B6:E9:01:09:57 (Nintendo)
+
+Nmap scan report for deco_X20 (192.168.0.16)
+Host is up (0.00071s latency).
+All 1000 scanned ports on deco_X20 (192.168.0.16) are filtered
+MAC Address: 00:5F:67:58:A1:F1 (Unknown)
+</samp>
+</pre>
+    <pre>jeffs@jeffs-desktop:~/logbooks$ <kbd>sudo arp -an</kbd><samp>
+? (192.168.0.3) at 8c:45:00:9b:39:b5 [ether] on enp5s0
+? (192.168.0.159) at dc:a6:32:88:3a:67 [ether] on enp5s0
+? (192.168.0.3) at 8c:45:00:9b:39:b5 [ether] on wlx00c0caae60b3
+? (192.168.0.5) at 8e:8f:3c:47:2e:e9 [ether] on enp5s0
+? (192.168.0.8) at 98:b6:e9:01:09:57 [ether] on enp5s0
+? (192.168.0.1) at 88:6a:e3:61:8e:c1 [ether] on enp5s0
+? (192.168.0.1) at 88:6a:e3:61:8e:c1 [ether] on wlx00c0caae60b3
+<strong>? (192.168.0.16) at 00:5f:67:58:a1:f1 [ether] on enp5s0</strong></samp>
+jeffs@jeffs-desktop:~/logbooks$
+</pre>
+    <h3><a id="mozTocId721845" class="mozTocH3"></a>Having found the Deco, can I
+      find what's behind it?</h3>
+    <p>I assume that it's subnet 192.168.1.0/24.&nbsp; Let's test that.&nbsp; I
+      know Daniel has a bitcoin miner running 24/7 and it runs under Windows, </p>
+    <p>First, add a route, so jeffs-desktop will know how to get to that network
+      (I should add this to /etc/networks to make it persistent).</p>
+    <pre><acronym>sudo ip route add 192.168.1.0/24 via 192.168.0.16</acronym></pre>
+    <p> Now scan it. </p>
+    <pre><br>jeffs@jeffs-desktop:~/logbooks$ <acronym>sudo nmap -O -PE 192.168.1.1-254 -T insane</acronym>
+<samp>[sudo] password for jeffs: 
+Starting Nmap 7.80 ( https://nmap.org ) at 2021-11-10 03:34 PST
+Nmap done: 254 IP addresses (0 hosts up) scanned in 13.33 seconds</samp>
+jeffs@jeffs-desktop:~/logbooks$ 
+</pre>
+    <p> </p>
+    <p>That failed.&nbsp; But maybe Daniel configured the Deco to block
+      ICMP.&nbsp; He's a clever lad.&nbsp; But what about remote desktop
+      protocol (RDP)?</p>
+    <pre>jeffs@jeffs-desktop:~/logbooks$ <acronym>fgrep -i ms-wbt-server /etc/services</acronym> 
+<samp><font color="#EF2929"><b>ms-wbt-server</b></font>	3389/tcp</samp>
+jeffs@jeffs-desktop:~/logbooks$ <acronym>sudo nmap -O -sT 192.168.1.1-254 -p 3389 -T insane</acronym>
+<samp>Starting Nmap 7.80 ( https://nmap.org ) at 2021-11-10 03:40 PST
+Nmap done: 254 IP addresses (0 hosts up) scanned in 51.39 seconds</samp>
+jeffs@jeffs-desktop:~/logbooks$ 
+
+</pre>
+    <h4><a id="mozTocId869014" class="mozTocH4"></a> Time to cheat</h4>
+    <p><br>
+    </p>
+    <h2><a id="mozTocId679806" class="mozTocH2"></a>Port scan, IPv6</h2>
+    <p>The router says that my external IPv6 address is2602:4b:ac73:da00::1 and
+      that my delegated predix and my calculated prefix are both
+      2602:4b:ac73:da00::/56, which means I would have to do a port scan of
+      7.205759404×10¹⁶ addresses and get it done by Monday.</p>
+    <h3><a id="mozTocId324495" class="mozTocH3"></a> </h3>
+    <h3><a id="mozTocId97941" class="mozTocH3"></a>What does wireshark say?</h3>
+    <p>This is from file while_port_scanning.pcap.</p>
+    <img src="Wireshark_during_nmap_screenshot.png" alt="" title="Screen capture of wireshark while running nmap">
+    <ol id="mozToc">
+      <!--mozToc h1 1 h2 2 h3 3 h4 4 h5 5 h6 6-->
+      <li><a href="#mozTocId142030">Scanning networks at Ashworth Manor</a>
+        <ol>
+          <li><a href="#mozTocId349124">Finding the default router, IPv4</a></li>
+          <li><a href="#mozTocId944873">Finding the netmask, IPv4</a></li>
+          <li><a href="#mozTocId648708">Port scan, IPv4</a>
+            <ol>
+              <li><a href="#mozTocId555998">What are the non-well-known ports?</a>
+                <ol>
+                  <li><a href="#mozTocId463219">raspberry, 192.168.0.159</a></li>
+                  <li><a href="#mozTocId872448">jeffs-desktop, 192.168.0.6 and
+                      192.168.0.149</a></li>
+                </ol>
+              </li>
+              <li><a href="#mozTocId374840">The search for the Deco and the
+                  Nintendo</a></li>
+              <li><a href="#mozTocId721845">Having found the Deco, can I find
+                  what's behind it?</a>
+                <ol>
+                  <li><a href="#mozTocId869014">Time to cheat</a></li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+          <li><a href="#mozTocId679806">Port scan, IPv6</a>
+            <ol>
+              <li><a href="#mozTocId324495"></a><br>
+              </li>
+              <li><a href="#mozTocId97941">What does wireshark say?</a></li>
+            </ol>
+          </li>
+          <li><a href="#mozTocId371066">Bibliography</a></li>
+        </ol>
+      </li>
+    </ol>
+    <p><br>
+    </p>
+    <h2><a id="mozTocId371066" class="mozTocH2"></a>Bibliography</h2>
+    <p style="margin-left: 1cm; text-indent: -1cm;"><sup><a id="footnote_001" href="#fn_001">[1]</a></sup>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      SpeedGuide. (n.d.). <i>Port 445 (TCP/UDP)</i>. SpeedGuide. Retrieved
+      November 10, 2021, from https://www.speedguide.net/port.php?port=445. </p>
+    <div></div>
+    <p><br>
+    </p>
+    <p></p>
+    <p> </p>
+  </body>
+</html>

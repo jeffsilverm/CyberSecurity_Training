@@ -1,0 +1,664 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=iso-8859-1">
+    <meta name="generator" content="vi">
+    <title>Jeff Silverman's Coding DoJo Cybersecurity class</title>
+    <link rel="stylesheet" type="text/css" href="homepage.css">
+  </head>
+  <body style="                       color: black; background-color: white;" vlink="#59188E"
+    link="#0000EF">
+    <script type="text/javascript"> document.writeln("This document was last modified "+document.lastModified);</script>
+    <h1 class="myclass"><a id="mozTocId687080" class="mozTocH1"></a>Jeff's
+      CompTIA Security+ logbook </h1>
+    <hr color="blue">
+    <center> <br>
+    </center>
+    <hr color="green"> <a name="toc"> </a>
+    <h1><a id="mozTocId733008" class="mozTocH1"></a><a name="toc"></a><a id="mozTocId136337"
+        class="mozTocH1"></a>Dashboard and web resources</h1>
+    <p><a name="toc"></a><a href="https://login.codingdojo.com/dashboard" title="My Coding Dojo dashboard">The
+        dashboard</a>.</p>
+    <h2><a name="toc"></a><a name="toc"> Coding DoJo resources</a></h2>
+    <h3><a id="mozTocId44027" class="mozTocH3"></a><a name="toc"> </a>Contact
+      information for Coding DoJo staff</h3>
+    <table>
+      <tbody>
+        <tr>
+          <th>name</th>
+          <th>E-mail address</th>
+          <th>Title/role</th>
+        </tr>
+        <tr>
+          <td>M. Taylor</td>
+          <td>mtaylor@codingdojo.com</td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>R. Hill</td>
+          <td>rhill@codingdojo.com</td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>Niño Lepardo</td>
+          <td><a href="nlepardo@codingdojo.com">mailto:nlepardo@codingdojo.com</a></td>
+          <td>Student Onboarding</td>
+        </tr>
+      </tbody>
+    </table>
+    <ul>
+      <li>mtaylor@codingdojo.com </li>
+      <li>rhill@codingdojo.com </li>
+    </ul>
+    <h3><a id="mozTocId885688" class="mozTocH3"></a> PRE-BOOTCAMP CYBERSECURITY</h3>
+    <p>The <a href="https://login.codingdojo.com/m/209/7704/53748">PRE-BOOTCAMP
+        CYBERSECURITY web page</a>.</p>
+    <p>My criticism of <a href="https://login.codingdojo.com/m/209/7710/53754">Command
+        Line Overview</a>&nbsp; and its follow on pages include but are not
+      limited to:</p>
+    <ul>
+      <li>Mac OS X appears to be ignored.</li>
+      <li>There ought to be a table with 4 columns: function (what you are
+        trying to do), command in Windows power shell, command in linux, command
+        in MAC</li>
+      <li>Pointers to tutorials for all 3 ecosystems.nwet</li>
+      <li>In the <a href="https://login.codingdojo.com/m/209/7710/53775">linux
+          page</a>, ipconfig has been deprecated for years.&nbsp; Use the ip
+        command.&nbsp; Netstat has been deprecated.&nbsp; Use ss.&nbsp;
+        traceroute using ICMP, but tracepath uses UDP.&nbsp; A lot of network
+        admins block ICMP at the border gateway because of the infamous IPv4
+        "ping of death".</li>
+    </ul>
+    <p>My criticism of <a href="https://login.codingdojo.com/m/209/7722/53767">Basic
+        Networking</a> and its following pages is:</p>
+    <ul>
+      <li>The graphics on the <a href="https://login.codingdojo.com/m/209/7722/53767">Basic
+          Networking page</a> are broken.&nbsp; The source of one of the
+        graphics is
+        https://s3.amazonaws.com/General_V88/boomyeah2015/codingdojo/curriculum/content/chapter/LAN.png.
+        (<img src="https://s3.amazonaws.com/General_V88/boomyeah2015/codingdojo/curriculum/content/chapter/LAN.png"
+          alt="This will appear when the underlying permissions issue is fixed."
+          title="WAN">)&nbsp; It has a permissions issue.&nbsp; The source of
+        the other graphics is
+        https://s3.amazonaws.com/General_V88/boomyeah2015/codingdojo/curriculum/content/chapter/LAN.png
+        and it is also access denied (<img src="https://s3.amazonaws.com/General_V88/boomyeah2015/codingdojo/curriculum/content/chapter/wan.png"
+          alt="This image will appear when the permissions issue is fixed." title="A WAN">).</li>
+      <li>Under <a href="https://login.codingdojo.com/m/209/7722/53776">Physical
+          Network Topologies</a>, I wish you wrote a little more about how home
+        and office networks fit into these categories.&nbsp; Because I am older,
+        I happen to know that Ethernet (and that includes modern UTP and WiFi
+        networks) are actually buses, even though they look like stars.&nbsp;
+        The bus in a modern LAN is actually inside the switch or even more
+        importantly, in a hub.&nbsp; The problems associated with the bus
+        network topology is why the world has moved to switches, even in the
+        home and office market.</li>
+      <li>Under&nbsp; <a href="https://login.codingdojo.com/m/209/7722/53777">Wireless
+          Topology</a>, the acronym SP is seldom seen.&nbsp; Usually, the term
+        used is Internet Service Provider (ISP)</li>
+      <li>In the <a href="https://login.codingdojo.com/m/209/7723/53779">IPv6
+          IP Addresses</a>, you write that there are enough IPv6 addresses to
+        give every person on this planet 5*1028 addresses.&nbsp; That should be
+        5*10<sup>28</sup> addresses.&nbsp; Let's see if the 28 in superscript
+        makes it past the processing in your textbox.</li>
+      <li>The bullet point that IPv6 has no broadcasts is false at two levels:
+        1) Neighbor Discovery Protocol (NDP) uses broadcases and 2) The IPv6
+        address space includes definite multicast addresses:</li>
+      <ul>
+        <li>0xFF01 for interface local</li>
+        <li>0xFF02 for link local.&nbsp; "Link Local"&nbsp; is anything that
+          connects to the same port on the same router.&nbsp; Link local will
+          span switches and hubs</li>
+        <li>0cFF04 is for admin local.&nbsp; "admin local" has to be set up by
+          the network admins</li>
+        <li>0cFF05 is for site local.&nbsp; "site local" has to be set up by the
+          network admins</li>
+        <li>0cFF08 is for organization local.&nbsp; "Organization local" has to
+          be set up by the network admins</li>
+        <li>0cFF0e is for global.&nbsp; I have no idea what a global address
+          would mean in the real world.&nbsp; I can see how a malicious player
+          could mount a pretty good distributed denial of service attack.</li>
+      </ul>
+      <li>In <a href="https://login.codingdojo.com/m/209/7724/53781">Protocols
+          to Know</a>, you include telnet.&nbsp; Don't do that.&nbsp; FTP should
+        not be there, either.&nbsp; You could put that these protocols are
+        insecure and not used any more.&nbsp; Use SSH (which includes SCP and
+        rsh) instead.&nbsp; This is a cyber-security class.&nbsp; Also, the
+        chart at the end of this page looks like it was clipped.&nbsp; It
+        certainly is incomplete.&nbsp;&nbsp;</li>
+      <li>In <a href="https://login.codingdojo.com/m/209/7725/53784">Transport
+          Layer, https://login.codingdojo.com/m/209/7725/53784</a>, there is a
+        protection error for the image.</li>
+      <li><br>
+      </li>
+    </ul>
+    <ul>
+      <li><br>
+      </li>
+    </ul>
+    <h3><a id="mozTocId623660" class="mozTocH3"></a>Career Services</h3>
+    <p>The <a href="https://docs.google.com/document/d/1ThJkK5skEYQJ5Hu3WSpyRFDSfZbFqKTElr9Vk7IOpwg/edit">Career
+        Services Roadmap</a>.</p>
+    <h2><a id="mozTocId224054" class="mozTocH2"></a>Web Resources</h2>
+    <p id="APA_style_guide"><a href="https://owl.purdue.edu/owl/research_and_citation/apa_style/apa_formatting_and_style_guide/general_format.html">The
+        American Psychological Association (APA) style guide</a>.</p>
+    <p><br>
+    </p>
+    <h3><a id="mozTocId557019" class="mozTocH3"></a>Discord</h3>
+    <p>I have an account on discord, username jeffsilverman.&nbsp; I joined the
+      Certification Station channel.</p>
+    <p>I got the discord 0.0.16&nbsp; client for linux as a .deb, installed it
+      (2021-11-02).&nbsp; The backup authentication codes are in
+      ~/Coding_Dojo/discord_backup_codes.txt .</p>
+    <h3><a id="mozTocId636127" class="mozTocH3"></a>Hubspot</h3>
+    <p>I created an account for myself on hubspot.&nbsp; One of the questions is
+      "Which of these sounds most like you?" and one of the options (which is
+      me) is "I have never used a CRM before".&nbsp; Great.&nbsp; What does CRM
+      stand for?&nbsp;&nbsp; XWewTZBNPvJ52aj+ </p>
+    <h3><a id="mozTocId959936" class="mozTocH3"></a>CompTIA</h3>
+    <h4><a id="mozTocId774728" class="mozTocH4"></a>Professor Messer</h4>
+    <p><a href="https://www.ProfessorMesser.com">Professor Messer's web site</a>.&nbsp;
+      <a href="https://professormesser.com/objectives">CompTIA Security+
+        Certification objectives</a>.</p>
+    <p> <span class="style-scope yt-formatted-string">Security+ Training Course
+        Index: </span><a href="https://www.youtube.com/redirect?q=https%3A%2F%2Fprofessormesser.link%2Fsy0601&amp;event=video_description&amp;v=9NE33fpQuw8&amp;redir_token=QUFFLUhqa010MG82UUZhaUVvY0FpVHIwLW9YajRpMHM5d3xBQ3Jtc0ttYkJkbFFISHVEc1I0dGFjaHQxNjZqYXl3UG56ZEp6cjFYRElrMmRnX2laMEJyOVVXdjFJalVrUkR3ODVyWVpuanlpNWc2MjVLeFhpaXZUeGRCRkY5ME5rWlpRWW9sQTEtUmFxeFBLQlJTY3l4cEpXaw%3D%3D"
+        class="yt-simple-endpoint style-scope yt-formatted-string" spellcheck="false"
+        rel="nofollow" target="_blank" dir="auto">https://professormesser.link/sy0601</a></p>
+    <h4><a id="mozTocId275354" class="mozTocH4"></a><span class="style-scope yt-formatted-string">CompTIA's
+        website</span></h4>
+    <p>I created an account for myself as an individual.<span class="style-scope yt-formatted-string">
+        <br>
+      </span></p>
+    <p></p>
+    <h3>Purdue Online Writing Lab (OWL)</h3>
+    <p>The <a href="https://owl.purdue.edu/owl/purdue_owl.html">Purdue online
+        writing lab (OWL)</a>.&nbsp; A <a href="https://owl.purdue.edu/owl/research_and_citation/using_citation_machines_responsibly.html">citation
+        generator</a>.</p>
+    <p><br>
+    </p>
+    <h1><a id="mozTocId373295" class="mozTocH1"></a>Getting started</h1>
+    <p>November 1st.</p>
+    <p>Page https://login.codingdojo.com/m/209/7704/53748 has a link to
+      https://vimeo.com/512103347 which is broken.</p>
+    <p>The <a href="https://vimeo.com/642418040/3263a1f574">mandatory
+        orientation</a> (November 1st)</p>
+    <h2><a id="mozTocId676429" class="mozTocH2"></a>The Welcome packet</h2>
+    <p>The welcome packet is
+      !/home/Coding_DoJo/Cybersecurity+Welcome+Packet+(2).pdf .</p>
+    <p><br>
+    </p>
+    <br>
+    <h3><a id="mozTocId643911" class="mozTocH3"></a>Helpful information</h3>
+    <p><a href="https://docs.google.com/spreadsheets/d/1LgdZ4pQ4T7c8F53ALDJJHloHMeftNfFCWMEG4XWbNaQ/edit#gid=1156385042">The
+        schedule</a> .&nbsp; This is a google docs spreadsheet.</p>
+    <p><a href="https://docs.google.com/document/d/102yCxeihL5wgURnl2Ohm44a3wK5Kacn1Vz1Bg_bJxkY/edit">The
+        syllabus</a>.&nbsp; Having read it once, not too useful.</p>
+    <p><span style="font-size:11pt;font-family:Arial;color:rgb(17,85,204);font-variant-ligatures:normal;font-variant-east-asian:normal;text-decoration:underline;text-decoration-skip:none;vertical-align:baseline;white-space:pre-wrap"><span
+id="m_3737363947169639625docs-internal-guid-e6c016a4-7fff-9e1b-b771-f7b6198b9f06"><a
+href="https://login.codingdojo.com/" style="text-decoration:none" target="_blank"
+data-saferedirecturl="https://www.google.com/url?q=https://login.codingdojo.com/&amp;source=gmail&amp;ust=1636181692182000&amp;usg=AFQjCNF-p8rFmvARsmNXrf_LiHIzG9s_PQ"
+fg_scanned="1"><span style="font-size:11pt;font-family:Arial;color:rgb(17,85,204);font-variant-ligatures:normal;font-variant-east-asian:normal;text-decoration:underline;text-decoration-skip:none;vertical-align:baseline;white-space:pre-wrap">Learn Platform</span></a></span></span></p>
+    <p><br>
+    </p>
+    <h3><a id="mozTocId540381" class="mozTocH3"></a>Required Tools</h3>
+    <p></p>
+    <p></p>
+    <h4><a id="mozTocId584389" class="mozTocH4"></a>VirtualBox - Kali Linux</h4>
+    <p>Most of this documentation is from askubuntu<a href="#footnote_001" id="fn_001"><sup>wget</sup></a>.&nbsp;
+      The instructions for installing a extension pack are at <a href="https://www.oracle.com/virtualization/technologies/vm/downloads/virtualbox-downloads.html#extpack">Oracle_VM_VirtualBox_Extension_Pack-6.1.28-147628.vbox-extpack</a>.&nbsp;
+      Problem: I got the 6.1.28 vox-extpack, but I am running virtual box 6.1.<b>26</b>.</p>
+    <p>See my logbook, November 5th, for how I did it.&nbsp; <a href="notes_2021-11.html#mozTocId392049">November
+        7<sup>th</sup> has how to connect the RealTek 8814AU WiFi access point
+        to the kernel as a network device</a>.</p>
+    <h5><a id="mozTocId274621" class="mozTocH5"></a><a name="listing_starting_stopping_VMs">Listing,
+        starting, stopping virtualbox guests</a></h5>
+    <p>This information comes from
+https://askubuntu.com/questions/805662/how-to-start-and-stop-virtualbox-guests-via-command-line#805794</p>
+    <h6><a id="mozTocId563280" class="mozTocH6"></a>Listing virtualbox guests</h6>
+    <pre>jeffs@jeffs-desktop:~/Desktop$ <acronym>VBoxManage list vms</acronym>
+<samp><span style="color: #666666;">"vm.jeffsilverm.ddns.net" {9ff36267-f51f-43e9-bcee-59a14f9a3547}
+"CENTOS-8" {c700ac7e-3897-4c26-ba43-ba7ea75fbd85}</span>
+<span style="color: #666666;">"Kali Linux" {0733ee04-90ee-41be-a6c2-ba4092b85976}</span>
+"Kali-Linux-2021.3-vbox-amd64" {1705749b-162a-4333-b715-db989821db4a}</samp>
+jeffs@jeffs-desktop:~/Desktop$ 
+</pre>
+    <h6><a id="mozTocId220321" class="mozTocH6"></a>Starting a virtualbox guest</h6>
+    <pre>jeffs@jeffs-desktop:~/logbooks$ <acronym>VBoxManage startvm "Kali-Linux-2021.3-vbox-amd64" --type gui</acronym>
+<samp>Waiting for VM "Kali-Linux-2021.3-vbox-amd64" to power on...
+VM "Kali-Linux-2021.3-vbox-amd64" has been successfully started.</samp>
+jeffs@jeffs-desktop:~/logbooks$ 
+
+</pre>
+    <h6><a id="mozTocId787184" class="mozTocH6"></a>Stopping a virtualbox guest</h6>
+    <pre>jeffs@jeffs-desktop:~/Desktop$<acronym> VBoxManage controlvm "Kali-Linux-2021.3-vbox-amd64" savestate</acronym>
+<samp>0%...10%...20%...30%...40%...50%...60%...70%...80%...90%...100%</samp>
+jeffs@jeffs-desktop:~/Desktop$ </pre>
+    <h6>I want to be able to ssh in to my Kali Linux VM</h6>
+    <p>I can.&nbsp; The IP address is 192.168.0.9.&nbsp; Username kali, and I
+      copied my public keys with <acronym>ssh-copy-id</acronym> .</p>
+    <h5><a id="mozTocId144959" class="mozTocH5"></a>Make the WiFi adapter
+      visible on the Kali Linux machine.</h5>
+    <p>See <a href="../logbooks/notes_2021-11.html#mozTocId392049">November 7th
+        2021 logbook entry</a>.</p>
+    <h4><a id="mozTocId949189" class="mozTocH4"></a>Visual Studio Code (VSC)</h4>
+    <p><br>
+    </p>
+    <h4><a id="mozTocId727060" class="mozTocH4"></a>Cross reference generator
+      (Purdue Writing Center?)</h4>
+    <h3>PCI DSS&nbsp; Payment Card Industry Data Security Standard</h3>
+    <p>https://docs.microsoft.com/en-us/compliance/regulatory/offering-PCI-DSS </p>
+    <h1>Readings</h1>
+    <h2>November 8th - <span style="font-size:10pt;font-family:Roboto Mono,Arial;font-weight:bold;font-style:normal;"
+        data-sheets-value="{&quot;1&quot;:2,&quot;2&quot;:&quot;Controls\nFrameworks\nBenchmarks&quot;}"
+        data-sheets-userformat="{&quot;2&quot;:1334187,&quot;3&quot;:{&quot;1&quot;:0},&quot;4&quot;:{&quot;1&quot;:2,&quot;2&quot;:15987699},&quot;6&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:{&quot;1&quot;:2,&quot;2&quot;:0}},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;8&quot;:{&quot;1&quot;:[{&quot;1&quot;:2,&quot;2&quot;:0,&quot;5&quot;:{&quot;1&quot;:2,&quot;2&quot;:0}},{&quot;1&quot;:0,&quot;2&quot;:0,&quot;3&quot;:3},{&quot;1&quot;:1,&quot;2&quot;:0,&quot;4&quot;:1}]},&quot;10&quot;:2,&quot;11&quot;:4,&quot;12&quot;:0,&quot;14&quot;:{&quot;1&quot;:2,&quot;2&quot;:0},&quot;15&quot;:&quot;Roboto Mono&quot;,&quot;17&quot;:1,&quot;21&quot;:0,&quot;23&quot;:1}"
+        data-sheets-textstyleruns="{&quot;1&quot;:0,&quot;2&quot;:{&quot;2&quot;:{&quot;1&quot;:2,&quot;2&quot;:1136076},&quot;9&quot;:1}}&#60944;{&quot;1&quot;:8}&#60944;{&quot;1&quot;:9,&quot;2&quot;:{&quot;2&quot;:{&quot;1&quot;:2,&quot;2&quot;:1136076},&quot;9&quot;:1}}&#60944;{&quot;1&quot;:19}&#60944;{&quot;1&quot;:20,&quot;2&quot;:{&quot;2&quot;:{&quot;1&quot;:2,&quot;2&quot;:1136076},&quot;9&quot;:1}}"
+        data-sheets-hyperlinkruns="{&quot;1&quot;:0,&quot;2&quot;:&quot;https://login.codingdojo.com/m/285/9006/61209&quot;}&#60944;{&quot;1&quot;:8}&#60944;{&quot;1&quot;:9,&quot;2&quot;:&quot;https://login.codingdojo.com/m/285/9006/61210&quot;}&#60944;{&quot;1&quot;:19}&#60944;{&quot;1&quot;:20,&quot;2&quot;:&quot;https://login.codingdojo.com/m/285/9006/61211&quot;}&#60944;{&quot;1&quot;:30}"><span
+          style="font-size:10pt;font-family:Roboto Mono,Arial;font-weight:bold;font-style:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+            class="in-cell-link" target="_blank" href="https://login.codingdojo.com/m/285/9006/61209">Controls</a></span><span
+          style="font-size:10pt;font-family:Roboto Mono,Arial;font-weight:bold;font-style:normal;">
+        </span><span style="font-size:10pt;font-family:Roboto Mono,Arial;font-weight:bold;font-style:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+            class="in-cell-link" target="_blank" href="https://login.codingdojo.com/m/285/9006/61210">Frameworks</a></span><span
+          style="font-size:10pt;font-family:Roboto Mono,Arial;font-weight:bold;font-style:normal;">
+        </span><span style="font-size:10pt;font-family:Roboto Mono,Arial;font-weight:bold;font-style:normal;text-decoration:underline;-webkit-text-decoration-skip:none;text-decoration-skip-ink:none;color:#1155cc;"><a
+            class="in-cell-link" target="_blank" href="https://login.codingdojo.com/m/285/9006/61211">Benchmarks</a></span></span></h2>
+    <h3>Questions</h3>
+    <h4>Frameworks</h4>
+    <p>What is a framework?&nbsp; Judging from what I read, a framework is an
+      outline of a thought process about computing security.&nbsp; In many
+      cases, I get the sense that they are different names for the same things,
+      or at least very similar things.&nbsp; For example, what is the difference
+      between an SDN and a (for example) switch that can be configured with
+      ACLs?</p>
+    <p>I wish there was a discussion about the different frameworks and
+      advantages and disadvantages of each.&nbsp; I am an IT manager: I want to
+      choose a framework that will best allow me to accomplish my security goals
+      at a reasonable cost.&nbsp; Which framework do I pick, and why?</p>
+    <ul>
+      <li> NIST the Cybersecurity Framework</li>
+      <li>CIC Controls</li>
+      <li>ISO/IEC 27002:2013&nbsp;&nbsp; &lt;++++ This might important on the
+        test.</li>
+      <li>COBIT: an ISACA framework</li>
+      <li>ITIL</li>
+    </ul>
+    <h4>CIC Controls</h4>
+    <p>In the <a href="https://login.codingdojo.com/m/285/9006/61211">Benchmarks
+        and Secure configuration page</a>, it mentions 20 CIS Controls.&nbsp;
+      CIS has reorganized the list and decreased <a href="https://www.cisecurity.org/controls/cis-controls-list/">the
+        number of controls to 18</a>.</p>
+    <h4>Vendor diversity</h4>
+    <p>What was written here is true.&nbsp; But there is something important
+      that was not written that is also true: Vendor diversity can be really
+      hard to do.&nbsp; Look how hard both Microsoft and Apple work to make
+      their systems incompatible.&nbsp; Microsoft Windows, for example, was
+      POSIX compliant since Windows/NT 4.0, if not earlier!&nbsp; Why does Mac
+      OS X sometimes use a \r (carriage return) and sometimes a \n
+      (newline)?&nbsp; The keys to making vendor diversity work include, at
+      least, 1) insistence that products rigorously enforce standards (be strict
+      about what you send, liberal about what you accept), 2) insist that your
+      staff document all the kludges, duct tape, and band-aids that were used to
+      get two things to talk to each other, 3) allow time to figure these things
+      out.</p>
+    <h4>Causes of vulnerabilities</h4>
+    <p>This is a comment on <a href="https://login.codingdojo.com/m/285/9006/61214">Vulnerabilities</a>.</p>
+    <p>End of life systems.&nbsp; While it is true that this is an issue with
+      vendors, it is also an issue within our own organizations.&nbsp; We have
+      systems that we have made, and sometimes we don't know what they are or
+      what they do or who uses them or are they even being used?</p>
+    <p style="margin-left: 1cm; text-indent: 5mm; font-family: helvetica;">I had
+      a job at google taking apart a software development lab that had (mostly)
+      outlived its usefulness.&nbsp; I turned off one computer and let it sit in
+      a rack.&nbsp; My plan was to let it sit in the rack for a week. If nobody
+      screamed, then do an image backup and remove and dispose of the
+      computer.&nbsp; I got busy doing other things, and then on the 1st of the
+      next month, somebody screamed.&nbsp; There was a daemon on this server,
+      which did something for about 5 minutes on the first of the month.&nbsp;
+      When the server was off, the daemon couldn't do whatever its client wanted
+      it to do, so the client screamed for help.&nbsp; The person who got the
+      scream for help had no idea what it was that the client did, who ran it,
+      or what they got out of it.&nbsp; So we decided to do.... nothing... and
+      see who screamed about that.&nbsp; To my knowledge, nobody did.&nbsp; On
+      my second to the last day on that job, I documented everything I knew
+      about this daemon and its client, got buy in that I had done the right
+      thing in the right way, did the backup, documented where it could be
+      found, and gave this to everybody on my team and to the team of people who
+      ran the client.</p>
+    <p style="margin-left: 1cm; text-indent: 5mm; font-family: helvetica;">How
+      would somebody proactively check for something like this?</p>
+    <p style="margin-left: 1cm; text-indent: 5mm; font-family: helvetica;">I
+      suppose this goes under software inventory, which is one of the CIS
+      controls.</p>
+    <p>Is there an automated way of thinking about this?</p>
+    <h4>Secure software</h4>
+    <p>What does <a href="#def_SDLC">CIA</a> mean in "<a href="https://login.codingdojo.com/m/285/9008/61222">CIA
+        in software development</a>"?&nbsp; Oh... Confidentiality, integrity
+      availability.</p>
+    <h4>Cryptography basics</h4>
+    <p><a href="https://login.codingdojo.com/m/285/9008/61225">High level
+        cryptography</a>.&nbsp; Could you say that "SSL or TLS", which is what
+      the "S" means in https, uses both public/private key cryptography and a
+      shared key block cipher?</p>
+    <p>A famous example of steganography<a href="#footnote_003" id="fn_003"><sup>[3]</sup></a>:
+      <img src="https://petapixel.com/assets/uploads/2015/08/tree.jpg" alt="With the complete works of Shakespeare inside"
+        title="A picture of a tree"></p>
+    <h2>November 9th, November 10th, November 11th, November 12th.</h2>
+    <h3>Secure software</h3>
+    <p><a href="#def_SDLC">SDLC</a> Secure code review.&nbsp; How do we prove <a
+        href="#def_SDLC">CIA Confidentiality, Integrity, availability</a>?&nbsp;
+      Availability - induce failures and see what happens?&nbsp; How about the
+      other two?</p>
+    <h3>Penetration testing</h3>
+    <p>Do reconnaissance first.&nbsp; Two ways to go: active reconnaissance
+      (interact with the target) and and passive reconnaissance (gathering
+      information without the target knowing).</p>
+    <h4>Active reconnaissance tools</h4>
+    <ul>
+      <li>nmap</li>
+      <li>metasploit</li>
+      <li>other tools</li>
+    </ul>
+    <h4>Passive reconnaissance tools</h4>
+    <ul>
+      <li>OSINT</li>
+      <li>Wappalyzer</li>
+      <li><br>
+      </li>
+    </ul>
+    <h4></h4>
+    <h3>Penetration Testing vs. Vulnerability Scanning</h3>
+    <p>Vulnerability scanning is a step in penetration testing (What are some of
+      the other steps in penetration testing?)</p>
+    <h3>Cryptography</h3>
+    <p>&nbsp; </p>
+    <p><br>
+    </p>
+    <hr color="Yellow"> <a name="end"></a>
+    <h1><a id="mozTocId550571" class="mozTocH1"></a>Table of Contents</h1>
+    <p> </p>
+    <ol id="mozToc">
+      <!--mozToc h1 1 h2 2 h3 3 h4 4 h5 5 h6 6-->
+      <li><a href="#mozTocId687080">Jeff's CompTIA Security+ logbook</a></li>
+      <li><a href="#mozTocId733008">Dashboard and web resources</a>
+        <ol>
+          <li><a href="#mozTocId641377">Coding DoJo resources</a>
+            <ol>
+              <li><a href="#mozTocId44027">Contact information for Coding DoJo
+                  staff</a></li>
+              <li><a href="#mozTocId885688">PRE-BOOTCAMP CYBERSECURITY</a></li>
+              <li><a href="#mozTocId623660">Career Services</a></li>
+            </ol>
+          </li>
+          <li><a href="#mozTocId224054">Web Resources</a>
+            <ol>
+              <li><a href="#mozTocId557019">Discord</a></li>
+              <li><a href="#mozTocId636127">Hubspot</a></li>
+              <li><a href="#mozTocId959936">CompTIA</a>
+                <ol>
+                  <li><a href="#mozTocId774728">Professor Messer</a></li>
+                  <li><a href="#mozTocId275354">CompTIA's website</a></li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li><a href="#mozTocId373295">Getting started</a>
+        <ol>
+          <li><a href="#mozTocId676429">The Welcome packet</a>
+            <ol>
+              <li><a href="#mozTocId643911">Helpful information</a></li>
+              <li><a href="#mozTocId540381">Required Tools</a>
+                <ol>
+                  <li><a href="#mozTocId584389">VirtualBox - Kali Linux</a>
+                    <ol>
+                      <li><a href="#mozTocId274621">Listing, starting, stopping
+                          virtualbox guests</a>
+                        <ol>
+                          <li><a href="#mozTocId563280">Listing virtualbox
+                              guests</a></li>
+                          <li><a href="#mozTocId220321">Starting a virtualbox
+                              guest</a></li>
+                          <li><a href="#mozTocId787184">Stopping a virtualbox
+                              guest</a></li>
+                          <li><a href="#mozTocId176409">I want to be able to ssh
+                              in to my Kali Linux VM</a></li>
+                        </ol>
+                      </li>
+                      <li><a href="#mozTocId144959">Make the WiFi adapter
+                          visible on the Kali Linux machine.</a></li>
+                    </ol>
+                  </li>
+                  <li><a href="#mozTocId949189">Visual Studio Code (VSC)</a></li>
+                  <li><a href="#mozTocId727060">Cross reference generator
+                      (Purdue Writing Center?)</a></li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li><a href="#mozTocId550571">Table of Contents</a></li>
+      <li><a href="#mozTocId12003">Acronyms</a></li>
+      <li><a href="#mozTocId591514">Footnotes</a></li>
+    </ol>
+    <h2>Links to other pages of interest</h2>
+    <p>Comparison of frameworks (by Jeff Silverman).</p>
+    <p> <br>
+    </p>
+    <h1>Acronyms</h1>
+    <p>ISO/IEC 27002&nbsp;&nbsp; NIST&nbsp;&nbsp;&nbsp; ITIL </p>
+    <p>https://certification.comptia.org/docs/default-source/downloadablefiles</p>
+    <p>discord.gg/ZBWaDuSyqw </p>
+    <p><br>
+    </p>
+    <p>Luhn algorithm to make fake credit card numbers.&nbsp; Not an acronym.</p>
+    <p><br>
+    </p>
+    <p>&nbsp;Framework&nbsp; </p>
+    <p><br>
+    </p>
+    <dl>
+      <dt>ACL</dt>
+      <dd>Access Control List</dd>
+      <dt>ALE</dt>
+      <dd>Annualized loss expectancy (ALE): The total loss in dollars per year
+        due to a specific incident. The incident might happen once or more than
+        once; either way, this number is the total loss in dollars for that
+        particular type of incident. It is computed with the following
+        calculation:<br>
+        SLE × ARO = ALE</dd>
+      <dt>ARO</dt>
+      <dd>Annualized Rate of occurrence.&nbsp; The number of times per year that
+        the specific incident occurs.</dd>
+      <dt>APA</dt>
+      <dd>America Psychological Association.&nbsp; They are famous for <a href="#APA_style_guide">the
+          APA style guide</a>.&nbsp; There is also a bibliographic reference
+        generator tool.</dd>
+      <dt>CAC</dt>
+      <dd>? (from
+        https://public.cyber.mil/announcement/stig-update-disa-has-released-the-canonical-ubuntu-20-04-lts-stig/
+        and elsewhere within DISA)</dd>
+      <dt>CCI</dt>
+      <dd>Control Correlation Identifier.&nbsp; The most recent of these is from
+        February 2017.&nbsp; If it is that old, is it still useful?</dd>
+      <dt>CCTV</dt>
+      <dd>Closed Circuit Television</dd>
+      <dt><a name="#def_CIA">CIA</a></dt>
+      <dd>Confidentiality, integrity, availability (from <a href="https://login.codingdojo.com/m/285/9008/61222">https://login.codingdojo.com/m/285/9008/61222</a>).&nbsp;
+        See <cite>Data Integrity: Identifying and Protecting Assets Against
+          Ransomware and Other Destructive Events</cite>&nbsp; <sup><a name="fn_002"
+            href="#footnote_002">[2]</a></sup>.</dd>
+      <dt>CIS</dt>
+      <dd>Center for Internet Security.&nbsp; See <a href="https://www.cisecurity.org/controls/cis-controls-list/">the
+          18 CIS critical security controls</a>.&nbsp; Check my logbook November
+        8th: how am I doing?</dd>
+      <dt>CompTIA</dt>
+      <dd>Computing Technology Industry Association (See the <a href="https://connect.comptia.org/about-us">about
+          us</a> page.) </dd>
+      <dt>COBIT</dt>
+      <dd>An ISACA framework.&nbsp; I don't understand <a href="https://login.codingdojo.com/m/285/9006/61210">the
+          graphic about COBIT</a>.&nbsp; It talks about the<a href="#ITIL_Acronym">
+          ITIL®</a>4 key components.&nbsp; There are the Guiding Principles,
+        governance, service value chain, continual improvement, and practices.</dd>
+      <dt>CS</dt>
+      <dd>Career Services? (First encountered on <a href="https://docs.google.com/document/d/1ThJkK5skEYQJ5Hu3WSpyRFDSfZbFqKTElr9Vk7IOpwg/edit">the
+          career services roadmap</a>).</dd>
+      <dt>CSM</dt>
+      <dd>Career Services Manager?</dd>
+      <dt>CySA+</dt>
+      <dd><a href="https://www.comptia.org/certifications/cybersecurity-analyst">CompTIA
+          Cybersecurity Analyst</a>.</dd>
+      <dt>DAST</dt>
+      <dd>&nbsp;Dynamic Application Security Testing (from a talk by Dawn E.
+        Collett, <a href="https://drive.google.com/drive/folders/1JZavMrW-1IF2G_TXaKx5K520fqS466Ee">Free
+          Security for Open-Source Projects</a>)</dd>
+      <dt>DISA</dt>
+      <dd>Defense Information Systems Agency</dd>
+      <dt>DOD or DoD</dt>
+      <dd>United States Department of Defense</dd>
+      <dt>DoD DISA STIGs</dt>
+      <dd>Department of Defense&nbsp; Security Technical Implementation Guides</dd>
+      <dt>FBI</dt>
+      <dd>Federal Bureau of Investigation</dd>
+      <dt>IA (especially IA control or IA best practice)</dt>
+      <dd>Information Assurance.<br>
+      </dd>
+      <dt>IaC</dt>
+      <dd>Infrastructure as Code</dd>
+      <dt>IEC</dt>
+      <dd>?</dd>
+      <dt>IANA</dt>
+      <dd>Internet Assigned Names Authority</dd>
+      <dt>ISAC</dt>
+      <dd><a href="https://www.it-isac.org/">Information Sharing and Analysis
+          Center</a>.</dd>
+      <dt>ISACA</dt>
+      <dd>?</dd>
+      <dt>ISAO</dt>
+      <dd>Information Sharing and Analysis Organization ()</dd>
+      <dt>ISO</dt>
+      <dd>International Standards Organization</dd>
+      <dt><a name="ITIL_Acronym"></a>ITIL®</dt>
+      <dd>?</dd>
+      <dt>NFC</dt>
+      <dd>Near-field communications - a wireless protocol over a very short
+        range (~4 inches or 10 cm)</dd>
+      <dt>NIST</dt>
+      <dd>National Institute of Standards and Technology</dd>
+      <dt>NTRU</dt>
+      <dd><a href="https://en.wikipedia.org/wiki/NTRU">Wikipedia article</a>,&nbsp;
+        <a href="https://tbuktu.github.io/ntru/">ntru quantum resistant
+          cryptography</a>, <a href="https://www.securityinnovation.com/">Security
+          Innovation</a> page <a href="https://www.securityinnovation.com/products/encryption-libraries/ntru-crypto/ntru-resources.html">with
+          pointers to other articles</a>,</dd>
+      <dt>OSINT</dt>
+      <dd>Open Software INTelligence (see <a href="https://osintframework.com/">osintframework.com</a>)</dd>
+      <dt>OWASP</dt>
+      <dd><a href="https://owasp.org/#">Open Web Application Security Project</a>®
+        (from a talk by <a href="https://dawnbug.com">Dawn E. Collett</a>, <a
+          href="https://drive.google.com/drive/folders/1JZavMrW-1IF2G_TXaKx5K520fqS466Ee">Free
+          Security for Open-Source Projects</a>)</dd>
+      <dt>PKI</dt>
+      <dd>Public Key Infrastructure</dd>
+      <dt>RMF</dt>
+      <dd>Risk Management Framework, from the <a href="https://csrc.nist.gov/Projects/risk-management/about-rmf">NIST
+          Information Technology Laboratory</a>.&nbsp; RMF is something federal
+        IT people should worry about.&nbsp; See the <a href="https://info.varonis.com">varonis.com</a>
+        website.</dd>
+      <dt>SAST</dt>
+      <dd>Static Application Security Testing (from a talk by <a href="mailto:dawn@dawnbug.com">Dawn
+          E. Collett</a>, <a href="https://drive.google.com/drive/folders/1JZavMrW-1IF2G_TXaKx5K520fqS466Ee">Free
+          Security for Open-Source Projects</a>)</dd>
+      <dt>SDN</dt>
+      <dd>Software Defined Networking.</dd>
+      <dt><a name="def_SDLC"></a>SDLC</dt>
+      <dd>Software Development Life Cycle (from <a href="https://login.codingdojo.com/m/285/9008/61222">Secure
+          Software</a>)</dd>
+      <dt>SLE</dt>
+      <dd>Single Loss Expectancy</dd>
+      <dt>STIG</dt>
+      <dd><a href="https://public.cyber.mil/stigs/">Security Technical
+          Implementation Guides</a>.&nbsp; I found a <a href="https://dl.dod.cyber.mil/wp-content/uploads/stigs/zip/STIGApplicabilityGuide-Linux.zip">STIG
+          applicability guide - Liunx</a>.</dd>
+      <dt>SVS</dt>
+      <dd>Service Value System (from <a href="#ITIL_Acronym">ITIL®</a>)</dd>
+      <dt>VM</dt>
+      <dd>Virtual Machine - see <a href="#listing_starting_stopping_VMs">Listing,
+          Starting, and stopping virtual machines</a>.</dd>
+      <dt><br>
+      </dt>
+    </dl>
+    <h1><a id="mozTocId591514" class="mozTocH1"></a>Footnotes</h1>
+    <p style="margin-left: 1cm; text-indent: -1cm;"><a name="footnote_001" href="#fn_001"><sup>[1]</sup></a>
+      codolom, andrew.46, (2016, October 1). <i>How to start and stop
+        VirtualBox guests via command line</i>. Ask Ubuntu. Retrieved November
+      5, 2021, from <a href="https://askubuntu.com/questions/805662/how-to-start-and-stop-virtualbox-guests-via-command-line#805794">https://askubuntu.com/questions/805662/how-to-start-and-stop-virtualbox-guests-via-command-line#805794</a>.
+    </p>
+    <p style="margin-left: 1cm; text-indent: -1cm;"> </p>
+    <p style="margin-left: 1cm; text-indent: -1cm;"><sup><a name="footnote_002"
+          href="#fn_002">[2]</a></sup>Ekstrom, M., Lusty, L., Sexton, J.,
+      Sweetnam, J., &amp; Townsend, A. (2020, December). <i>Data integrity:
+        Identifying and Protecting Assets Against Ransomware and Other
+        Destructive Events</i>. Executive Summary - NIST SP 1800-25
+      documentation. Retrieved November 9, 2021, from
+      https://www.nccoe.nist.gov/publication/1800-25/VolA/index.html. <br>
+      See the executive summary</p>
+    <div id="footnote_003" style="margin-left: 1cm; text-indent: -1cm;"><sup><a
+          href="#fn_003">[3]</a></sup> Zhang, M. (2015, August 7). A look at
+      photo steganography, the hiding of secrets inside digital images.
+      PetaPixel. Retrieved November 9, 2021, from
+      https://petapixel.com/2015/08/07/a-look-at-photo-steganography-the-hiding-of-secrets-inside-digital-images/.
+      </div>
+    <p><br>
+    </p>
+    <p style="margin-left: 1cm; text-indent: -1cm;"> </p>
+    <div></div>
+    <p><br>
+    </p>
+    <p></p>
+    <p><br>
+    </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <p> </p>
+    <hr color="blue">
+    <p>Sanity Check</p>
+    <pre>This is preformatted text.  It uses just the &lt;pre&gt; tag.  It is not code.
+This is more preformatted text.
+And more preformated text.
+</pre>
+    <pre class="code">This is a line of code. It uses the &lt;pre class=code&gt; tag.
+This is a line of code as well.
+This is a third line of code.
+Would you believe line 4 of code?
+Of course, 5 is a prime number.
+6 is <em>not</em> a prime number
+7 is <strong>also</strong> a prime number.
+<u>8 is a power of 2</u>.
+9 is a square number, it's 3<sup>2</sup>.<br><acronym>This line should look like &lt;kbd&gt; input, but it is actually using the &lt;acronym&gt; tag.</acronym>
+<kbd>This is supposed to be a line of keyboard input.  It uses the &lt;kbd&gt; tag.</kbd>
+<samp>This is a sample output<br>This is also a sample output<br></samp>This is a "normal" line of code.
+</pre> <code>This is a line of code. It uses the &lt;code&gt; tag.  There is no &lt;pre&gt; tag.
+This is a line of code as well
+This is a third line of code
+Would you believe line 4 of code?
+Of course, 5 is a prime number.
+6 is <em>not</em> a prime number
+7 is <strong>also</strong> a prime number.
+<u>8 is a power of 2</u>.
+<acronym>9 is a square number, it's 3<sup>2</sup>. This line should look like &lt;kbd&gt; input, but it is actually using the &lt;acronym&gt; tag.</acronym>
+<kbd>This is supposed to be a line of keyboard input. It uses the &lt;kbd&gt; tag.</kbd>
+<samp>This is a sample output
+This is also a sample output
+This is a "normal" line of code.</samp>
+</code> <p><br>
+    </p>
+    <hr color="green">
+  </body>
+</html>
