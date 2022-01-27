@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html dir="ltr" lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Studying SSH</title>
+    <meta name="author" content="Jeff Silverman">
+    <meta name="description" content="Setting up SSH so that the daemon runs at boot time">
+    <meta name="keywords" content="SSH boot systemd">
+    <meta name="generator" content="BlueGriffon wysiwyg editor">
+    <style>
+H1, .h1 {
+  font-size: 36pt;
+  font-weight: bold;
+  background-color: #ffdcdc;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 18pt;
+}
+
+H2, .h2 {
+  font-size: 30pt;
+  font-weight: bold;
+  background-color: #ffffcc;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 36pt;
+}
+
+H3, .h3 {
+  font-size: 24pt;
+  font-weight: bold;
+  background-color: #ccffcc;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 54pt;
+}
+
+H4, .h4 {
+  font-size: 20pt;
+  font-weight: bold;
+  background-color: #ccffff;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 72pt;
+}
+
+H5, .h5 {
+  font-size: 16pt;
+  font-weight: bold;
+  background-color: #ccccff;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 72pt;
+}
+
+H6, .h6 {
+  font-size: 14pt;
+  font-weight: bold;
+  background-color: #cccccc;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 90pt;
+}
+
+P {
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+  
+  code, kbd, var {
+  white-space: pre;
+  font-size: 10pt;
+}
+
+kbd, .kbd {
+  text-decoration: underline;
+  font-family: monospace;
+  background-color: #eeeeff;
+}
+
+.code {
+  font: 12px/12px monospace;
+  background-image: repeating-linear-gradient(0deg,
+      darkgray,
+      darkgray 12px,
+      lightgray 12px,
+      lightgray 24px);
+}      
+
+ACRONYM, .acronym {
+  text-decoration: underline;
+  font-family: monospace;
+  background-color: #eeeeff;
+}
+
+SAMP, .samp {
+  font-family: monospace;
+  background-color: Beige;
+}
+
+.var {
+  font-style: italic;
+  font-family: monospace;
+}
+
+pre {
+  background-color: #fefefe;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+    </style>
+  </head>
+  <body>
+    <h1>SSH</h1>
+    <p>Can I login to my Kali VM from the host using SSH?</p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo$ <kbd>ssh kali@192.168.0.22</kbd><samp>
+Linux kali 5.15.0-kali2-amd64 #1 SMP Debian 5.15.5-2kali2 (2021-12-22) x86_64
+
+The programs included with the Kali GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Thu Jan 27 03:45:53 2022 from 192.168.0.149
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]<br></font></samp><font
+color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> 
+</pre>
+    <pre><font color="#4E9A06">┌───(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <font color="#4E9A06"><u
+style="text-decoration-style:single">sudo</u></font> <font color="#4E9A06">systemctl</font> status ssh
+[sudo] password for kali: 
+<font color="#8AE234"><b>●</b></font> ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; enabled; vendor preset: disabled)
+     Active: <font color="#8AE234"><b>active (running)</b></font> since Wed 2022-01-26 16:25:21 EST; 12h ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 609 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+   Main PID: 633 (sshd)
+      Tasks: 1 (limit: 2278)
+     Memory: 6.1M
+        CPU: 170ms
+     CGroup: /system.slice/ssh.service
+             └─633 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+Jan 26 16:25:19 kali systemd[1]: Starting OpenBSD Secure Shell server...
+Jan 26 16:25:21 kali sshd[633]: Server listening on 0.0.0.0 port 22.
+Jan 26 16:25:21 kali sshd[633]: Server listening on :: port 22.
+Jan 26 16:25:21 kali systemd[1]: Started OpenBSD Secure Shell server.
+Jan 26 16:38:04 kali sshd[1393]: Accepted publickey for kali from 192.168.0.149 port 39492 ssh2: RSA SHA256:HflkUOUb5Ro3uPHAua9FbsXb/UVEunNuETFocDB27ik
+Jan 26 16:38:04 kali sshd[1393]: pam_unix(sshd:session): session opened for user kali(uid=1000) by (uid=0)
+Jan 27 03:45:53 kali sshd[4785]: Accepted password for kali from 192.168.0.149 port 46062 ssh2
+Jan 27 03:45:53 kali sshd[4785]: pam_unix(sshd:session): session opened for user kali(uid=1000) by (uid=0)
+Jan 27 04:30:27 kali sshd[5317]: Accepted publickey for kali from 192.168.0.149 port 46598 ssh2: RSA SHA256:HflkUOUb5Ro3uPHAua9FbsXb/UVEunNuETFocDB27ik
+Jan 27 04:30:27 kali sshd[5317]: pam_unix(sshd:session): session opened for user kali(uid=1000) by (uid=0)
+                                                                                                                                                                                                                      
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> 
+
+</pre>
+    <p></p>
+    <p>Yes.&nbsp; Is the sshd running?&nbsp; It must be, otherwise I would not
+      be able to loginusing SSH.&nbsp; How did I know the VMs IPv4 address?</p>
+    <pre><font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font><kbd> <font
+color="#4E9A06">ip</font> addr list</kbd>
+1: <font color="#06989A">lo: </font>&lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback <font color="#C4A000">00:00:00:00:00:00</font> brd <font color="#C4A000">00:00:00:00:00:00</font>
+    inet <font color="#75507B">127.0.0.1</font>/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 <font color="#3465A4">::1</font>/128 scope host 
+       valid_lft forever preferred_lft forever
+2: <font color="#06989A">eth0: </font>&lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc pfifo_fast state <font
+color="#CC0000">DOWN </font>group default qlen 1000
+    link/ether <font color="#C4A000">08:00:27:19:41:b0</font> brd <font color="#C4A000">ff:ff:ff:ff:ff:ff</font>
+3: <font color="#06989A">eth1: </font>&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state <font
+color="#4E9A06">UP </font>group default qlen 1000
+    link/ether <font color="#C4A000">08:00:27:1e:22:61</font> brd <font color="#C4A000">ff:ff:ff:ff:ff:ff</font>
+    inet<span style="font-size: x-large;"><b> <font color="#75507B">192.168.0.22</font></b></span>/24 brd <font
+color="#75507B">192.168.0.255 </font>scope global dynamic noprefixroute eth1
+       valid_lft 2820sec preferred_lft 2820sec
+    inet6 <font color="#3465A4">2602:61:7132:9901:e4b0:bdb:b220:9d59</font>/64 scope global temporary dynamic 
+       valid_lft 357sec preferred_lft 357sec
+    inet6 <font color="#3465A4">2602:61:7132:9901:a00:27ff:fe1e:2261</font>/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 357sec preferred_lft 357sec
+    inet6 <font color="#3465A4">fd02:bf11:df72:1:86d8:91c7:3edd:1392</font>/64 scope global temporary dynamic 
+       valid_lft 357sec preferred_lft 357sec
+    inet6 <font color="#3465A4">fd02:bf11:df72:1:a00:27ff:fe1e:2261</font>/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 357sec preferred_lft 357sec
+    inet6 <font color="#3465A4">fe80::a00:27ff:fe1e:2261</font>/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+                                                                                                                                                                                                                      
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> 
+</pre>
+    <p></p>
+    <p>Does it work with IPv6 as well?</p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo$ <kbd>ssh -6 kali@2602:61:7132:9901:e4b0:bdb:b220:9d59</kbd><samp>
+The authenticity of host '2602:61:7132:9901:e4b0:bdb:b220:9d59 (2602:61:7132:9901:e4b0:bdb:b220:9d59)' can't be established.
+ECDSA key fingerprint is SHA256:Av5X2z3MVnjsjBxb4hseiT+8+hftz4VCI+V72fLcpBo.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '2602:61:7132:9901:e4b0:bdb:b220:9d59' (ECDSA) to the list of known hosts.
+Linux kali 5.15.0-kali2-amd64 #1 SMP Debian 5.15.5-2kali2 (2021-12-22) x86_64
+
+The programs included with the Kali GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Thu Jan 27 04:30:27 2022 from 192.168.0.149
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <font color="#4E9A06">hostname</font>
+kali
+                                                                                                                                                                                                                      
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <font color="#4E9A06">date</font>
+Thu Jan 27 04:37:38 AM EST 2022
+                                                                                                                                                                                                                      
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> 
+</samp>
+</pre>
+    <p> Yes, it does.&nbsp; </p>
+    <pre><font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <font color="#4E9A06"><kbd>w</kbd></font>  <samp>
+ 04:47:24 up 12:22,  6 users,  load average: 0.02, 0.01, 0.00
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+kali     tty7     :0               Wed16    9days 54.72s  0.25s xfce4-session
+kali     pts/1    -                Wed16    1:33m  0.51s  6.67s sudo su -
+kali     pts/2    192.168.0.149    03:00    1:23m  5.75s  2.33s sudo su -
+kali     pts/3    192.168.0.149    Wed16    1:46m  3.48s  0.02s sshd: kali [priv]   
+root     pts/4    -                03:13    1:33m  1.68s  1.68s snort -d -l snortlog -h 192.168.0.0/24 -A console -c /etc/snort/snort.conf
+kali     pts/5    2602:61:7132:990 04:37    2.00s  0.38s  0.00s w
+</samp>                                                                                                
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> 
+</pre>
+    <p> Will the ssh daemon come up automatically when I reboot? I think so.
+      systemctl says that systemd has enabled it. </p>
+    <pre><font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <kbd> <font
+color="#4E9A06">systemctl</font> status ssh </kbd><samp>
+<font color="#8AE234"><b>●</b></font> ssh.service - OpenBSD Secure Shell server
+     Loaded: loaded (/lib/systemd/system/ssh.service; <span style="font-size: x-large;">enabled;</span> vendor preset: disabled)
+     Active: <font color="#8AE234"><b>active (running)</b></font> since Wed 2022-01-26 16:25:21 EST; 12h ago
+       Docs: man:sshd(8)
+             man:sshd_config(5)
+    Process: 609 ExecStartPre=/usr/sbin/sshd -t (code=exited, status=0/SUCCESS)
+   Main PID: 633 (sshd)
+      Tasks: 1 (limit: 2278)
+     Memory: 6.1M
+        CPU: 198ms
+     CGroup: /system.slice/ssh.service
+             └─633 "sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups"
+
+Jan 26 16:25:21 kali sshd[633]: Server listening on :: port 22.
+Jan 26 16:25:21 kali systemd[1]: Started OpenBSD Secure Shell server.
+Jan 26 16:38:04 kali sshd[1393]: Accepted publickey for kali from 192.168.0.149 port 39492 ssh2: RSA SHA256:HflkUOUb5Ro3uPHAua9FbsXb/UVEunNuETFocDB27ik
+Jan 26 16:38:04 kali sshd[1393]: pam_unix(sshd:session): session opened for user kali(uid=1000) by (uid=0)
+Jan 27 03:45:53 kali sshd[4785]: Accepted password for kali from 192.168.0.149 port 46062 ssh2
+Jan 27 03:45:53 kali sshd[4785]: pam_unix(sshd:session): session opened for user kali(uid=1000) by (uid=0)
+Jan 27 04:30:27 kali sshd[5317]: Accepted publickey for kali from 192.168.0.149 port 46598 ssh2: RSA SHA256:HflkUOUb5Ro3uPHAua9FbsXb/UVEunNuETFocDB27ik
+Jan 27 04:30:27 kali sshd[5317]: pam_unix(sshd:session): session opened for user kali(uid=1000) by (uid=0)
+Jan 27 04:37:30 kali sshd[5405]: Accepted publickey for kali from 2602:61:7132:9901:be5f:f4ff:fe21:aa60 port 36848 ssh2: RSA SHA256:HflkUOUb5Ro3uPHAua9FbsXb/UVEunNuETFocDB27ik
+Jan 27 04:37:30 kali sshd[5405]: pam_unix(sshd:session): session opened for user kali(uid=1000) by (uid=0)
+</samp>                                                                             
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> 
+
+</pre>
+    <p></p>
+    <p>So reboot it and see what happens (shutdown snort cleanly first)</p>
+    <pre><font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <font color="#4E9A06">w</font>
+ 04:53:20 up 12:28,  4 users,  load average: 0.09, 0.04, 0.01
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+kali     tty7     :0               Wed16    9days 55.51s  0.25s xfce4-session
+kali     pts/2    192.168.0.149    03:00    1:29m  5.75s  2.33s sudo su -
+kali     pts/3    192.168.0.149    Wed16    1:52m  3.48s  0.02s sshd: kali [priv]   
+kali     pts/5    2602:61:7132:990 04:37    0.00s  0.52s  0.00s w
+                                                                                                                                                                                                                      
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <font color="#4E9A06"><u
+style="text-decoration-style:single">sudo</u></font> <font color="#4E9A06">reboot</font>              
+[sudo] password for kali: 
+                                                                                                                                                                                                                      
+Connection to 2602:61:7132:9901:e4b0:bdb:b220:9d59 closed by remote host.
+Connection to 2602:61:7132:9901:e4b0:bdb:b220:9d59 closed.
+jeffs@jeffs-desktop:~/Coding_DoJo$ 
+
+</pre>
+    <p></p>
+    <p>The SSH daemon does come up, but something strange has happened with the
+      IPv6 address: it changed.</p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo$ ssh -6 kali@2602:61:7132:9901:e4b0:bdb:b220:9d59
+<span style="color: red;">ssh: connect to host 2602:61:7132:9901:e4b0:bdb:b220:9d59 port 22: No route to host</span>
+jeffs@jeffs-desktop:~/Coding_DoJo$ ssh kali@192.168.0.22
+Linux kali 5.15.0-kali2-amd64 #1 SMP Debian 5.15.5-2kali2 (2021-12-22) x86_64
+
+The programs included with the Kali GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Thu Jan 27 04:37:30 2022 from 2602:61:7132:9901:be5f:f4ff:fe21:aa60
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <kbd> <font
+color="#4E9A06">ip</font> addr list</kbd><samp>
+1: <font color="#06989A">lo: </font>&lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback <font color="#C4A000">00:00:00:00:00:00</font> brd <font color="#C4A000">00:00:00:00:00:00</font>
+    inet <font color="#75507B">127.0.0.1</font>/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 <font color="#3465A4">::1</font>/128 scope host 
+       valid_lft forever preferred_lft forever
+2: <font color="#06989A">eth0: </font>&lt;NO-CARRIER,BROADCAST,MULTICAST,UP&gt; mtu 1500 qdisc pfifo_fast state <font
+color="#CC0000">DOWN </font>group default qlen 1000
+    link/ether <font color="#C4A000">08:00:27:19:41:b0</font> brd <font color="#C4A000">ff:ff:ff:ff:ff:ff</font>
+3: <font color="#06989A">eth1: </font>&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc pfifo_fast state <font
+color="#4E9A06">UP </font>group default qlen 1000
+    link/ether <font color="#C4A000">08:00:27:1e:22:61</font> brd <font color="#C4A000">ff:ff:ff:ff:ff:ff</font>
+    inet <font color="#75507B">192.168.0.22</font>/24 brd <font color="#75507B">192.168.0.255 </font>scope global dynamic noprefixroute eth1
+       valid_lft 3472sec preferred_lft 3472sec
+    inet6 <font color="#3465A4">2602:61:7132:9901:5657:5ab9:f404:eabe</font>/64 scope global temporary dynamic 
+       valid_lft 334sec preferred_lft 334sec
+    inet6 <font color="#3465A4">2602:61:7132:9901:a00:27ff:fe1e:2261</font>/64 scope global dynamic mngtmpaddr noprefixroute <br>    <span
+style="color: gray">(should have been 2602:61:7132:9901:<b>e4b0:bdb:b220:9d59</b>)</span>
+       valid_lft 334sec preferred_lft 334sec
+    inet6 <font color="#3465A4">fd02:bf11:df72:1:d574:3c5:f058:9f78</font>/64 scope global temporary dynamic 
+       valid_lft 334sec preferred_lft 334sec
+    inet6 <font color="#3465A4">fd02:bf11:df72:1:a00:27ff:fe1e:2261</font>/64 scope global dynamic mngtmpaddr noprefixroute 
+       valid_lft 334sec preferred_lft 334sec
+    inet6 <font color="#3465A4">fe80::a00:27ff:fe1e:2261</font>/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+</samp>                                                                                                                                                                                                                      
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> 
+</pre>
+    <p> </p>
+    <p>Once I knew the correct IPv6 addresses to use, it worked.</p>
+    <h2>Using NAT</h2>
+    <p>On my VM, virtualbox gave it the IPv4 address 10.0.2.4.&nbsp; I set it up
+      as described in the instructions.</p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo$ <kbd>ssh -p 2222 kali@127.0.0.1</kbd>
+<samp>The authenticity of host '[127.0.0.1]:2222 ([127.0.0.1]:2222)' can't be established.
+ECDSA key fingerprint is SHA256:Av5X2z3MVnjsjBxb4hseiT+8+hftz4VCI+V72fLcpBo.
+Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
+Warning: Permanently added '[127.0.0.1]:2222' (ECDSA) to the list of known hosts.
+Linux kali 5.15.0-kali2-amd64 #1 SMP Debian 5.15.5-2kali2 (2021-12-22) x86_64
+
+The programs included with the Kali GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Kali GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+Last login: Thu Jan 27 05:19:27 2022 from ::1</samp>
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <font color="#4E9A06"><kbd>w</kbd></font>
+<samp> 05:23:26 up 0 min,  2 users,  load average: 1.82, 0.60, 0.21
+USER     TTY      FROM             LOGIN@   IDLE   JCPU   PCPU WHAT
+kali     tty7     :0               05:23   48.00s  0.69s  0.24s xfce4-session
+kali     pts/0    10.0.2.2         05:23    5.00s  0.13s  0.00s w</samp>
+                                                                                                                                                                                                                      
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font>  
+</pre>
+    <p></p>
+    <p>IPv6 doesn't work.&nbsp; It didn't get an IPv6 from the hypervisor, which
+      is supposed to think it is an IPv6 router.&nbsp; In the interests of
+      getting something done, I am going to ignore that for now.&nbsp; When I
+      get the time, the first thing I am going to do is run <kbd>radvdump</kbd></p>
+    <pre><font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <kbd><font
+color="#4E9A06">ip</font> <font color="#75507B">-6</font> addr list</kbd><samp>
+1: <font color="#06989A">lo: </font>&lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 state UNKNOWN qlen 1000
+    inet6 <font color="#3465A4">::1</font>/128 scope host 
+       valid_lft forever preferred_lft forever
+3: <font color="#06989A">eth1: </font>&lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 state <font
+color="#4E9A06">UP </font>qlen 1000
+    inet6 <font color="#3465A4">fe80::a00:27ff:fe1e:2261</font>/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+</samp>
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> 
+</pre>
+    <p> </p>
+    <p>I thinking about how the networking is implemented, I think that having
+      the VM be bridged instead of NATted will work better in most siturations
+      because the NIC can be put into promiscuous mode, which works at the MAC
+      level.&nbsp; By way of contrast, NAT works at the Network (IPv4 or IPv6)
+      level.&nbsp; The guest thinks that it's connected to a router and so
+      putting a NIC into promiscuous mode on the other side of a router doesn't
+      help you much.</p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p></p>
+    <p> </p>
+  </body>
+</html>
