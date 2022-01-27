@@ -1,0 +1,268 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Jeff Silverman's SNORT report</title>
+    <meta name="generator" content="LibreOffice 6.4.7.2 (Linux)">
+    <meta name="created" content="2022-01-19T23:35:42.926705484">
+    <meta name="changed" content="2022-01-19T23:57:20.725134528">
+    <style type="text/css">
+		@page { size: 8.5in 11in; margin: 0.79in }
+		p { margin-bottom: 0.1in; background: transparent; line-height: 115%; background: transparent }
+		h1 { margin-bottom: 0.08in; background: transparent; background: transparent; page-break-after: avoid }
+		h1.western { font-family: "Liberation Sans", sans-serif; font-size: 18pt; font-weight: bold }
+		h1.cjk { font-family: "Noto Sans CJK SC"; font-size: 18pt; font-weight: bold }
+		h1.ctl { font-family: "Lohit Devanagari"; font-size: 18pt; font-weight: bold }
+		a:link { color: #000080; so-language: zxx; text-decoration: underline }
+		a:visited { color: #800000; so-language: zxx; text-decoration: underline }
+	</style>
+  </head>
+  <body dir="ltr" vlink="#800000" link="#000080" lang="en-US">
+    <p style="margin-top: 0.17in; margin-bottom: 0.08in; line-height: 100%; page-break-after: avoid"
+      align="center"> <font face="Liberation Sans, sans-serif"><font style="font-size: 28pt"
+          size="6"><b>SNORT report</b></font></font></p>
+    <p align="center">Jeff Silverman <a href="mailto:jeffsilverm@gmail.com"><span
+          style="font-family: monospace;">jeffsilverm@gmail.com</span></a></p>
+    <h1 class="western">Outline</h1>
+    <ol>
+      <li>
+        <p>Describe the network</p>
+      </li>
+      <li>
+        <p>Verify that the network will work in promiscuous mode</p>
+      </li>
+      <li>
+        <p>Run a simple test: webserver on guest, client on host</p>
+      </li>
+      <li>
+        <p>More complicated test: webserver on webserver, client on a Windows/11
+          laptop.</p>
+      </li>
+      <li>
+        <p>Testing using IPv6.</p>
+      </li>
+      <li>
+        <p>Some other tests.</p>
+      </li>
+    </ol>
+    <h1 class="western">Network description</h1>
+    <p>For purposes of this discussion, my home network is:</p>
+    <ul>
+      <li>
+        <p>A CenturyLink CX4000g router, which is configured for both IPv4 and
+          IPv6. I think it is configured as a switch.</p>
+      </li>
+      <li>
+        <p>The host is a whitebox with an Intel i5-2500K CPU @ 3.30 GHz and 32
+          Gbytes of RAM. It has a Reaktek RTL8111/8168/8411 PCI Express Gigabit
+          Ethernet Controller.</p>
+      </li>
+      <li>
+        <p>The hypervisor is VirtualBox version 6.1.26-Ubuntu. The network
+          interface is configured in promiscuous mode. It has been tested with
+          DHCP so it has at least broadcast capability</p>
+      </li>
+      <li>
+        <p>The guest is kali linux 5.15.0-kali2-amd64 running the 5.15.5-2kali2
+          kernel. It has a simulated 82540EM Gigabit Ethernet Controller.</p>
+      </li>
+      <li>
+        <p>The Windows laptop is a Lenovo running Windows/11.</p>
+      </li>
+    </ul>
+    <h1>"smoke test"</h1>
+    <p>After installing snort, I thought I would give it a quick test, just to
+      see what it would do.</p>
+    <p>My command to start SNORT: <br>
+      <kbd>sudo snort -d -l snortlog -h 192.168.0.0/24 -A console -c
+        /etc/snort/snort.conf</kbd><br>
+    </p>
+    <p>Immediately, I saw:</p>
+    <pre>    <samp>
+01/26-19:48:16.328175 [**] [1:2329:6] MS-SQL probe response overflow attempt [**] [Classification: Attempted User Privilege Gain] [Priority: 1] {UDP} 193.123.142.89:8801 -&gt; 192.168.0.149:38108<br>01/26-19:48:16.348620 [**] [1:2329:6] MS-SQL probe response overflow attempt [**] [Classification: Attempted User Privilege Gain] [Priority: 1] {UDP} 193.123.142.89:8801 -&gt; 192.168.0.149:38108
+01/26-19:48:16.624530 [**] [1:2329:6] MS-SQL probe response overflow attempt [**] [Classification: Attempted User Privilege Gain] [Priority: 1] {UDP} 193.123.142.89:8801 -&gt; 192.168.0.149:45972
+...<br>01/26-19:48:17.741421 [**] [1:2329:6] MS-SQL probe response overflow attempt [**] [Classification: Attempted User Privilege Gain] [Priority: 1] {UDP} 193.123.142.89:8801 -&gt; 192.168.0.149:45972 ...
+</samp>
+    </pre>
+    <p>That proves that snort is working properly, at least for traffic to/from
+      my guest's host machine.</p>
+    <p>Later, I saw:</p>
+    <pre><samp>...<br>01/27-00:52:03.205781&nbsp; [**] [1:1384:8] MISC UPnP malformed advertisement [**] [Classification: Misc Attack] [Priority: 2] {UDP} 192.168.0.1:34365 -&gt; 239.255.255.250:1900
+01/27-00:52:03.206088&nbsp; [**] [1:1384:8] MISC UPnP malformed advertisement [**] [Classification: Misc Attack] [Priority: 2] {UDP} 192.168.0.1:34365 -&gt; 239.255.255.250:1900<br>01/27-00:52:03.206694&nbsp; [**] [1:1384:8] MISC UPnP malformed advertisement [**] [Classification: Misc Attack] [Priority: 2] {UDP} 192.168.0.1:34365 -&gt; 239.255.255.250:1900</samp>
+...<br>&nbsp;</pre>
+    <p>When I ended my snort run, it generated a report of packet type
+      frequencies.&nbsp; In the time snort was running, it captured 3655472
+      ethernet frames.&nbsp; Of those frames,&nbsp; 405528 or 11% were ARP
+      packets!&nbsp; Also, 28441 (.78%) were bad checksums.</p>
+    <p>Let's start with the easy questions first.&nbsp; Who is 193.123.142.89?</p>
+    <pre>                                                                                                                                                           
+<font color="#3465A4">┌──(</font><font color="#EF2929"><b>root💀kali</b></font><font
+color="#3465A4">)-[</font><font color="#EAFB05"><b>~/snortlog</b></font><font color="#3465A4">]</font>
+<font color="#3465A4">└─</font><font color="#EF2929"><b>#</b></font> <font color="#4E9A06">dig</font> <font
+color="#75507B">-x</font> 193.123.142.89
+
+; &lt;&lt;&gt;&gt; DiG 9.17.21-1-Debian &lt;&lt;&gt;&gt; -x 193.123.142.89
+;; global options: +cmd
+;; Got answer:
+;; -&gt;&gt;HEADER&lt;&lt;- opcode: QUERY, status: <strong>NXDOMAIN</strong>, id: 61023
+;; flags: qr rd ra; QUERY: 1, ANSWER: 0, AUTHORITY: 1, ADDITIONAL: 1
+
+;; OPT PSEUDOSECTION:
+; EDNS: version: 0, flags:; udp: 1232
+; COOKIE: fc5ec9ef248633a30100000061f255c0dd95fb7110db127d (good)
+;; QUESTION SECTION:
+;89.142.123.193.in-addr.arpa.	IN	PTR
+
+;; AUTHORITY SECTION:
+123.193.in-addr.arpa.	701	IN	SOA	<strong>ns1.p78.dns.oraclecloud.net. hostmaster.oracle.com</strong>. 33 3600 600 604800 1800
+
+;; Query time: 7 msec
+;; SERVER: 192.168.0.1#53(192.168.0.1) (UDP)
+;; WHEN: Thu Jan 27 03:20:16 EST 2022
+;; MSG SIZE  rcvd: 188
+
+                                                                                                                                                           
+<font color="#3465A4">┌──(</font><font color="#EF2929"><b>root💀kali</b></font><font
+color="#3465A4">)-[</font><font color="#EAFB05"><b>~/snor<br></b></font><font color="#3465A4">└─</font><font
+color="#EF2929"><b>#</b></font> 
+</pre>
+    <p></p>
+    <p>The official answer (<strong style="font-family: monospace;">NXDOMAIN</strong>)
+      is incomeplete, because we know that the answer came from an Oracle
+      nameserver, <strong style="font-family: monospace;">ns1.p78.dns.oraclecloud.net</strong>.&nbsp;
+      </p>
+    <p>I decided to dig a little deeper into the problem.&nbsp; The snort log
+      files are PCAP files:</p>
+    <pre><font color="#3465A4">┌──(</font><font color="#EF2929"><b>root💀kali</b></font><font
+color="#3465A4">)-[</font><font color="#EAFB05"><b>~/snortlog</b></font><font color="#3465A4">]</font>
+<font color="#3465A4">└─</font><font color="#EF2929"><b>#</b></font> <kbd><font
+color="#4E9A06">file</font> ~/snortlog/<font color="#729FCF"><b>*</b></font></kbd>
+/root/snortlog/snort.log.1643232835: pcap capture file, microsecond ts (little-endian) - version 2.4 (Ethernet, capture length 1514)
+/root/snortlog/snort.log.1643247235: pcap capture file, microsecond ts (little-endian) - version 2.4 (Ethernet, capture length 1514)
+/root/snortlog/snort.log.1643250657: pcap capture file, microsecond ts (little-endian) - version 2.4 (Ethernet, capture length 1514)
+/root/snortlog/snort.log.1643271212: pcap capture file, microsecond ts (little-endian) - version 2.4 (Ethernet, capture length 1514)
+                                                                                                                                                                                                                       
+<font color="#3465A4">┌──(</font><font color="#EF2929"><b>root💀kali</b></font><font
+color="#3465A4">)-[</font><font color="#EAFB05"><b>~/snortlog</b></font><font color="#3465A4">]</font>
+<font color="#3465A4">└─</font><font color="#EF2929"><b>#</b></font> 
+</pre>
+    <p></p>
+    <p>How many packets do I have and how many of them are to/from port UDP
+      8801?</p>
+    <pre><font color="#3465A4">┌──(</font><font color="#EF2929"><b>root💀kali</b></font><font
+color="#3465A4">)-[</font><font color="#EAFB05"><b>~/snortlog</b></font><font color="#3465A4">]</font>
+<font color="#3465A4">└─</font><font color="#EF2929"><b>#</b></font> <font color="#4E9A06">cat</font> ~/snortlog/<font
+color="#729FCF"><b>*</b></font>  <font color="#729FCF"><b>|</b></font> <font color="#4E9A06">tcpdump</font> <font
+color="#75507B">-r</font> <font color="#75507B">-</font> <font color="#729FCF"><b>|</b></font> <font
+color="#4E9A06">wc</font> <font color="#75507B">-l</font>                                                                                                                                                                       1 <font
+color="#EF2929"><b>⨯</b></font>
+reading from file -, link-type EN10MB (Ethernet), snapshot length 1514
+tcpdump: pcap_loop: invalid packet capture length 1643247234, bigger than snaplen of 1514
+<b>122144</b>
+                                                                                                                                                                                                                       
+<font color="#3465A4">┌──(</font><font color="#EF2929"><b>root💀kali</b></font><font
+color="#3465A4">)-[</font><font color="#EAFB05"><b>~/snortlog</b></font><font color="#3465A4">]</font>
+<font color="#3465A4">└─</font><font color="#EF2929"><b>#</b></font> <font color="#4E9A06">cat</font> ~/snortlog/<font
+color="#729FCF"><b>*</b></font>  <font color="#729FCF"><b>|</b></font> <font color="#4E9A06">tcpdump</font> udp port 8801 <font
+color="#75507B">-r</font> <font color="#75507B">-</font> <font color="#729FCF"><b>|</b></font> <font
+color="#4E9A06">wc</font> <font color="#75507B">-l</font>
+reading from file -, link-type EN10MB (Ethernet), snapshot length 1514
+tcpdump: pcap_loop: invalid packet capture length 1643247234, bigger than snaplen of 1514
+<b>111280</b>
+                                                                                                                                                                                                                       
+<font color="#3465A4">┌──(</font><font color="#EF2929"><b>root💀kali</b></font><font
+color="#3465A4">)-[</font><font color="#EAFB05"><b>~/snortlog</b></font><font color="#3465A4">]</font>
+<font color="#3465A4">└─</font><font color="#EF2929"><b>#</b></font> 
+</pre>
+    <p></p>
+    <p>91%</p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p>Next question: what is UPnP?&nbsp; It's Universal Plug and Play and it is
+      described (among other places) in <a href="https://en.wikipedia.org/wiki/Universal_Plug_and_Play">wikipedia</a>.
+      and managed by the <a href="https://openconnectivity.org/">open
+        connectivity foundation</a>.&nbsp; In a <a href="https://www.upguard.com/blog/what-is-upnp">blog
+        post by Edward Kost</a> <sup>[1]</sup> of <a href="https://www.upguard.com/">UpGuard</a>,
+      there is a recommendation that if UPnP is not needed, then turn it
+      off.&nbsp; How many UPnP packets are there?</p>
+    <pre><font color="#3465A4">┌──(</font><font color="#EF2929"><b>root💀kali</b></font><font
+color="#3465A4">)-[</font><font color="#EAFB05"><b>~/snortlog</b></font><font color="#3465A4">]</font>
+<font color="#3465A4">└─</font><font color="#EF2929"><b>#</b></font> <font color="#4E9A06">cat</font> ~/snortlog/<font
+color="#729FCF"><b>*</b></font>  <font color="#729FCF"><b>|</b></font> <font color="#4E9A06">tcpdump</font> <font
+color="#C4A000">"udp port 1900"</font> <font color="#75507B">-r</font> <font color="#75507B">-</font> <font
+color="#729FCF"><b>|</b></font> <font color="#4E9A06">wc</font> <font color="#75507B">-l</font>                                                                                                                                                       1 <font
+color="#EF2929"><b>⨯</b></font>
+reading from file -, link-type EN10MB (Ethernet), snapshot length 1514
+tcpdump: pcap_loop: invalid packet capture length 1643247234, bigger than snaplen of 1514
+<strong>10823</strong>
+                                                                                                                                                                                                                       
+<font color="#3465A4">┌──(</font><font color="#EF2929"><b>root💀kali</b></font><font
+color="#3465A4">)-[</font><font color="#EAFB05"><b>~/snortlog</b></font><font color="#3465A4">]</font>
+<font color="#3465A4">└─</font><font color="#EF2929"><b>#</b></font> 
+</pre>
+    <p></p>
+    <p>I know that at least most of the UPnP packets are coming from the
+      router.&nbsp; Are there any hosts other than the router which are sending
+      UPnP packets?<br>
+    </p>
+    <pre><font color="#3465A4">┌──(</font><font color="#EF2929"><b>root💀kali</b></font><font
+color="#3465A4">)-[</font><font color="#EAFB05"><b>~/snortlog</b></font><font color="#3465A4">]</font>
+<font color="#3465A4">└─</font><font color="#EF2929"><b>#</b></font> <font color="#4E9A06">cat</font> ~/snortlog/<font
+color="#729FCF"><b>*</b></font>  <font color="#729FCF"><b>|</b></font> <font color="#4E9A06">tcpdump</font> <font
+color="#C4A000">"udp port 1900 and src not modem"</font> <font color="#75507B">-r</font> <font
+color="#75507B">-</font> <font color="#729FCF"><b>|</b></font> <font color="#4E9A06">wc</font> <font
+color="#75507B">-l</font>
+reading from file -, link-type EN10MB (Ethernet), snapshot length 1514
+tcpdump: pcap_loop: invalid packet capture length 1643247234, bigger than snaplen of 1514
+30
+                                                                                                                                                                                                                      
+<font color="#3465A4">┌──(</font><font color="#EF2929"><b>root💀kali</b></font><font
+color="#3465A4">)-[</font><font color="#EAFB05"><b>~/snortlog</b></font><font color="#3465A4">]</font>
+<font color="#3465A4">└─</font><font color="#EF2929"><b>#</b></font> 
+</pre>
+    <p> </p>
+    <p>Yes.&nbsp; Who?</p>
+    <pre><font color="#3465A4">┌──(</font><font color="#EF2929"><b>root💀kali</b></font><font
+color="#3465A4">)-[</font><font color="#EAFB05"><b>~/snortlog</b></font><font color="#3465A4">]</font>
+<font color="#3465A4">└─</font><font color="#EF2929"><b>#</b></font> <font color="#4E9A06">cat</font> ~/snortlog/<font
+color="#729FCF"><b>*</b></font>  <font color="#729FCF"><b>|</b></font> <font color="#4E9A06">tcpdump</font> <font
+color="#C4A000">"udp port 1900 and src not modem"</font> <font color="#75507B">-r</font> <font
+color="#75507B">-</font>        
+reading from file -, link-type EN10MB (Ethernet), snapshot length 1514
+16:38:12.806733 IP 192.168.0.9.3942 &gt; 239.255.255.250.1900: UDP, length 129
+16:38:12.807290 IP 192.168.0.9.3942 &gt; 239.255.255.250.1900: UDP, length 129
+...
+17:18:14.533514 IP 192.168.0.9.3942 &gt; 239.255.255.250.1900: UDP, length 126
+17:18:14.533854 IP 192.168.0.9.3942 &gt; 239.255.255.250.1900: UDP, length 126
+tcpdump: pcap_loop: invalid packet capture length 1643247234, bigger than snaplen of 1514
+                                                                                                                                                                                                                      
+<font color="#3465A4">┌──(</font><font color="#EF2929"><b>root💀kali</b></font><font
+color="#3465A4">)-[</font><font color="#EAFB05"><b>~/snortlog</b></font><font color="#3465A4">]</font>
+<font color="#3465A4">└─</font><font color="#EF2929"><b>#</b></font>                        </pre>
+    <p></p>
+    <p>Who is 192.168.0.9?&nbsp; I don't recognize that IPv4 address.</p>
+    <p><br>
+    </p>
+    <p>I decided that at this point, I had proven that I had installed snort
+      correctly, it was working as designed, and I can extract useful and
+      actionable information from snort's log files.&nbsp; I might return to
+      this subject later if I have more time.</p>
+    <p><br>
+    </p>
+    <hr style="width: 50%; height: 3px; color: #0e04d1; border-style: solid; margin-left: 0px; margin-right: auto;">
+    <p style="margin-left: 1cm; text-indent: -1cm;"><sup>1</sup>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      Kost, E. (2021, December 29). <i>What is upnp? yes, it's still dangerous
+        in 2022: Upguard</i>. RSS. Retrieved January 27, 2022, from
+      https://www.upguard.com/blog/what-is-upnp <br>
+      Kost's conclusion about UPnP is "UPnP is safe so long as it is connected
+      only to devices that contain no malware."</p>
+    <div><br>
+    </div>
+    <p><br>
+    </p>
+    <p> </p>
+  </body>
+</html>
