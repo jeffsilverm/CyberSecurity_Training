@@ -1,0 +1,1609 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Indicators of Compromise</title>
+    <link rel="stylesheet" type="text/css" href="homepage.css">
+  </head>
+  <body>
+    <h1><a id="mozTocId253947" class="mozTocH1"></a>Indicators of Compromise
+      (IoCs)</h1>
+    <h2>Revision to the assignment</h2>
+    <div>
+      <ol>
+        <li>compile a list of 8-10 Indicators of Compromise and cite the main
+          source or sources of that list.&nbsp; See <a href="#mozTocId15602">Crowdstrike's
+            list of Indicators of Compromise</a>.&nbsp;&nbsp; See <a href="#mozTocId488934">Fortinet's
+            indicators of compromise list</a>.</li>
+        <li>Identify 3-5 tools used to find IoCs, at least one of those tools
+          being free.&nbsp; </li>
+        <li>Write a short summary on the role the importance of identifying IoCs
+          in your cybersecurity&nbsp;program. (This will be simple and
+          straightforward.)</li>
+      </ol>
+    </div>
+    <p> </p>
+    <h2><a href="https://www.fortinet.com/resources/cyberglossary/indicators-of-compromise">Fortinet's
+        indicators of compromise list</a>.</h2>
+    <p><a href="https://www.fortinet.com/resources/cyberglossary/indicators-of-compromise">https://www.fortinet.com/resources/cyberglossary/indicators-of-compromise</a></p>
+    <ol>
+      <li>Unusual outbound network traffic</li>
+      <li>Anomalies in privileged user account activity</li>
+      <li>Geographical irregularities</li>
+      <li>Other login red flags</li>
+      <li>Swells in database read volume</li>
+      <li>HTML response sizes</li>
+      <li>Large numbers of requests for the same file</li>
+      <li>Mismatched port-application traffic</li>
+      <li>Suspicious registry or system file changes</li>
+      <li>DNS request anomalies</li>
+    </ol>
+    <p><br>
+    </p>
+    <h2><a href="https://www.crowdstrike.com/cybersecurity-101/indicators-of-compromise/">Crowdstrike's
+        list of Indicators of Compromise (IoC)</a></h2>
+    <p>https://www.crowdstrike.com/cybersecurity-101/indicators-of-compromise/</p>
+    <ol>
+      <li>Unusual inbound and outbound network traffic</li>
+      <li>Geographic irregularities, such as traffic from countries or locations
+        where the organization does not have a presence</li>
+      <li>Unknown applications within the system</li>
+      <li>Unusual activity from administrator or privileged accounts, including
+        requests for additional permissions</li>
+      <li>An uptick in incorrect log-ins or access requests that may indicate
+        brute force attacks</li>
+      <li>Anomalous activity, such as an increase in database read volume</li>
+      <li>Large numbers of requests for the same file</li>
+      <li>Suspicious registry or system file changes</li>
+      <li>Unusual Domain Name Servers (DNS) requests and registry configurations</li>
+      <li>Unauthorized settings changes, including mobile device profiles</li>
+      <li>Large amounts of compressed files or data bundles in incorrect or
+        unexplained locations</li>
+    </ol>
+    <p></p>
+    <br>
+    <h2>Why finding IoCs is important</h2>
+    <p>The key to a successful security profile is "defense in depth".&nbsp;
+      Every method in our arsenal is strenths and weaknesses; things they will
+      find and things they will miss.&nbsp; So, for example, it is possible that
+      a disgruntled employee at Microsoft might have planted logic bomb malware
+      in microsoft's web site.&nbsp; An IoC might or might not detect that:
+      Microsoft's site is enormous.&nbsp; Malware that spreads using some vector
+      other than the web will not be detected by an IoC. &nbsp; But a malware
+      detector such as an anti-virus system might find the malware, or if it is
+      a zero-day exploit, then it might not.&nbsp; But if the logic bomb malware
+      "blew up", presumably the intrusion detection system or the network
+      intrusion detection system will hopefully catch the problem.</p>
+    <br>
+    <p><br>
+    </p>
+    <div>
+      <div>
+        <h3></h3>
+        <h2>Tools to find IoCsTools to detect IoCs. </h2>
+        <p><br>
+        </p>
+        <h3>Digital Hands</h3>
+        <p>I got <a href="https://mail.google.com/mail/u/0/#inbox/FMfcgzGmtrMRpFkhlcLdrlmtTZgGcWpj">a
+            message from them about using their 15 day demo</a> even though I am
+          not a business.&nbsp; I got a second email message from them that has
+          links in it.&nbsp; Is it always poor computer security hygiene to
+          click on a link in a formatted email message?</p>
+        <p><br>
+        </p>
+        <h3>Tines</h3>
+        <p>Tines makes it easy to share IoCs in common threat
+          intelligence.&nbsp; <span class="important">Is it Free</span>?</p>
+        <p>There is a blog entry at Tines: <a href="https://www.tines.com/blog/threat-intelligence-sharing-with-tines-com">Threat
+            Sharing with Tines.com</a> by Thomas Kinsella.&nbsp; Tines also
+          mentions Facebook Threat Exchange.&nbsp; Tines also mentions a list of
+          different threat intelligence sources:</p>
+        <ul>
+          <li>AlienVault</li>
+          <li>Trustar</li>
+          <li>Phishtank</li>
+          <li><a href="https://urlscan.io">URLScan.io</a> They have a public
+            scan, and then there is a pricier version which is more performant
+            (live scans) and more broadly reaching.</li>
+          <li><a href="https://www.virustotal.com/gui/home/url">VirusTotal</a>.
+            They have a free tier and a tier which you pay for.</li>
+          <li>Pastebin</li>
+          <li><a href="https://developers.facebook.com/programs/threatexchange">Facebook
+              Threat Exchange</a>.&nbsp; This is free, but I have to create an
+            app that needs a "business" E-mail address in order to access the
+            API.</li>
+          <li>RiskIQ PassiveTotal</li>
+        </ul>
+        <p>What I am looking for in the block is how to test if a URL is
+          malicious, testing a known malicious URL, and testing known
+          non-malicious URL.</p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <h3><a id="mozTocId585507" class="mozTocH3"></a>Urlscan</h3>
+        <p>I set up an account for myself on URLSCAN.&nbsp; I need an API to use
+          the <a href="#urlscan_curl">curl</a> command.&nbsp; The secret key is
+          in my logbook secrets page.</p>
+        <br>
+        <h3><a id="mozTocId901260" class="mozTocH3"></a>A list of automatic
+          sources</h3>
+        <p>This list of automatic sources is from <a href="https://urlscan.io/docs/api/">URLscan.io</a>.</p>
+        <ul>
+          <li><a id="openphish"></a><b>OpenPhish</b> AI-powered list of
+            potential phishing sites: <a href="https://openphish.com/">OpenPhish</a></li>
+          <li><a id="phishtank"></a><b>PhishTank</b> List of potential phishing
+            sites: <a href="https://www.phishtank.com/">PhishTank</a></li>
+          <li><b>CertStream</b> Suspicious domains observed on <a href="https://certstream.calidog.io/">CertStream</a>,
+            except that's not how I would describe it. I would describe it as a
+            running log of TLS certificates getting handed out by the CAs.</li>
+          <li><a id="twitter"></a><b>Twitter</b> URLs being tweeted / pasted by
+            various Twitter users.</li>
+          <li><a id="urlhaus"></a><b>URLhaus</b> Malware URL exchange by
+            Abuse.ch: <a href="https://urlhaus.abuse.ch/">URLhaus</a></li>
+        </ul>
+        <p>This was not getting me anywhere.&nbsp; So I did a google search for
+          "List of known malicious URLs" and the first hit was <a href="https://zeltser.com/malicious-ip-blocklists/">Free
+            Blocklists of Suspected Malicious IPs and URLs</a> by Lenny Zeltser.
+          One of the members of the list was <a href="http://code.google.com/apis/safebrowsing/">Google
+            Safe Browsing API</a>.</p>
+        <p></p>
+      </div>
+    </div>
+    <p></p>
+    <p><br>
+    </p>
+    <h2><a id="mozTocId194796" class="mozTocH2"></a>A list of malicious sites</h2>
+    <p>I got this list from <a href="https://openphissh.com">openphissh.com</a>.  I wanted to find a site that was actively handing out malware, but I didn't.  
+      Most of the sites I found were no longer in business in one way or another.  In one way, that is A Good Thing - it makes the internet safer.  In my case,
+      it made it hard for me to find what I was looking for.
+      </p>
+    <h3><a id="mozTocId202697" class="mozTocH3"></a>1) my-parceltrack.com</h3>
+    <p><br>
+    </p>
+    <div style="overflow-x:auto;">
+      <table>
+        <tbody>
+          <tr>
+            <td> <img src="my-parceltrack.com.urlscan.png" alt="" title="Screen capture from urlscan.io of my-parceltrack.com">
+            </td>
+            <td> <img src="my-parceltrack.com-virustotal.png" alt="" title="my-parceltrack.com from virustotal">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p> tracepath 8.209.106.6 says that the server is in Hamburg, Germany.</p>
+    <pre>  557  11/02/22 00:48:41 url="http://my-parceltrack.com/"
+  558  11/02/22 00:48:53 curl -X POST "https://urlscan.io/api/v1/scan/" -H "Content-Type: application/json" -H "API-Key: $apikey" -d "{ \
+        \"url\": \"$url\", \"visibility\": \"public\", \
+        \"tags\": [\"demotag1\", \"demotag2\"] \
+      }"
+  559  11/02/22 00:49:19 curl https://urlscan.io/result/2708a438-3907-4e10-b014-d96d06e97d41/
+</pre>
+    <p></p>
+    <p><br>
+    </p>
+    <h3><a id="mozTocId224465" class="mozTocH3"></a>2) 134.119.216.167</h3>
+    <table>
+      <tbody>
+        <tr>
+          <td><img src="134.119.216.167-project-honey-pot.png" alt="From project honeypot"
+              title="134.119.216.167 "></td>
+          <td><img src="134.119.216.167-urlscan.png" alt="From project honeypot"
+              title="134.119.216.167 "></td>
+        </tr>
+      </tbody>
+    </table>
+    <p>At the moment, they appear to be laying low.&nbsp; Although I wonder if
+      the fact that mysql is open means they are running a honey pot of their
+      own:</p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/IoCs$ <kbd>sudo nmap -O -sT -p 20,21,22,23,25,53,80,135-139,161,162,443,445,3306 -T 4 134.119.216.167</kbd><samp>
+[sudo] password for jeffs: 
+Starting Nmap 7.80 ( https://nmap.org ) at 2022-02-11 02:15 PST
+Nmap scan report for 134.119.216.167
+Host is up (0.16s latency).
+
+PORT     STATE    SERVICE
+20/tcp   closed   ftp-data
+21/tcp   closed   ftp
+22/tcp   open     ssh
+23/tcp   closed   telnet
+25/tcp   filtered smtp
+53/tcp   closed   domain
+80/tcp   closed   http
+135/tcp  closed   msrpc
+136/tcp  closed   profile
+137/tcp  closed   netbios-ns
+138/tcp  closed   netbios-dgm
+139/tcp  closed   netbios-ssn
+161/tcp  closed   snmp
+162/tcp  closed   snmptrap
+443/tcp  closed   https
+445/tcp  closed   microsoft-ds
+<span style="color: #6600cc;">3306/tcp open     mysql</span>
+Device type: general purpose
+Running: Linux 2.6.X
+OS CPE: cpe:/o:linux:linux_kernel:2.6.18
+OS details: Linux 2.6.18
+Network Distance: 9 hops
+
+OS detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 4.04 seconds</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/IoCs$ 
+</pre>
+    <h3><a id="mozTocId495929" class="mozTocH3"></a>3)
+      https://support.co.ip.op0v51a.cn/</h3>
+    <div style="overflow-x:auto;">
+      <table style="width: 100%" border="1">
+        <tbody>
+          <tr>
+            <td><img src="support.co.ip.op0v51a.cn-virustotal.png" alt="" title="support.co.ip.op0v51a.cn from virustotal"><br>
+            </td>
+            <td><img src="support.co.ip.op0v51a.cn-urlscan.png" alt="" title="support.co.ip.op0v51a.cn as measured by urlscan.io"><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><br>
+    </p>
+    <h3><a id="mozTocId76753" class="mozTocH3"></a>4)
+      http://jointgrupbokep2022.duckdns.org/FZxhmcjssKedelvaUFWl6s0/<br>
+    </h3>
+    <div style="overflow-x:auto;">
+      <table style="width: 100%" border="1">
+        <tbody>
+          <tr>
+            <td><img src="jointgrupbokep2022.duckdns.org-virustotal.com.png.png"
+                alt="" title="http://jointgrupbokep2022.duckdns.org/FZxhmcjssKedelvaUFWl6s0/ from virustotal"><br>
+            </td>
+            <td><img src="jointgrupbokep2022.duckdns.org-urlscan.io.png" alt=""
+                title="jointgrupbokep2022.duckdns.org as seen by urlscan.io"><br>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><br>
+    </p>
+    <h3><a id="mozTocId617947" class="mozTocH3"></a>5) f003.backblazeb2.com</h3>
+    <p><br>
+    </p>
+    <div style="overflow-x:auto;">
+      <table>
+        <tbody>
+          <tr>
+            <td> <img src="backblazeb2.com-urlscan.io.png" alt="" title="Screen capture from urlscan.io of my-parceltrack.com">
+            </td>
+            <td> <img src="backblazeb2.com-virustotal.com.png" alt="" title="my-parceltrack.com from virustotal">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>f003.backblazeb2.com has IPv4 address 45.11.36.16.&nbsp; It has no IPv6
+      address.&nbsp; When I try to access it using <kbd>curl -I https://f003.backblazeb2.com</kbd>,
+      I get a 405 error (method not allowed).<br>
+    </p>
+    <h3><a id="mozTocId995300" class="mozTocH3"></a>6) kidteched.serveuser.com</h3>
+    <p><br>
+    </p>
+    <div style="overflow-x:auto;">
+      <table>
+        <tbody>
+          <tr>
+            <td> <img src="kidteched.serveuser.com-urlscan.png" alt="" title="kidteched.serveuser.com from virustotl.com">
+            </td>
+            <td> <img src="kidteched.serveuser.com.xsswebcss-virustotal.com.png"
+                alt="" title="kidteched.serveuser.com/xsweb/css"> </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p>kidteched.serveuser.com has no IPv4 address<br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <h3><a id="mozTocId195829" class="mozTocH3"></a>7) www.facebook.asiaup.tk</h3>
+    <p><br>
+    </p>
+    <div style="overflow-x:auto;">
+      <table>
+        <tbody>
+          <tr>
+            <th>URLscan</th>
+            <th> <br>
+            </th>
+            <th>Virustotal.com</th>
+          </tr>
+          <tr>
+            <td> <img src="www.facebook.asiaup.tk-urlscan.com.png" alt="" title=" www.facebook.asiaup.tk from urlscan.io">
+            </td>
+            <td> <img src="facebook.asiaup.tk-virustotal.com.png" alt="" title=" www.facebook.asiaup.tk from virustotal.com">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p> </p>
+    <p> </p>
+    <p>This has no IPv4 or IPv6 address.</p>
+    <h3>8) 65376B736A491EAB381A75E99060C12D a.k.a HTML/ScrInject.B
+      trojanHTML/ScrInject.B trojan </h3>
+    <p>I found this on <a href="https://www.scumware.org/report/65376B736A491EAB381A75E99060C12D">scumware.org</a><br>
+    </p>
+    <div style="overflow-x:auto;">
+      <table>
+        <tbody>
+          <tr>
+            <th>Virustotal.com</th>
+            <th>scumware</th>
+            <th> <br>
+            </th>
+          </tr>
+          <tr>
+            <td> <img src="65376B736A491EAB381A75E99060C12D-virustotal.com.png"
+                alt="" title="65376B736A491EAB381A75E99060C12D .a.k.a HTML/ScrInject.B trojan from virustotal.com">
+            </td>
+            <td> <img src="65376B736A491EAB381A75E99060C12D-scumware.org.png" alt=""
+                title="65376B736A491EAB381A75E99060C12D .a.k.a HTML/ScrInject.B trojan from scumware.com">
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p><a href="https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Trojan:HTML/Scrinject.B%21rfn">Microsoft
+        has this to say about Trojan:HTML/Scrinject.B!rfn</a>: Microsoft
+      Defender Antivirus detects and removes this threat. <br>
+    </p>
+    <p> I found out something else about this trojan in <a href="https://forum.ucoz.com/forum/42-21526-1#121701">a
+        forum for uCoz.com</a>:&nbsp; look for </p>
+    <div class="codeMessage" style="border:1px inset;max-height:200px;overflow:auto;">
+      <span class="ucoz-forum-post" id="ucoz-forum-post-121688" edit-url="" style="font-family: monospace;">&lt;ntvk
+        id="m-iIQUqZpHU8"&gt;&lt;/ntvk&gt;&lt;script src="//p7.ntvk1.ru/nve.js"
+        async="async"&gt;&lt;/script&gt;</span></div>
+    <p> </p>
+    <p> <a href="https://urlscan.io/result/ac2aab67-4a3f-494c-a45b-b91c114dedd2/">URLscan
+        says that this is no longer an issue</a>.<br>
+    </p>
+    <p> <br>
+    </p>
+    <h3>9)
+https://commertyrrceelab.ru/asdf/809d645b008891cad0b2adc9a56866b4?Key=809d645b008891cad0b2adc9a56866b4&amp;rand=19lnboxLightespn_809d645b008891cad0b2adc9a56866b4_TjRFM1lxNmxzZUlxY0tuejJG-&amp;27287308c6c31e3d4a5b66175f7c909963f79d54b88a2036042f65706f23b23d=</h3>
+    <p>This is personal for me.&nbsp; I bank at BECU, the Boeing Employees
+      Credit Union.&nbsp; When I went to this link usng Mozilla Firefox, the
+      browser stopped me immediately and told me <span style="font-family: sans-serif;">"Firefox
+        blocked this page because it may trick you into doing something
+        dangerous like installing software or revealing personal information
+        like passwords or credit cards.</span>"&nbsp; The source is <a href="https://developers.google.com/safe-browsing/v4/advisory">Google
+        Safe Browsing</a>.&nbsp; When I go to see details, I see</p>
+    <div style="border: solid;">
+      <p>commertyrrceelab.ru has been reported as a deceptive site. You can
+        report a detection problem or ignore the risk and go to this unsafe
+        site.<br>
+        <br>
+        Learn more about deceptive sites and phishing at www.antiphishing.org.
+        Learn more about Firefox’s Phishing and Malware Protection at
+        support.mozilla.org.</p>
+      <p><br>
+      </p>
+    </div>
+    <p>I checked out commertyrrceelab.ru in DNS and that domain name no longer
+      exists. </p>
+    <p><br>
+    </p>
+    <h3>10)
+      http://login.microsoftonline.us.office.rp1.abangaritest.govshn.net/office365.us/oauth2/authorize/
+      &nbsp;&nbsp;&nbsp; </h3>
+    <p><br>
+    </p>
+    <div style="overflow-x:auto;">
+      <table>
+        <tbody>
+          <tr>
+            <th>Virustotal.com</th>
+            <th>URLscan</th>
+            <th> <br>
+            </th>
+          </tr>
+          <tr>
+            <td>No screen capture</td>
+            <td>No screen capture</td>
+          </tr>
+          <tr>
+            <td>IPv4 address: does not exist<br>
+              IPv6 address: does not exist</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    <p> </p>
+    <p> </p>
+    <p><br>
+    </p>
+    <h3><a id="mozTocId892472" class="mozTocH3"></a>11) jeffsilverman.ddns.net -
+      a known good website</h3>
+    <table style="width: 100%" border="1">
+      <tbody>
+        <tr style="background:lightgreen;">
+          <td><img src="jeffsilverman.ddns.net-virustotal.png" alt="A known non-malicious website"
+              title="jeffsilverman.ddns.net from virustotal"><br>
+          </td>
+          <td><img src="jeffsilverman.ddns.net-urlscan.io.png" alt="A known good site"
+              title="jeffsilverman.ddns.net from urlscan.io"><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <p>jeffsilverman.ddns.net has IPv4 address:&nbsp; 75.172.98.54 and IPv6
+      address 2601:602:8500:1b2:8f3d:e00d:25a4:2c9a.&nbsp; However, the ISP
+      blocks IPv6.<br>
+      <br>
+    </p>
+    <p><br>
+    </p>
+    <p> </p>
+    <p> </p>
+    &nbsp; Another was OpenPhish which lists <a href="https://scholarsott.nithyamservices.com/_alask_us_a">Alaska
+      USA Federal Credit Union</a>.
+    <p> </p>
+    <br>
+    <hr style="width: 100%; height: 4px; color: blue;">
+    <h2><a id="mozTocId455352" class="mozTocH2"></a>Table of Contents</h2>
+    <ol id="mozToc">
+      <!--mozToc h1 1 h2 2 h3 3 h4 4 h5 5 h6 6-->
+      <li><a href="#mozTocId253947">Indicators of Compromise (IoCs)</a>
+        <ol>
+          <li><a href="#mozTocId488934">Fortinet's indicators of compromise
+              list.</a></li>
+          <li><a href="#mozTocId15602">Crowdstrike's list of Indicators of
+              Compromise (IoC)</a></li>
+          <li><a href="#mozTocId194796">A list of sites</a>
+            <ol>
+              <li><a href="#mozTocId202697">1) my-parceltrack.com</a></li>
+              <li><a href="#mozTocId224465">2) 134.119.216.167</a></li>
+              <li><a href="#mozTocId495929">3) https://support.co.ip.op0v51a.cn/</a></li>
+              <li><a href="#mozTocId76753">4)
+                  http://jointgrupbokep2022.duckdns.org/FZxhmcjssKedelvaUFWl6s0/</a></li>
+              <li><a href="#mozTocId617947">5) f003.backblazeb2.com</a></li>
+              <li><a href="#mozTocId995300">6) kidteched.serveuser.com</a></li>
+              <li><a href="#mozTocId195829">7) www.facebook.asiaup.tk</a></li>
+              <li><a href="#mozTocId838761">8) 65376B736A491EAB381A a.k.a
+                  HTML/ScrInject.B trojanHTML/ScrInject.B trojan 75E99060C12D</a></li>
+              <li><a href="#mozTocId787725">9)</a></li>
+              <li><a href="#mozTocId625448">10)</a></li>
+              <li><a href="#mozTocId892472">11) jeffsilverman.ddns.net - a known
+                  good website</a></li>
+            </ol>
+          </li>
+          <li><a href="#mozTocId384614">Tools to detect IoCs.</a>
+            <ol>
+              <li><a href="#mozTocId585022">Digital Hands</a></li>
+              <li><a href="#mozTocId862563">Tines</a></li>
+              <li><a href="#mozTocId585507">Urlscan</a>
+                <ol>
+                  <li><a href="#mozTocId523500">How to test a URL using curl or
+                      http or python</a>
+                    <ol>
+                      <li><a href="#mozTocId18889">An known site -
+                          https://jeffsilverman.ddns.net, which nobody knows
+                          about.</a></li>
+                    </ol>
+                  </li>
+                  <li><a href="#mozTocId212170">An example test using curl</a></li>
+                </ol>
+              </li>
+              <li><a href="#mozTocId901260">A list of automatic sources</a></li>
+            </ol>
+          </li>
+          <li><a href="#mozTocId159826">Malavent IoCs</a>
+            <ol>
+              <li><a href="#mozTocId332263">Alaskusa.org</a></li>
+              <li><a href="#mozTocId77238">http://my-parceltrack.com/</a></li>
+            </ol>
+          </li>
+          <li><a href="#mozTocId455352">Table of Contents</a></li>
+        </ol>
+      </li>
+    </ol>
+    <p><br>
+    </p>
+    <hr style="width: 100%; height: 4px; color: white;"><br>
+    <div style="background-color: lightgray;"> <b>Everything below this line is
+        of interest only to somebody contemplating writing a computer program to
+        update a firewall rule using intelligence from one of the IoC threat
+        Intelligence sites, in this case, urlscan.io.&nbsp; It's here because I
+        didn't want to lose it.<br>
+      </b>
+      <p><br>
+      </p>
+      <h4><a name="urlscan" id="urlscan"></a>How to test a URL using curl or
+        http or python and URLscan<br>
+      </h4>
+      <h5><a id="mozTocId18889" class="mozTocH5"></a> An known site -
+        https://jeffsilverman.ddns.net, which <a href="#nobody_knows_me">nobody
+          knows about</a>.<br>
+      </h5>
+      <pre><kbd>SITE="<var>http://badsite.com</var>"</kbd><br><kbd><a id="urlscan_curl">curl</a> -X POST "https://urlscan.io/api/v1/scan/" -H "Content-Type: application/json" -H "API-Key:$apikey" -d "{"url":"$SITE", "public":"on"}"</kbd>
+</pre>
+      <pre><kbd>
+<br>apikey=<var>the key is a GUID</var><br>url="<span style="color: #009500;">https://jeffsilverman.ddns.net</span>"<br>curl -X POST "https://urlscan.io/api/v1/scan/" \<br>      -H "Content-Type: application/json" \<br>      -H "API-Key: $apikey" \<br>      -d "{ \<br>        \"url\": \"$url\", \"visibility\": \"public\", \<br>        \"tags\": [\"demotag1\", \"demotag2\"] \<br>      }"</kbd><br><samp>{
+  "message": "Submission successful",
+  "uuid": "211381b4-c8c2-4408-a783-379088510b98",
+  "result": "<b>https://urlscan.io/result/211381b4-c8c2-4408-a783-379088510b98/</b>",
+  "api": "https://urlscan.io/api/v1/result/211381b4-c8c2-4408-a783-379088510b98/",
+  "visibility": "public",
+  "options": {},
+  "url": "<span style="color: #009500;">https://jeffsilverman.ddns.net</span>"
+}      
+</samp></pre>
+      <p><br>
+      </p>
+      <p>Wait 10 to 30 seconds.</p>
+      <pre>jeffs@jeffs-desktop:~$ <kbd>curl </kbd><b>https://urlscan.io/result/211381b4-c8c2-4408-a783-379088510b98/</b>"
+<samp>
+{
+  "data": {
+    "requests": [
+      {
+        "request": {
+          "requestId": "127978C1997EFB860E8432A363ABC681",
+          "loaderId": "127978C1997EFB860E8432A363ABC681",
+          "documentURL": "https://jeffsilverman.ddns.net/",
+          "request": {
+            "url": "https://jeffsilverman.ddns.net/",
+            "method": "GET",
+            "headers": {
+              "Upgrade-Insecure-Requests": "1",
+              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36",
+              "Accept-Language": "de-DE,de;q=0.9"
+            },
+            "mixedContentType": "none",
+            "initialPriority": "VeryHigh",
+            "referrerPolicy": "strict-origin-when-cross-origin",
+            "isSameSite": true
+          },
+          "timestamp": 13388839.718243,
+          "wallTime": 1644559428.521634,
+          "initiator": {
+            "type": "other"
+          },
+          "redirectHasExtraInfo": false,
+          "type": "Document",
+          "frameId": "4A6E675212251E4CEE599EC2D1862F35",
+          "hasUserGesture": false,
+          "primaryRequest": true
+        },
+        "response": {
+          "encodedDataLength": 8311,
+          "dataLength": 19739,
+          "requestId": "127978C1997EFB860E8432A363ABC681",
+          "type": "Document",
+          "response": {
+            "url": "<span style="color: #009500;">https://jeffsilverman.ddns.net/</span>",
+            "status": 200,
+            "statusText": "OK",
+            "headers": {
+              "Server": "nginx/1.14.2",
+              "Date": "Fri, 11 Feb 2022 06:03:49 GMT",
+              "Content-Type": "text/html",
+              "Last-Modified": "Sat, 02 Oct 2021 18:36:46 GMT",
+              "Transfer-Encoding": "chunked",
+              "Connection": "keep-alive",
+              "ETag": "W/\"6158a6be-4d1b\"",
+              "Content-Encoding": "gzip"
+            },
+            "mimeType": "text/html",
+            "remoteIPAddress": "75.172.98.54",
+            "remotePort": 443,
+            "encodedDataLength": 250,
+            "timing": {
+              "requestTime": 13388839.71884,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0.251,
+              "dnsEnd": 7.849,
+              "connectStart": 308.57,
+              "connectEnd": 679.938,
+              "sslStart": 475.52,
+              "sslEnd": 679.932,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 679.994,
+              "sendEnd": 680.027,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersEnd": 851.701
+            },
+            "responseTime": 1644559429373.82,
+            "protocol": "http/1.1",
+            "securityState": "secure",
+            "securityDetails": {
+              "protocol": "TLS 1.2",
+              "keyExchange": "ECDHE_RSA",
+              "keyExchangeGroup": "X25519",
+              "cipher": "AES_256_GCM",
+              "certificateId": 0,
+              "subjectName": "jeffsilverm.ddns.net",
+              "sanList": [
+                "jeffsilverm.ddns.net",
+                "jeffsilverman-aaaa.ddns.net",
+                "jeffsilverman.ddns.net"
+              ],
+              "issuer": "R3",
+              "validFrom": 1639515267,
+              "validTo": 1647291266,
+              "signedCertificateTimestampList": [],
+              "certificateTransparencyCompliance": "unknown"
+            }
+          },
+          "hasExtraInfo": true,
+          "hash": "fe9fc7665b6889e9fe4ea9c587d12db4818b673cb8d1305a6ec413dacf9a59aa",
+          "size": 19739,
+          "asn": {
+            "ip": "75.172.98.54",
+            "asn": "209",
+            "country": "US",
+            "registrar": "arin",
+            "date": "1998-11-13",
+            "description": "CENTURYLINK-US-LEGACY-QWEST, US",
+            "route": "75.172.0.0/16",
+            "name": "CENTURYLINK-US-LEGACY-QWEST"
+          },
+          "geoip": {
+            "country": "US",
+            "region": "WA",
+            "timezone": "America/Los_Angeles",
+            "city": "Seattle",
+            "ll": [
+              47.6733,
+              -122.3426
+            ],
+            "country_name": "United States",
+            "metro": 819
+          },
+          "rdns": {
+            "ip": "75.172.98.54",
+            "ptr": "75-172-98-54.tukw.qwest.net"
+          }
+        }
+      },
+      {
+        "request": {
+          "requestId": "232628.2",
+          "loaderId": "127978C1997EFB860E8432A363ABC681",
+          "documentURL": "https://jeffsilverman.ddns.net/",
+          "request": {
+            "url": "https://jeffsilverman.ddns.net/silverman_jeff.jpg",
+            "method": "GET",
+            "headers": {
+              "Accept-Language": "de-DE,de;q=0.9",
+              "Referer": "https://jeffsilverman.ddns.net/",
+              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36"
+            },
+            "mixedContentType": "none",
+            "initialPriority": "Low",
+            "referrerPolicy": "strict-origin-when-cross-origin",
+            "isSameSite": true
+          },
+          "timestamp": 13388840.593222,
+          "wallTime": 1644559429.396631,
+          "initiator": {
+            "type": "parser",
+            "url": "https://jeffsilverman.ddns.net/",
+            "lineNumber": 23,
+            "columnNumber": 39
+          },
+          "redirectHasExtraInfo": false,
+          "type": "Image",
+          "frameId": "4A6E675212251E4CEE599EC2D1862F35",
+          "hasUserGesture": false
+        },
+        "response": {
+          "encodedDataLength": 17513,
+          "dataLength": 17271,
+          "requestId": "232628.2",
+          "type": "Image",
+          "response": {
+            "url": "https://jeffsilverman.ddns.net/silverman_jeff.jpg",
+            "status": 200,
+            "statusText": "OK",
+            "headers": {
+              "Date": "Fri, 11 Feb 2022 06:03:49 GMT",
+              "Last-Modified": "Fri, 23 Oct 2020 09:08:01 GMT",
+              "Server": "nginx/1.14.2",
+              "ETag": "\"5f929d71-4377\"",
+              "Content-Type": "image/jpeg",
+              "Connection": "keep-alive",
+              "Accept-Ranges": "bytes",
+              "Content-Length": "17271"
+            },
+            "mimeType": "image/jpeg",
+            "remoteIPAddress": "75.172.98.54",
+            "remotePort": 443,
+            "encodedDataLength": 242,
+            "timing": {
+              "requestTime": 13388840.593572,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": -1,
+              "dnsEnd": -1,
+              "connectStart": -1,
+              "connectEnd": -1,
+              "sslStart": -1,
+              "sslEnd": -1,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 0.343,
+              "sendEnd": 0.419,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersEnd": 170.788
+            },
+            "responseTime": 1644559429567.657,
+            "protocol": "http/1.1",
+            "securityState": "secure",
+            "securityDetails": {
+              "protocol": "TLS 1.2",
+              "keyExchange": "ECDHE_RSA",
+              "keyExchangeGroup": "X25519",
+              "cipher": "AES_256_GCM",
+              "certificateId": 0,
+              "subjectName": "jeffsilverm.ddns.net",
+              "sanList": [
+                "jeffsilverm.ddns.net",
+                "jeffsilverman-aaaa.ddns.net",
+                "jeffsilverman.ddns.net"
+              ],
+              "issuer": "R3",
+              "validFrom": 1639515267,
+              "validTo": 1647291266,
+              "signedCertificateTimestampList": [],
+              "certificateTransparencyCompliance": "unknown"
+            }
+          },
+          "hasExtraInfo": true,
+          "hash": "345262edc734c0256a3a98ec2f1fb5fcbddc21dae0edcfe5e6eca838ec143079",
+          "size": 23028,
+          "asn": {
+            "ip": "75.172.98.54",
+            "asn": "209",
+            "country": "US",
+            "registrar": "arin",
+            "date": "1998-11-13",
+            "description": "CENTURYLINK-US-LEGACY-QWEST, US",
+            "route": "75.172.0.0/16",
+            "name": "CENTURYLINK-US-LEGACY-QWEST"
+          },
+          "geoip": {
+            "country": "US",
+            "region": "WA",
+            "timezone": "America/Los_Angeles",
+            "city": "Seattle",
+            "ll": [
+              47.6733,
+              -122.3426
+            ],
+            "country_name": "United States",
+            "metro": 819
+          },
+          "rdns": {
+            "ip": "75.172.98.54",
+            "ptr": "75-172-98-54.tukw.qwest.net"
+          }
+        },
+        "initiatorInfo": {
+          "url": "https://jeffsilverman.ddns.net/",
+          "host": "jeffsilverman.ddns.net",
+          "type": "parser"
+        }
+      },
+      {
+        "request": {
+          "requestId": "232628.3",
+          "loaderId": "127978C1997EFB860E8432A363ABC681",
+          "documentURL": "https://jeffsilverman.ddns.net/",
+          "request": {
+            "url": "https://jeffsilverman.ddns.net/Jane_beat_me_at_chess.jpg",
+            "method": "GET",
+            "headers": {
+              "Accept-Language": "de-DE,de;q=0.9",
+              "Referer": "https://jeffsilverman.ddns.net/",
+              "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36"
+            },
+            "mixedContentType": "none",
+            "initialPriority": "Low",
+            "referrerPolicy": "strict-origin-when-cross-origin",
+            "isSameSite": true
+          },
+          "timestamp": 13388840.593441,
+          "wallTime": 1644559429.396833,
+          "initiator": {
+            "type": "parser",
+            "url": "https://jeffsilverman.ddns.net/",
+            "lineNumber": 117,
+            "columnNumber": 64
+          },
+          "redirectHasExtraInfo": false,
+          "type": "Image",
+          "frameId": "4A6E675212251E4CEE599EC2D1862F35",
+          "hasUserGesture": false
+        },
+        "response": {
+          "encodedDataLength": 2799449,
+          "dataLength": 2799203,
+          "requestId": "232628.3",
+          "type": "Image",
+          "response": {
+            "url": "https://jeffsilverman.ddns.net/Jane_beat_me_at_chess.jpg",
+            "status": 200,
+            "statusText": "OK",
+            "headers": {
+              "Date": "Fri, 11 Feb 2022 06:03:49 GMT",
+              "Last-Modified": "Tue, 24 Aug 2021 07:09:30 GMT",
+              "Server": "nginx/1.14.2",
+              "ETag": "\"61249b2a-2ab663\"",
+              "Content-Type": "image/jpeg",
+              "Connection": "keep-alive",
+              "Accept-Ranges": "bytes",
+              "Content-Length": "2799203"
+            },
+            "mimeType": "image/jpeg",
+            "remoteIPAddress": "75.172.98.54",
+            "remotePort": 443,
+            "encodedDataLength": 246,
+            "timing": {
+              "requestTime": 13388840.593842,
+              "proxyStart": -1,
+              "proxyEnd": -1,
+              "dnsStart": 0,
+              "dnsEnd": 0,
+              "connectStart": 0,
+              "connectEnd": 50.036,
+              "sslStart": 0,
+              "sslEnd": 50.03,
+              "workerStart": -1,
+              "workerReady": -1,
+              "workerFetchStart": -1,
+              "workerRespondWithSettled": -1,
+              "sendStart": 50.109,
+              "sendEnd": 50.161,
+              "pushStart": 0,
+              "pushEnd": 0,
+              "receiveHeadersEnd": 389.124
+            },
+            "responseTime": 1644559429786.276,
+            "protocol": "http/1.1",
+            "securityState": "secure",
+            "securityDetails": {
+              "protocol": "TLS 1.2",
+              "keyExchange": "ECDHE_RSA",
+              "keyExchangeGroup": "X25519",
+              "cipher": "AES_256_GCM",
+              "certificateId": 0,
+              "subjectName": "jeffsilverm.ddns.net",
+              "sanList": [
+                "jeffsilverm.ddns.net",
+                "jeffsilverman-aaaa.ddns.net",
+                "jeffsilverman.ddns.net"
+              ],
+              "issuer": "R3",
+              "validFrom": 1639515267,
+              "validTo": 1647291266,
+              "signedCertificateTimestampList": [],
+              "certificateTransparencyCompliance": "unknown"
+            }
+          },
+          "hasExtraInfo": true,
+          "hash": "fae1045a70e7fb1e7372cecd4486fdc3b4867ea1d7db16ef41c03ba9ea55b047",
+          "size": 3732272,
+          "asn": {
+            "ip": "75.172.98.54",
+            "asn": "209",
+            "country": "US",
+            "registrar": "arin",
+            "date": "1998-11-13",
+            "description": "CENTURYLINK-US-LEGACY-QWEST, US",
+            "route": "75.172.0.0/16",
+            "name": "CENTURYLINK-US-LEGACY-QWEST"
+          },
+          "geoip": {
+            "country": "US",
+            "region": "WA",
+            "timezone": "America/Los_Angeles",
+            "city": "Seattle",
+            "ll": [
+              47.6733,
+              -122.3426
+            ],
+            "country_name": "United States",
+            "metro": 819
+          },
+          "rdns": {
+            "ip": "75.172.98.54",
+            "ptr": "75-172-98-54.tukw.qwest.net"
+          }
+        },
+        "initiatorInfo": {
+          "url": "https://jeffsilverman.ddns.net/",
+          "host": "jeffsilverman.ddns.net",
+          "type": "parser"
+        }
+      }
+    ],
+    "cookies": [],
+    "console": [],
+    "links": [
+      {
+        "href": "http://www.openoffice.org/",
+        "text": "open office"
+      },
+      {
+        "href": "http://www.templebetham.org/",
+        "text": "Temple Beth Am"
+      },
+      {
+        "href": "https://docs.google.com/document/d/170qr5mAO6hGvgaIcmx5fvYzGiRgU_VFQhLzj8wxW4K0/pub",
+        "text": "The Woman who was unstuck in time"
+      },
+      {
+        "href": "https://jupyter.org/",
+        "text": "Jupyter"
+      },
+      {
+        "href": "https://pandas.pydata.org/",
+        "text": "pandas"
+      },
+      {
+        "href": "https://matplotlib.org/",
+        "text": "matplotlib"
+      },
+      {
+        "href": "https://www.meetup.com/PSPPython/",
+        "text": "Puget Sound Python Users Group (PuPPY)"
+      },
+      {
+        "href": "http://www.nltk.org/",
+        "text": "Natural Language Tool Kit (NLTK)"
+      },
+      {
+        "href": "https://spacy.io/",
+        "text": "spacy.io"
+      },
+      {
+        "href": "https://demos.explosion.ai/displacy/",
+        "text": "displacy"
+      },
+      {
+        "href": "https://www.ling.upenn.edu/courses/Fall_2003/ling001/penn_treebank_pos.html",
+        "text": "Pennsylvania Treebank Part of Speech (POS) tags"
+      },
+      {
+        "href": "https://arxiv.org/abs/1511.02117v1",
+        "text": "Introducing SKYSET-a Quintuple Introducing SKYSET-a Quintuple Approach for Improving Instructions"
+      },
+      {
+        "href": "https://www.youtube.com/watch?v=fG3OkZHme5k",
+        "text": "Hillary Clinton"
+      },
+      {
+        "href": "http://www.jeffsilverman.ddns.net/inner_classes.ipynb",
+        "text": "the inner_classes.ipynb notebook in its original form"
+      },
+      {
+        "href": "https://github.com/kbandla/dpkt",
+        "text": "Jon Oberheide"
+      },
+      {
+        "href": "http://www.google.com/patents/US5296853",
+        "text": "Google's patent server"
+      },
+      {
+        "href": "https://docs.google.com/document/d/1-r7yTmJU4UMKYyd6abyreJk9rLAwMpMNDEmzM7SJVd8/pub",
+        "text": "experienced nanny"
+      },
+      {
+        "href": "http://tiger.census.gov/cgi-bin/mapsurfer",
+        "text": "US Census TIGER"
+      },
+      {
+        "href": "http://www-wmc.wr.usgs.gov/map-related.html",
+        "text": "Coast and Geodetic survey (USGS)"
+      },
+      {
+        "href": "http://maps.yahoo.com/py/maps.py",
+        "text": "Map server"
+      },
+      {
+        "href": "http://www.mapquest.com/",
+        "text": "MapQuest has topological maps"
+      },
+      {
+        "href": "http://angel.jeffsilverman.ddns.net/HappyComputing.mpg",
+        "text": "Happy Computing"
+      },
+      {
+        "href": "http://www.pan.ci.seattle.wa.us/",
+        "text": "City of Seattle"
+      },
+      {
+        "href": "http://www.ci.seattle.wa.us/util/AboutUs.htm",
+        "text": "Solid Waste Utility"
+      },
+      {
+        "href": "http://www.metrokc.gov/",
+        "text": "King County"
+      },
+      {
+        "href": "http://www.hud.gov/",
+        "text": "HUD"
+      },
+      {
+        "href": "http://www.usda.gov/",
+        "text": "United States Department of Agriculture"
+      },
+      {
+        "href": "http://www.fs.fed.us/",
+        "text": "National Forest Service"
+      },
+      {
+        "href": "http://www.fs.fed.us/pnw/",
+        "text": "The Pacific Northwest Research Station"
+      },
+      {
+        "href": "http://www.fs.fed.us/pwn/fera",
+        "text": "Seattle Forestry Sciences Laboratory"
+      },
+      {
+        "href": "http://www.usgs.gov/",
+        "text": "USGS"
+      },
+      {
+        "href": "http://www.whitehouse.gov/",
+        "text": "White House"
+      },
+      {
+        "href": "http://www.senate.gov/~murray/",
+        "text": "Patty Murray"
+      },
+      {
+        "href": "https://www.cantwell.senate.gov/contact/email",
+        "text": "Maria Cantwell"
+      },
+      {
+        "href": "http://home.jeffsilverman.ddns.net:9080/",
+        "text": "Jeff Silverman's experiments in website design"
+      },
+      {
+        "href": "https://jeffsilverm.ddns.net/",
+        "text": "new"
+      },
+      {
+        "href": "https://jeffsilverman-aaaa.ddns.net/",
+        "text": "web server"
+      }
+    ],
+    "timing": {
+      "beginNavigation": "2022-02-11T06:03:48.520Z",
+      "frameStartedLoading": "2022-02-11T06:03:49.379Z",
+      "frameNavigated": "2022-02-11T06:03:49.396Z",
+      "domContentEventFired": "2022-02-11T06:03:49.400Z",
+      "frameStoppedLoading": "2022-02-11T06:03:51.412Z"
+    },
+    "globals": [
+      {
+        "prop": "structuredClone",
+        "type": "function"
+      }
+    ]
+  },
+  "stats": {
+    "resourceStats": [
+      {
+        "count": 2,
+        "size": 2816474,
+        "encodedSize": 2816962,
+        "latency": 0,
+        "countries": [
+          "US"
+        ],
+        "ips": [
+          "75.172.98.54"
+        ],
+        "type": "Image",
+        "compression": "1.0",
+        "percentage": 66
+      },
+      {
+        "count": 1,
+        "size": 19739,
+        "encodedSize": 8311,
+        "latency": 0,
+        "countries": [
+          "US"
+        ],
+        "ips": [
+          "75.172.98.54"
+        ],
+        "type": "Document",
+        "compression": "2.4",
+        "percentage": 33
+      }
+    ],
+    "protocolStats": [
+      {
+        "count": 3,
+        "size": 2836213,
+        "encodedSize": 2825273,
+        "ips": [
+          "75.172.98.54"
+        ],
+        "countries": [
+          "US"
+        ],
+        "securityState": {},
+        "protocol": "http/1.1"
+      }
+    ],
+    "tlsStats": [
+      {
+        "count": 3,
+        "size": 2836213,
+        "encodedSize": 2825273,
+        "ips": [
+          "75.172.98.54"
+        ],
+        "countries": [
+          "US"
+        ],
+        "protocols": {
+          "TLS 1.2 / ECDHE_RSA / AES_256_GCM": 3
+        },
+        "securityState": "secure"
+      }
+    ],
+    "serverStats": [
+      {
+        "count": 3,
+        "size": 2836213,
+        "encodedSize": 2825273,
+        "ips": [
+          "75.172.98.54"
+        ],
+        "countries": [
+          "US"
+        ],
+        "server": "nginx/1.14.2"
+      }
+    ],
+    "domainStats": [
+      {
+        "count": 3,
+        "ips": [
+          "75.172.98.54"
+        ],
+        "domain": "jeffsilverman.ddns.net",
+        "size": 2836213,
+        "encodedSize": 2825273,
+        "countries": [
+          "US"
+        ],
+        "index": 0,
+        "initiators": [
+          "jeffsilverman.ddns.net"
+        ],
+        "redirects": 0
+      }
+    ],
+    "regDomainStats": [
+      {
+        "count": 3,
+        "ips": [
+          "75.172.98.54"
+        ],
+        "regDomain": "jeffsilverman.ddns.net",
+        "size": 2836213,
+        "encodedSize": 2825273,
+        "countries": [],
+        "index": 0,
+        "subDomains": [
+          {
+            "domain": "",
+            "country": "US"
+          }
+        ],
+        "redirects": 0
+      }
+    ],
+    "secureRequests": 3,
+    "securePercentage": 100,
+    "IPv6Percentage": 0,
+    "uniqCountries": 1,
+    "totalLinks": 37,
+    "malicious": 0,
+    "adBlocked": 0,
+    "ipStats": [
+      {
+        "requests": 3,
+        "domains": [
+          "jeffsilverman.ddns.net"
+        ],
+        "ip": "75.172.98.54",
+        "asn": {
+          "ip": "75.172.98.54",
+          "asn": "209",
+          "country": "US",
+          "registrar": "arin",
+          "date": "1998-11-13",
+          "description": "CENTURYLINK-US-LEGACY-QWEST, US",
+          "route": "75.172.0.0/16",
+          "name": "CENTURYLINK-US-LEGACY-QWEST"
+        },
+        "dns": {},
+        "geoip": {
+          "country": "US",
+          "region": "WA",
+          "timezone": "America/Los_Angeles",
+          "city": "Seattle",
+          "ll": [
+            47.6733,
+            -122.3426
+          ],
+          "country_name": "United States",
+          "metro": 819
+        },
+        "size": 2836213,
+        "encodedSize": 2825273,
+        "countries": [
+          "US"
+        ],
+        "index": 0,
+        "ipv6": false,
+        "redirects": 0,
+        "count": null,
+        "rdns": {
+          "ip": "75.172.98.54",
+          "ptr": "75-172-98-54.tukw.qwest.net"
+        }
+      }
+    ]
+  },
+  "meta": {
+    "processors": {
+      "umbrella": {
+        "data": []
+      },
+      "geoip": {
+        "data": [
+          {
+            "ip": "75.172.98.54",
+            "geoip": {
+              "country": "US",
+              "region": "WA",
+              "timezone": "America/Los_Angeles",
+              "city": "Seattle",
+              "ll": [
+                47.6733,
+                -122.3426
+              ],
+              "country_name": "United States",
+              "metro": 819
+            }
+          }
+        ]
+      },
+      "rdns": {
+        "data": [
+          {
+            "ip": "75.172.98.54",
+            "ptr": "75-172-98-54.tukw.qwest.net"
+          }
+        ]
+      },
+      "asn": {
+        "data": [
+          {
+            "ip": "75.172.98.54",
+            "asn": "209",
+            "country": "US",
+            "registrar": "arin",
+            "date": "1998-11-13",
+            "description": "CENTURYLINK-US-LEGACY-QWEST, US",
+            "route": "75.172.0.0/16",
+            "name": "CENTURYLINK-US-LEGACY-QWEST"
+          }
+        ]
+      },
+      "wappa": {
+        "data": []
+      }
+    }
+  },
+  "task": {
+    "uuid": "ddc2c202-8685-4264-a668-af7682ee22c6",
+    "time": "2022-02-11T06:03:48.481Z",
+    "url": "https://jeffsilverman.ddns.net",
+    "visibility": "public",
+    "method": "api",
+    "source": "bf8ca509",
+    "tags": [
+      "demotag1",
+      "demotag2"
+    ],
+    "reportURL": "https://urlscan.io/result/ddc2c202-8685-4264-a668-af7682ee22c6/",
+    "screenshotURL": "https://urlscan.io/screenshots/ddc2c202-8685-4264-a668-af7682ee22c6.png",
+    "domURL": "https://urlscan.io/dom/ddc2c202-8685-4264-a668-af7682ee22c6/"
+  },
+  "page": {
+    "url": "https://jeffsilverman.ddns.net/",
+    "domain": "jeffsilverman.ddns.net",
+    "country": "US",
+    "city": "Seattle",
+    "server": "nginx/1.14.2",
+    "ip": "75.172.98.54",
+    "ptr": "75-172-98-54.tukw.qwest.net",
+    "asn": "AS209",
+    "asnname": "CENTURYLINK-US-LEGACY-QWEST, US"
+  },
+  "lists": {
+    "ips": [
+      "75.172.98.54"
+    ],
+    "countries": [
+      "US"
+    ],
+    "asns": [
+      "209"
+    ],
+    "domains": [
+      "jeffsilverman.ddns.net"
+    ],
+    "servers": [
+      "nginx/1.14.2"
+    ],
+    "urls": [
+      "https://jeffsilverman.ddns.net/",
+      "https://jeffsilverman.ddns.net/silverman_jeff.jpg",
+      "https://jeffsilverman.ddns.net/Jane_beat_me_at_chess.jpg"
+    ],
+    "linkDomains": [
+      "www.openoffice.org",
+      "www.templebetham.org",
+      "docs.google.com",
+      "jupyter.org",
+      "pandas.pydata.org",
+      "matplotlib.org",
+      "www.meetup.com",
+      "www.nltk.org",
+      "spacy.io",
+      "demos.explosion.ai",
+      "www.ling.upenn.edu",
+      "arxiv.org",
+      "www.youtube.com",
+      "www.jeffsilverman.ddns.net",
+      "github.com",
+      "www.google.com",
+      "tiger.census.gov",
+      "www-wmc.wr.usgs.gov",
+      "maps.yahoo.com",
+      "www.mapquest.com",
+      "angel.jeffsilverman.ddns.net",
+      "www.pan.ci.seattle.wa.us",
+      "www.ci.seattle.wa.us",
+      "www.metrokc.gov",
+      "www.hud.gov",
+      "www.usda.gov",
+      "www.fs.fed.us",
+      "www.usgs.gov",
+      "www.whitehouse.gov",
+      "www.senate.gov",
+      "www.cantwell.senate.gov",
+      "home.jeffsilverman.ddns.net",
+      "jeffsilverm.ddns.net",
+      "jeffsilverman-aaaa.ddns.net"
+    ],
+    "certificates": [
+      {
+        "subjectName": "jeffsilverm.ddns.net",
+        "issuer": "R3",
+        "validFrom": 1639515267,
+        "validTo": 1647291266
+      }
+    ],
+    "hashes": [
+      "fe9fc7665b6889e9fe4ea9c587d12db4818b673cb8d1305a6ec413dacf9a59aa",
+      "345262edc734c0256a3a98ec2f1fb5fcbddc21dae0edcfe5e6eca838ec143079",
+      "fae1045a70e7fb1e7372cecd4486fdc3b4867ea1d7db16ef41c03ba9ea55b047"
+    ]
+  },
+<span style="color: #6600cc;">  "verdicts": {
+    "overall": {
+      "score": 0,
+      "categories": [],
+      "brands": [],
+      "tags": [],
+      "malicious": false,
+      "hasVerdicts": 0
+    },
+    "urlscan": {
+      "score": 0,
+      "categories": [],
+      "brands": [],
+      "tags": [],
+      "detectionDetails": [],
+      "malicious": false
+    },
+    "engines": {
+      "score": 0,
+      "malicious": [],
+      "benign": [],
+      "maliciousTotal": 0,
+      "benignTotal": 0,
+      "verdicts": [],
+      "enginesTotal": 0
+    },
+    "community": {
+      "score": 0,
+      "votes": [],
+      "votesTotal": 0,
+      "votesMalicious": 0,
+      "votesBenign": 0,
+      "tags": [],
+      "categories": []
+    }
+  },</span>
+  "submitter": {
+    "country": "US"
+  }</samp>
+jeffs@jeffs-desktop:~$ 
+</pre>
+      <pre>jeffs@jeffs-desktop:~$  <kbd>jq --stream -r 'select(.[1]|scalars!=null) | "\(.[0]|join(".")): \(.[1]|tojson)"' &lt; jeffsilverman.ddns.net.json </kbd><samp>
+data.requests.0.request.requestId: "127978C1997EFB860E8432A363ABC681"
+data.requests.0.request.loaderId: "127978C1997EFB860E8432A363ABC681"
+data.requests.0.request.documentURL: "https://jeffsilverman.ddns.net/"
+data.requests.0.request.request.url: "https://jeffsilverman.ddns.net/"
+data.requests.0.request.request.method: "GET"
+data.requests.0.request.request.headers.Upgrade-Insecure-Requests: "1"
+data.requests.0.request.request.headers.User-Agent: "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/98.0.4758.80 Safari/537.36"
+data.requests.0.request.request.headers.Accept-Language: "de-DE,de;q=0.9"
+data.requests.0.request.request.mixedContentType: "none"
+data.requests.0.request.request.initialPriority: "VeryHigh"
+data.requests.0.request.request.referrerPolicy: "strict-origin-when-cross-origin"
+data.requests.0.request.request.isSameSite: true
+data.requests.0.request.timestamp: 13388839.718243
+data.requests.0.request.wallTime: 1644559428.521634
+data.requests.0.request.initiator.type: "other"
+data.requests.0.request.redirectHasExtraInfo: false
+data.requests.0.request.type: "Document"
+data.requests.0.request.frameId: "4A6E675212251E4CEE599EC2D1862F35"
+data.requests.0.request.hasUserGesture: false
+data.requests.0.request.primaryRequest: true
+data.requests.0.response.encodedDataLength: 8311
+data.requests.0.response.dataLength: 19739
+data.requests.0.response.requestId: "127978C1997EFB860E8432A363ABC681"
+data.requests.0.response.type: "Document"
+data.requests.0.response.response.url: "https://jeffsilverman.ddns.net/"
+data.requests.0.response.response.status: 200
+data.requests.0.response.response.statusText: "OK"
+data.requests.0.response.response.headers.Server: "nginx/1.14.2"
+data.requests.0.response.response.headers.Date: "Fri, 11 Feb 2022 06:03:49 GMT"
+data.requests.0.response.response.headers.Content-Type: "text/html"
+data.requests.0.response.response.headers.Last-Modified: "Sat, 02 Oct 2021 18:36:46 GMT"
+data.requests.0.response.response.headers.Transfer-Encoding: "chunked"
+data.requests.0.response.response.headers.Connection: "keep-alive"
+data.requests.0.response.response.headers.ETag: "W/\"6158a6be-4d1b\""
+data.requests.0.response.response.headers.Content-Encoding: "gzip"
+data.requests.0.response.response.mimeType: "text/html"
+...
+<a id="nobody_knows_me">verdicts.overall.score: 0
+verdicts.overall.malicious: false
+verdicts.overall.hasVerdicts: 0
+verdicts.urlscan.score: 0
+verdicts.urlscan.malicious: false
+verdicts.engines.score: 0
+verdicts.engines.maliciousTotal: 0
+verdicts.engines.benignTotal: 0
+verdicts.engines.enginesTotal: 0
+verdicts.community.score: 0
+verdicts.community.votesTotal: 0
+verdicts.community.votesMalicious: 0
+verdicts.community.votesBenign: 0</a>
+submitter.country: "US"</samp>
+jeffs@jeffs-desktop:~$ 
+</pre>
+      <pre>jeffs@jeffs-desktop:~$  jq --stream -r 'select(.[1]|scalars!=null) | "\(.[0]|join(".")): \(.[1]|tojson)"' &lt; jeffsilverman.ddns.net.json | fgrep verdicts<samp>
+<font color="#EF2929"><b>verdicts</b></font>.overall.score: 0
+<font color="#EF2929"><b>verdicts</b></font>.overall.malicious: false
+<font color="#EF2929"><b>verdicts</b></font>.overall.hasVerdicts: 0
+<font color="#EF2929"><b>verdicts</b></font>.urlscan.score: 0
+<font color="#EF2929"><b>verdicts</b></font>.urlscan.malicious: false
+<font color="#EF2929"><b>verdicts</b></font>.engines.score: 0
+<font color="#EF2929"><b>verdicts</b></font>.engines.maliciousTotal: 0
+<font color="#EF2929"><b>verdicts</b></font>.engines.benignTotal: 0
+<font color="#EF2929"><b>verdicts</b></font>.engines.enginesTotal: 0
+<font color="#EF2929"><b>verdicts</b></font>.community.score: 0
+<font color="#EF2929"><b>verdicts</b></font>.community.votesTotal: 0
+<font color="#EF2929"><b>verdicts</b></font>.community.votesMalicious: 0
+<font color="#EF2929"><b>verdicts</b></font>.community.votesBenign: 0</samp>
+jeffs@jeffs-desktop:~$ 
+</pre>
+      <p> So my site is pretty innocuous, and nobody knows about it. Let's try
+        google. </p>
+      <pre>jeffs@jeffs-desktop:~$ <kbd>curl -X POST "https://urlscan.io/api/v1/scan/"       -H "Content-Type: application/json"       -H "API-Key: $apikey"       -d "{ \
+        \"url\": \"$url\", \"visibility\": \"public\", \
+        \"tags\": [\"demotag1\", \"demotag2\"] \
+      }"</kbd><samp>
+{
+  "message": "Submission successful",
+  "uuid": "<b>660f94c3-23ef-4d8a-9888-a67c12b0eec2</b>",
+  "result": "https://urlscan.io/result/660f94c3-23ef-4d8a-9888-a67c12b0eec2/",
+  "api": "https://urlscan.io/api/v1/result/660f94c3-23ef-4d8a-9888-a67c12b0eec2/",
+  "visibility": "public",
+  "options": {},
+  "url": "https://google.com"
+}</samp>
+jeffs@jeffs-desktop:~$curl https://urlscan.io/api/v1/result/<b>660f94c3-23ef-4d8a-9888-a67c12b0eec2</b> &gt; google.com.json<samp>
+
+
+
+</samp>
+</pre>
+      <p></p>
+      <p><br>
+      </p>
+      <b>The same thing in python</b>
+      <pre class="code">import requests
+import json
+headers = {'API-Key':'$apikey','Content-Type':'application/json'}CYHDIQL6LNDBSRLFCYHDIQL6LNDBSRLFCYHDIQL6LNDBSRLF
+data = {"url": "https://urlyouwanttoscan.com/path/", "visibility": "public"}
+response = requests.post('https://urlscan.io/api/v1/scan/',headers=headers, data=json.dumps(data))
+print(response)
+print(response.json())
+</pre>
+      <h4><a id="mozTocId212170" class="mozTocH4"></a>An example test using curl</h4>
+      <p> </p>
+      <p>a<br>
+      </p>
+      <h2><a id="mozTocId159826" class="mozTocH2"></a>Malavent IoCs</h2>
+      <h3><a id="mozTocId332263" class="mozTocH3"></a>Alaskusa.org</h3>
+      <p>I found the URL <a href="https://scholarsott.nithyamservices.com/_alask_us_a">https://scholarsott.nithyamservices.com/_alask_us_a</a>
+        listed in openphish.&nbsp; I got using wget and got a file,
+        _alask_us_a.&nbsp; A google search on _alask_us_a turns up one
+        noteworthy hit: <a href="https://vulners.com/rst/RST:08E9DCEE-5072-3899-8912-A918829248FE">RST
+          Threat feed. IOC: ww8.alaskusa.org</a>.&nbsp; Then I did a google
+        search on 7854c1ba03eb6adf5f5129432b3b8543 which returned nothing and
+        2e61eaef35bf2e2a5cbd397495f3b1fbaea2019a62a53ebbcc033c6638cad216 which
+        turned up nothing.&nbsp; Note the difference between alask<span style="font-size:x-large; color:green;">a</span>usa.org
+        and alaskusa.org!&nbsp; Try using URL scan on it.</p>
+      <pre><var></var><br>url="<span style="color: #009500;">https://alaskusa.org</span>"<br>curl -X POST "https://urlscan.io/api/v1/scan/" \<br>      -H "Content-Type: application/json" \<br>      -H "API-Key: $apikey" \<br>      -d "{ \<br>        \"url\": \"$url\", \"visibility\": \"public\", \<br>        \"tags\": [\"demotag1\", \"demotag2\"] \<br>      }"</pre>
+      <p></p>
+      <h3><a id="mozTocId77238" class="mozTocH3"></a>http://my-parceltrack.com/</h3>
+      <p><img src="my-parceltrack.com.urlscan.png" alt="" title="Screen capture from urlscan.io of my-parceltrack.com"
+          style="width:45%; height:auto; float:right;">tracepath 8.209.106.6
+        says that the server is in Hamburg, Germany.</p>
+      <pre>  557  11/02/22 00:48:41 url="http://my-parceltrack.com/"
+  558  11/02/22 00:48:53 curl -X POST "https://urlscan.io/api/v1/scan/" -H "Content-Type: application/json" -H "API-Key: $apikey" -d "{ \
+        \"url\": \"$url\", \"visibility\": \"public\", \
+        \"tags\": [\"demotag1\", \"demotag2\"] \
+      }"
+  559  11/02/22 00:49:19 curl https://urlscan.io/result/2708a438-3907-4e10-b014-d96d06e97d41/
+</pre>
+      <p></p>
+      <img src="my-parceltrack.com-virustotal.png" alt="" title="my-parceltrack.com from virustotal"
+        style="width:45%; height:auto;">
+      <p><br>
+      </p>
+    </div>
+  </body>
+</html>
