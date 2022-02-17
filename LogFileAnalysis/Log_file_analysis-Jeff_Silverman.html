@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Log file analysis - Jeff Silverman</title>
+  </head>
+  <body>
+    <h1> Log Analysis </h1>
+    <p> Jeff Silverman </p>
+    <ol>
+      <li>How many lines in the log file? 2,048,442<br>
+        <pre>jeffs@jeffs-desktop:~/Coding_DoJo/LogFileAnalysis$ <kbd>time wc -l Security\ Appliance\ Analyzing.log </kbd><samp>
+2048442 Security Appliance Analyzing.log
+
+real	0m0.255s
+user	0m0.103s
+sys	0m0.150s</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/LogFileAnalysis$ 
+</pre></li>
+      <li>Use the awk command to filter the results and show The source IP,
+        Destination IP, directory requested, and HTTP response. Save this output
+        as valid_directories.txt</li>
+      <li>How many lines in valid_directories.txt? 2,048,442</li>
+      <li>What was the awk command used?&nbsp; <b>See bolded, below.</b></li>
+    </ol>
+    <h5>Approach 1.&nbsp; Convert to TSV and then use the cut command:</h5>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/LogFileAnalysis$ <kbd>unexpand -a &lt; Security\ Appliance\ Analyzing.log &gt; Security_Appliance_analyzing.tsv</kbd>
+<samp>real	0m17.901s
+user	0m7.260s
+sys	0m1.647s</samp><br>jeffs@jeffs-desktop:~/Coding_DoJo/LogFileAnalysis$ <kbd>time <b>cut -f 3,5,10,15</b> &lt; Security_Appliance_analyzing.tsv  &gt; valid_directories.txt</kbd><samp>
+real	0m4.266s
+user	0m3.229s
+sys	0m1.037s</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/LogFileAnalysis$ <kbd>wc -l Security_Appliance_analyzing.tsv valid_directories.txt</kbd><samp>
+   2048442 Security_Appliance_analyzing.tsv
+   2048442 valid_directories.txt
+   4096884 total</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/LogFileAnalysis$ 
+</pre>
+    <h5>Approach 2. Convert to TSV and then use the awk(1) command:</h5>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/LogFileAnalysis$ <kbd>date; time <b>awk '{OFS="\t"; FS="\t"; print $3,$5,$10,$15}'</b> &lt; Security_Appliance_analyzing.tsv  &gt; valid_directories_2.txt ; date</kbd><samp>
+Wed 16 Feb 2022 11:25:15 PM PST
+
+real	0m32.130s
+user	0m29.385s
+sys	0m0.980s
+Wed 16 Feb 2022 11:25:47 PM PST</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/LogFileAnalysis$ </pre>
+    <pre>
+</pre>
+    <h5>Are columns 5 and 9 the same?</h5>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/LogFileAnalysis$ <acronym>date; time <b>awk '{OFS="\t"; FS="\t"; if($5 != $9) print $0}'</b>&lt; Security_Appliance_analyzing.tsv &gt; 5_and_9_different.tsv</acronym>
+<samp>Wed 16 Feb 2022 11:56:36 PM PST
+
+real	0m30.516s
+user	0m29.652s
+sys	0m0.764s</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/LogFileAnalysis$ <acronym>date; time <b>awk '{OFS="\t"; FS="\t"; if($5 == $9) print $0}'</b>&lt; Security_Appliance_analyzing.tsv &gt; 5_and_9_same.tsv</acronym>
+<samp>Wed 16 Feb 2022 11:58:05 PM PST
+
+real	0m31.247s
+user	0m30.274s
+sys	0m0.629s</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/LogFileAnalysis$ <acronym>wc -l 5_and_9_*.tsv</acronym>
+<samp>    255355 5_and_9_different.tsv
+   1793087 5_and_9_same.tsv
+   2048442 total</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/LogFileAnalysis$ 
+</pre>
+    <p>87% of the time, they are the same.&nbsp; 12% of the time, they are
+      different.<br>
+    </p>
+    <p><br>
+    </p>
+    <p></p>
+  </body>
+</html>
