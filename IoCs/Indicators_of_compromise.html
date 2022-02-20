@@ -22,7 +22,8 @@
           straightforward.)</li>
       </ol>
     </div>
-    <p> </p>
+    <p><br>
+    </p>
     <h2><a href="https://www.fortinet.com/resources/cyberglossary/indicators-of-compromise">Fortinet's
         indicators of compromise list</a>.</h2>
     <p><a href="https://www.fortinet.com/resources/cyberglossary/indicators-of-compromise">https://www.fortinet.com/resources/cyberglossary/indicators-of-compromise</a></p>
@@ -42,7 +43,7 @@
     </p>
     <h2><a href="https://www.crowdstrike.com/cybersecurity-101/indicators-of-compromise/">Crowdstrike's
         list of Indicators of Compromise (IoC)</a></h2>
-    <p>https://www.crowdstrike.com/cybersecurity-101/indicators-of-compromise/</p>
+    <p><a href="https://www.crowdstrike.com/cybersecurity-101/indicators-of-compromise/">https://www.crowdstrike.com/cybersecurity-101/indicators-of-compromise/</a></p>
     <ol>
       <li>Unusual inbound and outbound network traffic</li>
       <li>Geographic irregularities, such as traffic from countries or locations
@@ -60,7 +61,8 @@
       <li>Large amounts of compressed files or data bundles in incorrect or
         unexplained locations</li>
     </ol>
-    <p></p>
+    <p><br>
+    </p>
     <br>
     <h2>Why finding IoCs is important</h2>
     <p>The key to a successful security profile is "defense in depth".&nbsp;
@@ -79,7 +81,6 @@
     </p>
     <div>
       <div>
-        <h3></h3>
         <h2>Tools to find IoCsTools to detect IoCs. </h2>
         <p><br>
         </p>
@@ -147,32 +148,28 @@
             Blocklists of Suspected Malicious IPs and URLs</a> by Lenny Zeltser.
           One of the members of the list was <a href="http://code.google.com/apis/safebrowsing/">Google
             Safe Browsing API</a>.</p>
-        <p></p>
+        <p><br>
+        </p>
       </div>
     </div>
-    <p></p>
+    <p><br>
+    </p>
     <p><br>
     </p>
     <h2><a id="mozTocId194796" class="mozTocH2"></a>A list of malicious sites</h2>
-    <p>I got this list from <a href="https://openphissh.com">openphissh.com</a>.  I wanted to find a site that was actively handing out malware, but I didn't.  
-      Most of the sites I found were no longer in business in one way or another.  In one way, that is A Good Thing - it makes the internet safer.  In my case,
-      it made it hard for me to find what I was looking for.
-      </p>
+    <p>I got this list from <a href="https://openphish.com">openphish.com</a>.
+      I wanted to find a site that was actively handing out malware, but I
+      didn't. Most of the sites I found were no longer in business in one way or
+      another. In one way, that is A Good Thing - it makes the internet safer.
+      In my case, it made it hard for me to find what I was looking for. </p>
     <h3><a id="mozTocId202697" class="mozTocH3"></a>1) my-parceltrack.com</h3>
     <p><br>
     </p>
-    <div style="overflow-x:auto;">
-      <table>
-        <tbody>
-          <tr>
-            <td> <img src="my-parceltrack.com.urlscan.png" alt="" title="Screen capture from urlscan.io of my-parceltrack.com">
-            </td>
-            <td> <img src="my-parceltrack.com-virustotal.png" alt="" title="my-parceltrack.com from virustotal">
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <img src="my-parceltrack.com.urlscan.png" alt="" title="Screen capture from urlscan.io of my-parceltrack.com">
+    <br>
+    <img src="my-parceltrack.com-virustotal.png" alt="" title="my-parceltrack.com from virustotal">
+    <p> <br>
+    </p>
     <p> tracepath 8.209.106.6 says that the server is in Hamburg, Germany.</p>
     <pre>  557  11/02/22 00:48:41 url="http://my-parceltrack.com/"
   558  11/02/22 00:48:53 curl -X POST "https://urlscan.io/api/v1/scan/" -H "Content-Type: application/json" -H "API-Key: $apikey" -d "{ \
@@ -181,20 +178,18 @@
       }"
   559  11/02/22 00:49:19 curl https://urlscan.io/result/2708a438-3907-4e10-b014-d96d06e97d41/
 </pre>
-    <p></p>
+    <p><br>
+    </p>
     <p><br>
     </p>
     <h3><a id="mozTocId224465" class="mozTocH3"></a>2) 134.119.216.167</h3>
-    <table>
-      <tbody>
-        <tr>
-          <td><img src="134.119.216.167-project-honey-pot.png" alt="From project honeypot"
-              title="134.119.216.167 "></td>
-          <td><img src="134.119.216.167-urlscan.png" alt="From project honeypot"
-              title="134.119.216.167 "></td>
-        </tr>
-      </tbody>
-    </table>
+    <img src="134.119.216.167-project-honey-pot.png" alt="From project honeypot"
+      title="134.119.216.167 "><br>
+    <br>
+    <img src="134.119.216.167-urlscan.png" alt="From project honeypot" title="134.119.216.167 ">
+    <p> <br>
+    </p>
+    <br>
     <p>At the moment, they appear to be laying low.&nbsp; Although I wonder if
       the fact that mysql is open means they are running a honey pot of their
       own:</p>
@@ -234,74 +229,41 @@ jeffs@jeffs-desktop:~/Coding_DoJo/IoCs$
 </pre>
     <h3><a id="mozTocId495929" class="mozTocH3"></a>3)
       https://support.co.ip.op0v51a.cn/</h3>
-    <div style="overflow-x:auto;">
-      <table style="width: 100%" border="1">
-        <tbody>
-          <tr>
-            <td><img src="support.co.ip.op0v51a.cn-virustotal.png" alt="" title="support.co.ip.op0v51a.cn from virustotal"><br>
-            </td>
-            <td><img src="support.co.ip.op0v51a.cn-urlscan.png" alt="" title="support.co.ip.op0v51a.cn as measured by urlscan.io"><br>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <img src="support.co.ip.op0v51a.cn-virustotal.png" alt="" title="support.co.ip.op0v51a.cn from virustotal"><br>
+    <br>
+    <br>
+    <br>
+    <img src="support.co.ip.op0v51a.cn-urlscan.png" alt="" title="support.co.ip.op0v51a.cn as measured by urlscan.io"><br>
     <p><br>
     </p>
     <h3><a id="mozTocId76753" class="mozTocH3"></a>4)
       http://jointgrupbokep2022.duckdns.org/FZxhmcjssKedelvaUFWl6s0/<br>
     </h3>
-    <div style="overflow-x:auto;">
-      <table style="width: 100%" border="1">
-        <tbody>
-          <tr>
-            <td><img src="jointgrupbokep2022.duckdns.org-virustotal.com.png.png"
-                alt="" title="http://jointgrupbokep2022.duckdns.org/FZxhmcjssKedelvaUFWl6s0/ from virustotal"><br>
-            </td>
-            <td><img src="jointgrupbokep2022.duckdns.org-urlscan.io.png" alt=""
-                title="jointgrupbokep2022.duckdns.org as seen by urlscan.io"><br>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <p> <br>
+    </p>
+    <img src="jointgrupbokep2022.duckdns.org-virustotal.com.png.png" alt="" title="http://jointgrupbokep2022.duckdns.org/FZxhmcjssKedelvaUFWl6s0/ from virustotal"><br>
+    <img src="jointgrupbokep2022.duckdns.org-urlscan.io.png" alt="" title="jointgrupbokep2022.duckdns.org as seen by urlscan.io"><br>
     <p><br>
     </p>
     <h3><a id="mozTocId617947" class="mozTocH3"></a>5) f003.backblazeb2.com</h3>
     <p><br>
     </p>
-    <div style="overflow-x:auto;">
-      <table>
-        <tbody>
-          <tr>
-            <td> <img src="backblazeb2.com-urlscan.io.png" alt="" title="Screen capture from urlscan.io of my-parceltrack.com">
-            </td>
-            <td> <img src="backblazeb2.com-virustotal.com.png" alt="" title="my-parceltrack.com from virustotal">
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <img src="backblazeb2.com-urlscan.io.png" alt="" title="Screen capture from urlscan.io of my-parceltrack.com">
+    <img src="backblazeb2.com-virustotal.com.png" alt="" title="my-parceltrack.com from virustotal">
     <p>f003.backblazeb2.com has IPv4 address 45.11.36.16.&nbsp; It has no IPv6
       address.&nbsp; When I try to access it using <kbd>curl -I https://f003.backblazeb2.com</kbd>,
       I get a 405 error (method not allowed).<br>
     </p>
+    <p> <br>
+    </p>
     <h3><a id="mozTocId995300" class="mozTocH3"></a>6) kidteched.serveuser.com</h3>
     <p><br>
     </p>
-    <div style="overflow-x:auto;">
-      <table>
-        <tbody>
-          <tr>
-            <td> <img src="kidteched.serveuser.com-urlscan.png" alt="" title="kidteched.serveuser.com from virustotl.com">
-            </td>
-            <td> <img src="kidteched.serveuser.com.xsswebcss-virustotal.com.png"
-                alt="" title="kidteched.serveuser.com/xsweb/css"> </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p>kidteched.serveuser.com has no IPv4 address<br>
+    <img src="kidteched.serveuser.com-urlscan.png" alt="" title="kidteched.serveuser.com from virustotl.com">
+    <img src="kidteched.serveuser.com.xsswebcss-virustotal.com.png" alt="" title="kidteched.serveuser.com/xsweb/css">
+    <p> <br>
+    </p>
+    <p>kidteched.serveuser.com has no IPv4 address or IPv6 address<br>
     </p>
     <p><br>
     </p>
@@ -314,51 +276,19 @@ jeffs@jeffs-desktop:~/Coding_DoJo/IoCs$
     <h3><a id="mozTocId195829" class="mozTocH3"></a>7) www.facebook.asiaup.tk</h3>
     <p><br>
     </p>
-    <div style="overflow-x:auto;">
-      <table>
-        <tbody>
-          <tr>
-            <th>URLscan</th>
-            <th> <br>
-            </th>
-            <th>Virustotal.com</th>
-          </tr>
-          <tr>
-            <td> <img src="www.facebook.asiaup.tk-urlscan.com.png" alt="" title=" www.facebook.asiaup.tk from urlscan.io">
-            </td>
-            <td> <img src="facebook.asiaup.tk-virustotal.com.png" alt="" title=" www.facebook.asiaup.tk from virustotal.com">
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p> </p>
-    <p> </p>
-    <p>This has no IPv4 or IPv6 address.</p>
+    <img src="www.facebook.asiaup.tk-urlscan.com.png" alt="" title=" www.facebook.asiaup.tk from urlscan.io">
+    <img src="facebook.asiaup.tk-virustotal.com.png" alt="" title=" www.facebook.asiaup.tk from virustotal.com">
+    <p><br>
+    </p>
+    <p>facebook.asiaup.tk has no IPv4 or IPv6 address.</p>
+    <p><br>
+    </p>
     <h3>8) 65376B736A491EAB381A75E99060C12D a.k.a HTML/ScrInject.B
       trojanHTML/ScrInject.B trojan </h3>
     <p>I found this on <a href="https://www.scumware.org/report/65376B736A491EAB381A75E99060C12D">scumware.org</a><br>
     </p>
-    <div style="overflow-x:auto;">
-      <table>
-        <tbody>
-          <tr>
-            <th>Virustotal.com</th>
-            <th>scumware</th>
-            <th> <br>
-            </th>
-          </tr>
-          <tr>
-            <td> <img src="65376B736A491EAB381A75E99060C12D-virustotal.com.png"
-                alt="" title="65376B736A491EAB381A75E99060C12D .a.k.a HTML/ScrInject.B trojan from virustotal.com">
-            </td>
-            <td> <img src="65376B736A491EAB381A75E99060C12D-scumware.org.png" alt=""
-                title="65376B736A491EAB381A75E99060C12D .a.k.a HTML/ScrInject.B trojan from scumware.com">
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
+    <img src="65376B736A491EAB381A75E99060C12D-virustotal.com.png" alt="" title="65376B736A491EAB381A75E99060C12D .a.k.a HTML/ScrInject.B trojan from virustotal.com">
+    <img src="65376B736A491EAB381A75E99060C12D-scumware.org.png" alt="" title="65376B736A491EAB381A75E99060C12D .a.k.a HTML/ScrInject.B trojan from scumware.com">
     <p><a href="https://www.microsoft.com/en-us/wdsi/threats/malware-encyclopedia-description?Name=Trojan:HTML/Scrinject.B%21rfn">Microsoft
         has this to say about Trojan:HTML/Scrinject.B!rfn</a>: Microsoft
       Defender Antivirus detects and removes this threat. <br>
@@ -366,10 +296,11 @@ jeffs@jeffs-desktop:~/Coding_DoJo/IoCs$
     <p> I found out something else about this trojan in <a href="https://forum.ucoz.com/forum/42-21526-1#121701">a
         forum for uCoz.com</a>:&nbsp; look for </p>
     <div class="codeMessage" style="border:1px inset;max-height:200px;overflow:auto;">
-      <span class="ucoz-forum-post" id="ucoz-forum-post-121688" edit-url="" style="font-family: monospace;">&lt;ntvk
+      <span class="ucoz-forum-post" id="ucoz-forum-post-121688" style="font-family: monospace;">&lt;ntvk
         id="m-iIQUqZpHU8"&gt;&lt;/ntvk&gt;&lt;script src="//p7.ntvk1.ru/nve.js"
         async="async"&gt;&lt;/script&gt;</span></div>
-    <p> </p>
+    <p><br>
+    </p>
     <p> <a href="https://urlscan.io/result/ac2aab67-4a3f-494c-a45b-b91c114dedd2/">URLscan
         says that this is no longer an issue</a>.<br>
     </p>
@@ -402,31 +333,16 @@ https://commertyrrceelab.ru/asdf/809d645b008891cad0b2adc9a56866b4?Key=809d645b00
     <h3>10)
       http://login.microsoftonline.us.office.rp1.abangaritest.govshn.net/office365.us/oauth2/authorize/
       &nbsp;&nbsp;&nbsp; </h3>
+    <p>No screen capture<br>
+    </p>
+    IPv4 address: does not exist<br>
+    IPv6 address: does not exist
     <p><br>
     </p>
-    <div style="overflow-x:auto;">
-      <table>
-        <tbody>
-          <tr>
-            <th>Virustotal.com</th>
-            <th>URLscan</th>
-            <th> <br>
-            </th>
-          </tr>
-          <tr>
-            <td>No screen capture</td>
-            <td>No screen capture</td>
-          </tr>
-          <tr>
-            <td>IPv4 address: does not exist<br>
-              IPv6 address: does not exist</td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-    <p> </p>
-    <p> </p>
     <p><br>
+    </p>
+    <p><br>
+      <br>
     </p>
     <h3><a id="mozTocId892472" class="mozTocH3"></a>11) jeffsilverman.ddns.net -
       a known good website</h3>
@@ -449,11 +365,13 @@ https://commertyrrceelab.ru/asdf/809d645b008891cad0b2adc9a56866b4?Key=809d645b00
     </p>
     <p><br>
     </p>
-    <p> </p>
-    <p> </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
     &nbsp; Another was OpenPhish which lists <a href="https://scholarsott.nithyamservices.com/_alask_us_a">Alaska
       USA Federal Credit Union</a>.
-    <p> </p>
+    <p><br> </p>
     <br>
     <hr style="width: 100%; height: 4px; color: blue;">
     <h2><a id="mozTocId455352" class="mozTocH2"></a>Table of Contents</h2>
@@ -524,8 +442,8 @@ https://commertyrrceelab.ru/asdf/809d645b008891cad0b2adc9a56866b4?Key=809d645b00
       </b>
       <p><br>
       </p>
-      <h4><a name="urlscan" id="urlscan"></a>How to test a URL using curl or
-        http or python and URLscan<br>
+      <h4><a id="urlscan"></a>How to test a URL using curl or http or python and
+        URLscan<br>
       </h4>
       <h5><a id="mozTocId18889" class="mozTocH5"></a> An known site -
         https://jeffsilverman.ddns.net, which <a href="#nobody_knows_me">nobody
@@ -1559,7 +1477,8 @@ jeffs@jeffs-desktop:~$curl https://urlscan.io/api/v1/result/<b>660f94c3-23ef-4d8
 
 </samp>
 </pre>
-      <p></p>
+      <p><br>
+      </p>
       <p><br>
       </p>
       <b>The same thing in python</b>
@@ -1572,8 +1491,9 @@ print(response)
 print(response.json())
 </pre>
       <h4><a id="mozTocId212170" class="mozTocH4"></a>An example test using curl</h4>
-      <p> </p>
-      <p>a<br>
+      <p><br>
+      </p>
+      <p><br>
       </p>
       <h2><a id="mozTocId159826" class="mozTocH2"></a>Malavent IoCs</h2>
       <h3><a id="mozTocId332263" class="mozTocH3"></a>Alaskusa.org</h3>
@@ -1586,8 +1506,9 @@ print(response.json())
         2e61eaef35bf2e2a5cbd397495f3b1fbaea2019a62a53ebbcc033c6638cad216 which
         turned up nothing.&nbsp; Note the difference between alask<span style="font-size:x-large; color:green;">a</span>usa.org
         and alaskusa.org!&nbsp; Try using URL scan on it.</p>
-      <pre><var></var><br>url="<span style="color: #009500;">https://alaskusa.org</span>"<br>curl -X POST "https://urlscan.io/api/v1/scan/" \<br>      -H "Content-Type: application/json" \<br>      -H "API-Key: $apikey" \<br>      -d "{ \<br>        \"url\": \"$url\", \"visibility\": \"public\", \<br>        \"tags\": [\"demotag1\", \"demotag2\"] \<br>      }"</pre>
-      <p></p>
+      <pre><br>url="<span style="color: #009500;">https://alaskusa.org</span>"<br><kbd>curl -X POST "https://urlscan.io/api/v1/scan/" \<br>      -H "Content-Type: application/json" \<br>      -H "API-Key: $apikey" \<br>      -d "{ \<br>        \"url\": \"$url\", \"visibility\": \"public\", \<br>        \"tags\": [\"demotag1\", \"demotag2\"] \<br>      }"</kbd></pre>
+      <p><br>
+      </p>
       <h3><a id="mozTocId77238" class="mozTocH3"></a>http://my-parceltrack.com/</h3>
       <p><img src="my-parceltrack.com.urlscan.png" alt="" title="Screen capture from urlscan.io of my-parceltrack.com"
           style="width:45%; height:auto; float:right;">tracepath 8.209.106.6
@@ -1599,7 +1520,8 @@ print(response.json())
       }"
   559  11/02/22 00:49:19 curl https://urlscan.io/result/2708a438-3907-4e10-b014-d96d06e97d41/
 </pre>
-      <p></p>
+      <p><br>
+      </p>
       <img src="my-parceltrack.com-virustotal.png" alt="" title="my-parceltrack.com from virustotal"
         style="width:45%; height:auto;">
       <p><br>
