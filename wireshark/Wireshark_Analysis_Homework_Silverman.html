@@ -1,0 +1,1202 @@
+<!DOCTYPE html>
+<html lang="en-us">
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Wireshark Analysis Homework</title>
+    <style type="text/css">
+A:link {
+  color: red;
+}
+
+A:visited {
+  color: maroon;
+}
+
+A:active {
+  color: fuchsia;
+}
+
+H1.myclass {
+  border-width: medium;
+  border-style: solid;
+  text-align: center;
+}
+
+H1, .h1 {
+  font-size: 36pt;
+  font-weight: bold;
+  background-color: #ffdcdc;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 18pt;
+}
+
+H2, .h2 {
+  font-size: 30pt;
+  font-weight: bold;
+  background-color: #ffffcc;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 36pt;
+}
+
+H3, .h3 {
+  font-size: 24pt;
+  font-weight: bold;
+  background-color: #ccffcc;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 54pt;
+}
+
+H4, .h4 {
+  font-size: 20pt;
+  font-weight: bold;
+  background-color: #ccffff;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 72pt;
+}
+
+H5, .h5 {
+  font-size: 16pt;
+  font-weight: bold;
+  background-color: #ccccff;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 72pt;
+}
+
+H6, .h6 {
+  font-size: 14pt;
+  font-weight: bold;
+  background-color: #cccccc;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 90pt;
+}
+
+P {
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+
+.sat {
+  background-color: #c0ffc0;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+
+.sun {
+  background-color: #c0c0ff;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+
+.wkd {
+  background-color: #e0e0e0;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+
+.hol {
+  background-color: #ffffc0;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+
+.toc {
+  background-color: #ffc0c0;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+
+code, kbd, var {
+  white-space: pre;
+  font-size: 10pt;
+}
+
+kbd, .kbd {
+  text-decoration: underline;
+  font-family: monospace;
+  background-color: #eeeeff;
+}
+
+.code code {
+  font: 12px/12px monospace;
+  background-image: repeating-linear-gradient(0deg,
+      darkgray,
+      darkgray 12px,
+      lightgray 12px,
+      lightgray 24px);
+}      
+
+ACRONYM, .acronym {
+  text-decoration: underline;
+  font-family: monospace;
+  background-color: #eeeeff;
+}
+
+SAMP, .samp {
+  font-family: monospace;
+  background-color: Beige;
+}
+
+.var {
+  font-style: italic;
+  font-family: monospace;
+}
+
+pre {
+  background-color: #fefefe;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+
+.appointments {
+  color: red;
+  background-color: #f0f0f0;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+
+.diary {
+  color: green;
+  background-color: violet;
+  font-family: Trajan, Helvetica, sans-serif;
+}
+
+.financial {
+  color: white;
+  background-color: #00cc00;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+
+.important {
+  background-color: lime;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+
+.tbd {
+  color: white;
+  background-color: red;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+
+.inferred {
+  color: blue;
+  background-color: yellow;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+
+OL {
+  list-style-type: decimal;
+}
+
+OL OL {
+  list-style-type: upper-alpha;
+}
+
+OL OL OL {
+  list-style-type: decimal;
+}
+
+OL OL OL OL {
+  list-style-type: lower-alpha;
+}
+
+OL OL OL OL OL {
+  list-style-type: decimal;
+}
+
+.hotthought {
+  border-width: medium;
+  border-style: solid;
+  color: red;
+}
+
+.thought {
+  color: red;
+}
+
+blockquote {
+  border-left-color: blue;
+  border-left-style: groove;
+  padding: 20px;
+}
+
+pre, tt {
+  font-family: monaco, "dejavu sans mono", "luxi mono", monospace;
+  font-size: 10pt;
+}
+
+pre.programlisting {
+  border-width: 2px 4px 4px 1px;
+  border-style: solid solid groove dashed;
+  border-color: #666666;
+  background-color: #fbfbff;
+  padding: 5px;
+}
+
+    </style>
+    <meta name="author" content="Jeff Silverman">
+    <meta name="description" content="My solution to https://login.codingdojo.com/m/306/9669/65142">
+    <meta name="generator" content="BlueGriffon wysiwyg editor">
+  </head>
+  <body>
+    <div id="doc3" class="yui-t1">
+      <div id="hd">
+        <h1><a id="mozTocId431752" class="mozTocH1"></a>Jeff Silverman Wireshark
+          analysis</h1>
+      </div>
+      <div id="bd">
+        <div id="yui-main"> </div>
+        <p>The <a href="https://login.codingdojo.com/m/306/9669/65142">problem
+            statement</a>.</p>
+        <p>Questions</p>
+        <ul>
+          <li> Which two clients are Windows hosts, and what are the associated
+            user account names?&nbsp; 10.0.0.149 has Alyssa Fitzgerald and
+            10.0.0.167 has Elmer O'Brien.</li>
+          <li> Which one of these two Windows clients was infected?&nbsp;
+            10.0.0.167</li>
+          <li> What type of malware was that Windows client infected with? </li>
+        </ul>
+        <h2><a id="mozTocId96557" class="mozTocH2"></a>How do we know that a
+          computer is infected with something?</h2>
+        <img src="2020-04-24-traffic-analysis-exercise-alerts.jpg" alt="" title="The alerts file"
+          width="900px" height="auto"></div>
+      <div>in the 4th row of the image above,&nbsp;&nbsp; In the 3rd row, there
+        is a warning about an DNS query for a suspicious DNS lookup to the .ga
+        TLD. </div>
+      <div><br>
+      </div>
+      <meta http-equiv="content-type" content="text/html; charset=utf-8">
+      <span style="font-family: Whitney, Helvetica, Arial, sans-serif; font-size: 16px;  orphans: 2;  white-space: break-spaces; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; 
+                   text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">
+        look at the picture very carefully. In particular, look at the last
+        column. A very weak signal that something is going wrong is that there
+        is a DNS query error. That happens. But 89 times (2nd column)?. Another
+        very weak signal: a let's encrypt SSL certificate. Anybody can get a
+        let's encrypt certificate, they are virtually worthless [full
+        disclosure: jeffsilverman.ddns.net is protected by a let's encrypt cert]
+        In the third row, there is a weak signal: a DNS lookup to a suspicious
+        TLD (top level [DNS] domain), .ga (see the <a href="https://www.iana.org/">IANA's</a>
+        <a href="https://www.iana.org/domains/root/db/ga.html">delegation record
+          for ccTLD .ga</a>). But the kiss of death is row 4: the Event Message
+        is ET MALWARE Windows executable sent when remote host claims to send an
+        image M3. The JPEG rendering buffer overflow may be a warning that the
+        malware is struggling to become executable. Next thing I see is SMBv1 in
+        use. I knew that SMBv1 was hopelessly insecure which is why they came
+        out with SMBv2.</span></div>
+    <div class="yui-t1"><span style="font-family: Whitney, Helvetica, Arial, sans-serif; font-size: 16px;  orphans: 2;  white-space: break-spaces; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; 
+                   text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;"><br>
+      </span></div>
+    <div class="yui-t1"><span style="font-family: Whitney, Helvetica, Arial, sans-serif; font-size: 16px;  orphans: 2;  white-space: break-spaces; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; 
+                   text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">See
+        </span><a class="anchor-1MIwyf anchorUnderlineOnHover-2qPutX" title="https://cifs.com/"
+        href="https://cifs.com/" rel="noreferrer noopener" target="_blank" role="button"
+        tabindex="0" style="margin: 0px; padding: 0px; border: 0px; font-weight: 400; font-style: normal; font-family: Whitney, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; vertical-align: baseline; color: var(--text-link); text-decoration: none; cursor: pointer; outline: 0px; forced-color-adjust: none; word-break: break-word; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: break-spaces; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgba(4, 4, 5, 0.07);">https://cifs.com/</a>
+      for more details [I do not understand the WHO CAN SPEAK WHAT table].
+      <div><br>
+      </div>
+      <div><a href="https://www.extrahop.com/resources/protocols/cifs/%20has%20some%20interesting%20advice:%20%22To%20secure%20SMB,%20you%20need%20to%20audit%20your%20environment%20for%20devices%20running%20SMB%20and%20shut%20down%20the%20ones%20that%20constitute%20a%20security%20risk.%20SMBv1%20is%20full%20of%20known%20exploits%20and%20has%20been%20used%20in%20numerous%20attacks,%20such%20as%20with%20WannaCry%20and%20NotPetya.%20Organizations%20should%20move%20to%20the%20newer%20SMBv2%20or%20SMBv3%20variants.%20To%20do%20this,%20you%20need%20a%20tool%20that%20detects%20SMB%20traffic%20to%20find%20machines%20using%20the%20outdated%20SMBv1%20protocol.%20Either%20disable%20or%20patch%20these%20devices%20before%20they%20become%20infected.%20%22">https://www.extrahop.com/resources/protocols/cifs/</a>
+        has some interesting advice: <br>
+        <blockquote>"To secure SMB, you need to audit your environment for
+          devices running SMB and shut down the ones that constitute a security
+          risk. SMBv1 is full of known exploits and has been used in numerous
+          attacks, such as with WannaCry and NotPetya. Organizations should move
+          to the newer SMBv2 or SMBv3 variants. To do this, you need a tool that
+          detects SMB traffic to find machines using the outdated SMBv1
+          protocol. Either disable or patch these devices before they become
+          infected. "</blockquote>
+      </div>
+      <div><br>
+      </div>
+      <div><br>
+      </div>
+      <div><br>
+      </div>
+      <div><br>
+      </div>
+      <div>
+        <h2><a id="mozTocId600139" class="mozTocH2"></a>What hosts are in the
+          capture?</h2>
+        <p>My (tentative) assumption is that the infected machine is going to be
+          busy, either exfiltrating data or attacking other machines or both, so
+          getting a list of IPv4 addresses sorted by count is not a bad way to
+          start.&nbsp; There are no IPv6 addresses.</p>
+        <img src="IPv4_addresses_sorted_by_count.png" alt="From 2020-04-24-traffic-analysis-exercise.pcap"
+          title="IPv4 Addresses sorted by count"></div>
+      <div>I also saved this as a text file.&nbsp; There are 346 IPv4 addresses
+        in this file.&nbsp; The 4 busiest internal machines are 10.0.0.167,
+        10.0.0.149, 10.0.0.10, and 10.0.0.202. </div>
+      <div><br>
+      </div>
+      <div>I suspect that 10.0.0.10 is the default router.&nbsp; If a packet
+        with an external IPv4 address has the same MAC address as 10.0.0.10,
+        that would prove it.&nbsp; Packet 10 goes from 35.224.99.156 to
+        10.0.0.202.&nbsp; Its&nbsp; Src: 20:e5:2a:b6:93:f1.&nbsp; But packet 9
+        came from 10.0.0.10, and its Src: a4:1f:72:c2:09:6a so that's
+        confusing.&nbsp; Packet 11 goes from 10.0.0.167 to 13.107.4.52 and its
+        MAC Dst: 20:e5:2a:b6:93:f1.&nbsp; So I think 10.0.0.10 is the
+        router.&nbsp; Of the 57,430 packets in the capture, 4,817 are to/from
+        a4:1f:72:c2:09:6a (and they are all 10.0.0.10) and 51,396 are to/from
+        20:e5:2a:b6:93:f1 (none of which are 10.0.0.10).&nbsp; So there are two
+        interfaces on 10.0.0.10, one for routing to the larger world and one for
+        local traffic.</div>
+      <div><br>
+      </div>
+      <div>10.0.0.10 also has a DNS server. </div>
+      <div><br>
+      </div>
+      <div>I used the query <code>(udp.port == 53 || tcp.port==53) &amp;&amp; !(ip.addr==10.0.0.202)</code>
+        (I excluded 10.0.0.202 partly because it's <a href="#10.0.0.202_OS">a
+          linux machine</a> and partly because it makes lots of DNS
+        queries).&nbsp; I see that 10.0.0.167 makes a lot of queries to IPv4
+        addresses in the steelcoffee.net domain.&nbsp; A quick google search of
+        steelcoffee.net yields articles about the analysis of this packet
+        capture so I decided not go any further.&nbsp; I want to figure this out
+        myself.</div>
+      <div>
+        <h2><a id="mozTocId655425" class="mozTocH2"></a>What protocols are in
+          use?</h2>
+        <p>I used the Wireshark protocol hierarch statistics window.&nbsp; I
+          made a copy in CSV format and pasted that into gedit.&nbsp; Then I did
+          a global search and replace to convert every comma to a
+          &lt;/td&gt;&lt;td&gt; pair, added some tags at the beginning and end
+          of each row, and voilà!&nbsp; Of course, carrying quotients to 15
+          places is rediculous.</p>
+        <img src="Protocols_table.png" alt="Steelcoffee" title="Protocol Hierarchy Statistics">
+        <table>
+          <tbody>
+            <tr>
+              <th>"Protocol"</th>
+              <th>"Percent Packets"</th>
+              <th>"Packets"</th>
+              <th>"Percent Bytes"</th>
+              <th>Bytes"</th>
+              <th>"Bits/s"</th>
+              <th>"End Packets"</th>
+              <th>"End Bytes"</th>
+              <td>"End Bits/s"</td>
+            </tr>
+            <tr>
+              <td>"Frame"</td>
+              <td>100</td>
+              <td>57430</td>
+              <td>100</td>
+              <td>32006828</td>
+              <td>89331.8617003334</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>"Ethernet"</td>
+              <td>100</td>
+              <td>57430</td>
+              <td>2.512026496346342</td>
+              <td>804020</td>
+              <td>2244.040035591845</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>"Internet Protocol Version 4"</td>
+              <td>100</td>
+              <td>57430</td>
+              <td>3.588884221829167</td>
+              <td>1148688</td>
+              <td>3206.017089629518</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>"Internet Group Management Protocol"</td>
+              <td>0.0383075047884381</td>
+              <td>22</td>
+              <td>0.0011997440046230135</td>
+              <td>384</td>
+              <td>1.0717536549678721</td>
+              <td>22</td>
+              <td>384</td>
+              <td>1.0717536549678721</td>
+            </tr>
+            <tr>
+              <td>"User Datagram Protocol"</td>
+              <td>10.54327006790876</td>
+              <td>6055</td>
+              <td>0.15134270724984056</td>
+              <td>48440</td>
+              <td>135.19725793396802</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>"Network Time Protocol"</td>
+              <td>0.05223750652968832</td>
+              <td>30</td>
+              <td>0.008098272031205342</td>
+              <td>2592</td>
+              <td>7.234337171033136</td>
+              <td>30</td>
+              <td>2592</td>
+              <td>7.234337171033136</td>
+            </tr>
+            <tr>
+              <td>"Connectionless Lightweight Directory Access Protocol"</td>
+              <td>0.09054501131812641</td>
+              <td>52</td>
+              <td>0.03456762413320058</td>
+              <td>11064</td>
+              <td>30.87990218376181</td>
+              <td>52</td>
+              <td>11064</td>
+              <td>30.87990218376181</td>
+            </tr>
+            <tr>
+              <td>"Simple Service Discovery Protocol"</td>
+              <td>0.1985025248128156</td>
+              <td>114</td>
+              <td>0.055994302215764714</td>
+              <td>17922</td>
+              <td>50.02075261545365</td>
+              <td>114</td>
+              <td>17922</td>
+              <td>50.02075261545365</td>
+            </tr>
+            <tr>
+              <td>"Link-local Multicast Name Resolution"</td>
+              <td>0.2681525335190667</td>
+              <td>154</td>
+              <td>0.012191148713643227</td>
+              <td>3902</td>
+              <td>10.890580108553742</td>
+              <td>154</td>
+              <td>3902</td>
+              <td>10.890580108553742</td>
+            </tr>
+            <tr>
+              <td>"Multicast Domain Name System"</td>
+              <td>0.29949503743687966</td>
+              <td>172</td>
+              <td>0.018308593403882446</td>
+              <td>5860</td>
+              <td>16.35540733883263</td>
+              <td>172</td>
+              <td>5860</td>
+              <td>16.35540733883263</td>
+            </tr>
+            <tr>
+              <td>"NetBIOS Datagram Service"</td>
+              <td>0.40397005049625634</td>
+              <td>232</td>
+              <td>0.1412167428774885</td>
+              <td>45199</td>
+              <td>126.15154544503346</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>"SMB (Server Message Block Protocol)"</td>
+              <td>0.40397005049625634</td>
+              <td>232</td>
+              <td>0.08177942531512339</td>
+              <td>26175</td>
+              <td>73.05508312183346</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0 </td>
+            </tr>
+            <tr>
+              <td>"SMB MailSlot Protocol"</td>
+              <td>0.40397005049625634</td>
+              <td>232</td>
+              <td>0.0181211334031601</td>
+              <td>5800</td>
+              <td>16.1879458302439</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>"Microsoft Windows Browser Protocol"</td>
+              <td>0.40397005049625634</td>
+              <td>232</td>
+              <td>0.01944272640825264</td>
+              <td>6223</td>
+              <td>17.368549465794448</td>
+              <td>232</td>
+              <td>6223</td>
+              <td>17.368549465794448</td>
+            </tr>
+            <tr>
+              <td>"NetBIOS Name Service"</td>
+              <td>0.7208775901096988</td>
+              <td>414</td>
+              <td>0.07301567028135372</td>
+              <td>23370</td>
+              <td>65.22625759531033</td>
+              <td>414</td>
+              <td>23370</td>
+              <td>65.22625759531033</td>
+            </tr>
+            <tr>
+              <td>"GQUIC (Google Quick UDP Internet Connections)"</td>
+              <td>2.6101340762667595</td>
+              <td>1499</td>
+              <td>3.7072745852853646</td>
+              <td>1186581</td>
+              <td>3311.7774053787307</td>
+              <td>1499</td>
+              <td>1186581</td>
+              <td>3311.7774053787307</td>
+            </tr>
+            <tr>
+              <td>"Domain Name System"</td>
+              <td>5.899355737419468</td>
+              <td>3388</td>
+              <td>0.7592536192589906</td>
+              <td>243013</td>
+              <td>678.2553931112174</td>
+              <td>3382</td>
+              <td>242365</td>
+              <td>676.4468088184591</td>
+            </tr>
+            <tr>
+              <td>"Malformed Packet"</td>
+              <td>0.010447501305937664</td>
+              <td>6</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>6</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>"Transmission Control Protocol"</td>
+              <td>89.4184224273028</td>
+              <td>51353</td>
+              <td>88.49830729868015</td>
+              <td>28325501</td>
+              <td>79057.18548319301</td>
+              <td>35548</td>
+              <td>16113335</td>
+              <td>44972.72312492639</td>
+            </tr>
+            <tr>
+              <td>"Malformed Packet"</td>
+              <td>0.0034825004353125546</td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+              <td>2</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>"Post Office Protocol"</td>
+              <td>0.006965000870625109</td>
+              <td>4</td>
+              <td>0.0007498400028893835</td>
+              <td>240</td>
+              <td>0.66984603435492</td>
+              <td>4</td>
+              <td>240</td>
+              <td>0.66984603435492</td>
+            </tr>
+            <tr>
+              <td>"Kerberos"</td>
+              <td>0.015671251958906496</td>
+              <td>9</td>
+              <td>0.014356311721986321</td>
+              <td>4595</td>
+              <td>12.824760532753572</td>
+              <td>9</td>
+              <td>4595</td>
+              <td>12.824760532753572</td>
+            </tr>
+            <tr>
+              <td>"Simple Mail Transfer Protocol"</td>
+              <td>0.020895002611875328</td>
+              <td>12</td>
+              <td>0.0025557046765146488</td>
+              <td>818</td>
+              <td>2.2830585670930192</td>
+              <td>12</td>
+              <td>818</td>
+              <td>2.2830585670930192</td>
+            </tr>
+            <tr>
+              <td>"Internet Message Access Protocol"</td>
+              <td>0.03308375413546927</td>
+              <td>19</td>
+              <td>0.02169537075026616</td>
+              <td>6944</td>
+              <td>19.38087859400235</td>
+              <td>19</td>
+              <td>6944</td>
+              <td>19.38087859400235</td>
+            </tr>
+            <tr>
+              <td>"Lightweight Directory Access Protocol"</td>
+              <td>0.12711126588890823</td>
+              <td>73</td>
+              <td>0.11495359677628786</td>
+              <td>36793</td>
+              <td>102.69018809175239</td>
+              <td>70</td>
+              <td>28483</td>
+              <td>79.49676915221328</td>
+            </tr>
+            <tr>
+              <td>"Distributed Computing Environment / Remote Procedure Call
+                (DCE/RPC)"</td>
+              <td>0.3865575483196935</td>
+              <td>222</td>
+              <td>0.13487434618638247</td>
+              <td>43169</td>
+              <td>120.48576440444809</td>
+              <td>49</td>
+              <td>13255</td>
+              <td>36.9950382723936</td>
+            </tr>
+            <tr>
+              <td>"Microsoft Service Control"</td>
+              <td>0.005223750652968832</td>
+              <td>3</td>
+              <td>0.0006498613358374656</td>
+              <td>208</td>
+              <td>0.580533229774264</td>
+              <td>3</td>
+              <td>208</td>
+              <td>0.580533229774264</td>
+            </tr>
+            <tr>
+              <td>"Local Security Authority"</td>
+              <td>0.013930001741250218</td>
+              <td>8</td>
+              <td>0.004249093349706507</td>
+              <td>1360</td>
+              <td>3.79579419467788</td>
+              <td>8</td>
+              <td>1360</td>
+              <td>3.79579419467788</td>
+            </tr>
+            <tr>
+              <td>"Microsoft Network Logon"</td>
+              <td>0.01741250217656277</td>
+              <td>10</td>
+              <td>0.013509617385390393</td>
+              <td>4324</td>
+              <td>12.068392718961142</td>
+              <td>10</td>
+              <td>4324</td>
+              <td>12.068392718961142</td>
+            </tr>
+            <tr>
+              <td>"DCE/RPC Endpoint Mapper"</td>
+              <td>0.0383075047884381</td>
+              <td>22</td>
+              <td>0.010535252040595838</td>
+              <td>3372</td>
+              <td>9.411336782686627</td>
+              <td>22</td>
+              <td>3372</td>
+              <td>9.411336782686627</td>
+            </tr>
+            <tr>
+              <td>"DRSUAPI"</td>
+              <td>0.06965000870625108</td>
+              <td>40</td>
+              <td>0.016446490730040477</td>
+              <td>5264</td>
+              <td>14.691956353517913</td>
+              <td>40</td>
+              <td>5264</td>
+              <td>14.691956353517913</td>
+            </tr>
+            <tr>
+              <td>"SAMR (pidl)"</td>
+              <td>0.15671251958906496</td>
+              <td>90</td>
+              <td>0.021014266080974973</td>
+              <td>6726</td>
+              <td>18.772435112796632</td>
+              <td>90</td>
+              <td>6726</td>
+              <td>18.772435112796632</td>
+            </tr>
+            <tr>
+              <td>"Hypertext Transfer Protocol"</td>
+              <td>0.5606825700853213</td>
+              <td>322</td>
+              <td>11.586830784981254</td>
+              <td>3708577</td>
+              <td>10350.73165229111</td>
+              <td>176</td>
+              <td>90009</td>
+              <td>251.21738210938332</td>
+            </tr>
+            <tr>
+              <td>"Online Certificate Status Protocol"</td>
+              <td>0.0017412502176562773</td>
+              <td>1</td>
+              <td>0.001471561005670415</td>
+              <td>471</td>
+              <td>1.3145728424215306</td>
+              <td>1</td>
+              <td>471</td>
+              <td>1.3145728424215306</td>
+            </tr>
+            <tr>
+              <td>"HTML Form URL Encoded"</td>
+              <td>0.0017412502176562773</td>
+              <td>1</td>
+              <td>0.00018433566737697344</td>
+              <td>59</td>
+              <td>0.1646704834455845</td>
+              <td>1</td>
+              <td>722</td>
+              <td>2.015120153351051</td>
+            </tr>
+            <tr>
+              <td>"eXtensible Markup Language"</td>
+              <td>0.005223750652968832</td>
+              <td>3</td>
+              <td>0.03807000181336307</td>
+              <td>12185</td>
+              <td>34.00864136922792</td>
+              <td>3</td>
+              <td>14660</td>
+              <td>40.91642859851303</td>
+            </tr>
+            <tr>
+              <td>"JPEG File Interchange Format"</td>
+              <td>0.006965000870625109</td>
+              <td>4</td>
+              <td>0.8723888540282717</td>
+              <td>279224</td>
+              <td>779.3212045696591</td>
+              <td>4</td>
+              <td>281263</td>
+              <td>785.0121048365328</td>
+            </tr>
+            <tr>
+              <td>"JavaScript Object Notation"</td>
+              <td>0.015671251958906496</td>
+              <td>9</td>
+              <td>0.005555064688072183</td>
+              <td>1778</td>
+              <td>4.962442704512699</td>
+              <td>9</td>
+              <td>13691</td>
+              <td>38.211925234805044</td>
+            </tr>
+            <tr>
+              <td>"Compuserve GIF"</td>
+              <td>0.01741250217656277</td>
+              <td>10</td>
+              <td>0.0013434633385101453</td>
+              <td>430</td>
+              <td>1.200140811552565</td>
+              <td>10</td>
+              <td>430</td>
+              <td>1.200140811552565</td>
+            </tr>
+            <tr>
+              <td>"Portable Network Graphics"</td>
+              <td>0.020895002611875328</td>
+              <td>12</td>
+              <td>0.10652726974381842</td>
+              <td>34096</td>
+              <td>95.16279328068897</td>
+              <td>12</td>
+              <td>39006</td>
+              <td>108.86672673353337</td>
+            </tr>
+            <tr>
+              <td>"Media Type"</td>
+              <td>0.06268500783562599</td>
+              <td>36</td>
+              <td>11.514939874704234</td>
+              <td>3685567</td>
+              <td>10286.51016374733</td>
+              <td>36</td>
+              <td>2615862</td>
+              <td>7300.936612998874</td>
+            </tr>
+            <tr>
+              <td>"Line-based text data"</td>
+              <td>0.12188751523593941</td>
+              <td>70</td>
+              <td>6.192213111527328</td>
+              <td>1981931</td>
+              <td>5531.619252979504</td>
+              <td>70</td>
+              <td>636759</td>
+              <td>1777.2103791241855</td>
+            </tr>
+            <tr>
+              <td>"NetBIOS Session Service"</td>
+              <td>0.7052063381507923</td>
+              <td>405</td>
+              <td>0.20966463780790773</td>
+              <td>67107</td>
+              <td>187.29732428106507</td>
+              <td>26</td>
+              <td>988</td>
+              <td>2.757532841427754</td>
+            </tr>
+            <tr>
+              <td>"SMB (Server Message Block Protocol)"</td>
+              <td>0.17064252133031516</td>
+              <td>98</td>
+              <td>0.04334700083369711</td>
+              <td>13874</td>
+              <td>38.722682836000665</td>
+              <td>78</td>
+              <td>12054</td>
+              <td>33.64301707547586</td>
+            </tr>
+            <tr>
+              <td>"SMB Pipe Protocol"</td>
+              <td>0.03482500435312554</td>
+              <td>20</td>
+              <td>0.0009060566701580051</td>
+              <td>290</td>
+              <td>0.809397291512195</td>
+              <td>0</td>
+              <td>0</td>
+              <td>0</td>
+            </tr>
+            <tr>
+              <td>"Microsoft Windows Lanman Remote API Protocol"</td>
+              <td>0.03482500435312554</td>
+              <td>20</td>
+              <td>0.0010622733374266267</td>
+              <td>340</td>
+              <td>0.94894854866947</td>
+              <td>20</td>
+              <td>340</td>
+              <td>0.94894854866947</td>
+            </tr>
+            <tr>
+              <td>"SMB2 (Server Message Block Protocol version 2)"</td>
+              <td>0.4892913111614139</td>
+              <td>281</td>
+              <td>0.15849430627739805</td>
+              <td>50729</td>
+              <td>141.58591448662807</td>
+              <td>185</td>
+              <td>29999</td>
+              <td>83.72796326922186</td>
+            </tr>
+            <tr>
+              <td>"Data"</td>
+              <td>3.393696674212084</td>
+              <td>1949</td>
+              <td>1.0501165563797825</td>
+              <td>336109</td>
+              <td>938.0886698374909</td>
+              <td>1949</td>
+              <td>336109</td>
+              <td>938.0886698374909</td>
+            </tr>
+            <tr>
+              <td>"Transport Layer Security"</td>
+              <td>23.616576702072088</td>
+              <td>13563</td>
+              <td>70.78414955708826</td>
+              <td>22655761</td>
+              <td>63232.79858809524</td>
+              <td>12887</td>
+              <td>18917143</td>
+              <td>52798.22174947889</td>
+            </tr>
+          </tbody>
+        </table>
+        <p><br>
+        </p>
+        <h3><a id="mozTocId271494" class="mozTocH3"></a>What can I learn from
+          LDAP and Kerberos?</h3>
+      </div>
+      <div><br>
+      </div>
+      <div>I assume that the windows machines are using LDAP to identify,
+        authenticate and authorize users.&nbsp; But "under the hood", LDAP uses
+        kerberos, port 88 (from /etc/services) I use the query <code>kerberos</code>
+        to see what I can find.&nbsp; After a bit of digging around, I find that
+        any kerberos message that has a <code>cname_string</code> will contain
+        a username.&nbsp; There are 4 AS-REQ packets and 1 TGS-REP packet.&nbsp;
+        The packets from 10.0.0.149 (3289, 3301) have alyssa.fitzgerald, the
+        packets from 10.0.0.167 (3988,4010) have elmer.obrien.&nbsp; Elmer also
+        got a Ticket Granting Service (TGS) ticket in packet 4188.</div>
+      <div><br>
+      </div>
+      <img src="cname-string_alyssa.png" alt="Kerberos" title="Alyssa_fitzgerald_authentication_request">
+      <div><br>
+      </div>
+      <div><br>
+      </div>
+      <ol>
+        <li> <img src="cname-string_elmer.png" alt="Kerberos" title="Elmer O'Brien's authentication request">
+        </li>
+      </ol>
+      <div>
+        <h2><a id="mozTocId173246" class="mozTocH2"></a>The malware that went to
+          10.0.0.167, Elmer O'Brien's PC.</h2>
+        <p>There is a HTTP conversation that starts at packet 5515.&nbsp; It
+          gets interesting at packet 5518.&nbsp; The HTTP virtual host is
+          alphapioneer.com.&nbsp; Its IPv4 address is 119.31.234.40 and I think
+          it's in Singapore, although that could be the end point of a VPN.</p>
+        <pre>jeffs@jeffs-desktop:~$ <kbd>path alphapioneer.com</kbd><samp>
+ 1?: [LOCALHOST]                      pmtu 1500
+ 1:  local-router                                          2.143ms 
+ 1:  local-router                                          1.887ms 
+ 2:  local-router                                          2.037ms pmtu 1492
+ 2:  tukw-dsl-gw67.tukw.qwest.net                          5.263ms 
+ 3:  tukw-agw1.inet.qwest.net                              6.883ms 
+ 4:  no reply
+ 5:  TATA-level3-Seattle2.Level3.net                       4.532ms 
+ 6:  if-ae-2-2.tcore1.00s-seattle.as6453.net             248.515ms asymm 16 
+ 7:  if-ae-45-2.tcore1.sv1-santaclara.as6453.net         252.502ms asymm 15 
+ 8:  if-et-6-2.hcore1.kv8-chiba.as6453.net               123.378ms asymm 10 
+ 9:  if-et-1-2.hcore2.kv8-chiba.as6453.net               137.433ms 
+10:  if-ae-23-2.tcore1.svw-singapore.as6453.net          256.230ms asymm 14 
+11:  if-be-45-2.ecore2.esin4-singapore.as6453.net        248.695ms asymm 14 
+12:  if-be-10-2.ecore2.svq-singapore.as6453.net          244.875ms asymm 14 
+13:  if-ae-46-2.thar1.svq-singapore.as6453.net           242.877ms asymm 14 
+14:  if-ae-22-2.tcore1.asina-singapore.as6453.net        248.779ms 
+15:  180.87.172.25                                       199.457ms asymm 10 
+16:  no reply
+17:  138.168.22.103.in-addr.arpa                         201.549ms asymm 11 
+18:  100.92.245.103.sgsvr.com                            183.181ms asymm 10 
+19:  no reply
+20:  no reply
+21:  no reply
+22:  no reply
+23:  no reply
+24:  no reply
+25:  no reply
+26:  no reply
+27:  no reply
+28:  no reply
+29:  no reply
+30:  no reply
+     Too many hops: pmtu 1492
+     Resume: pmtu 1492 </samp>
+jeffs@jeffs-desktop:~$ <kbd>s sgsvr.com</kbd><samp>
+   Domain Name: SGSVR.COM
+   Registry Domain ID: 1473342678_DOMAIN_COM-VRSN
+   Registrar WHOIS Server: whois.crazydomains.com
+   Registrar URL: http://www.crazydomains.com.au
+   Updated Date: 2019-04-18T03:57:24Z
+   Creation Date: 2008-05-16T12:14:40Z
+   Registry Expiry Date: 2025-05-16T12:14:40Z
+   Registrar: Dreamscape Networks International Pte Ltd
+   Registrar IANA ID: 1291
+   Registrar Abuse Contact Email: abuse@crazydomains.com
+   Registrar Abuse Contact Phone: +61 894 220 890
+   Domain Status: ok https://icann.org/epp#ok
+   Name Server: NAMES1.DS.NETWORK
+   Name Server: NAMES2.DS.NETWORK
+   DNSSEC: signedDelegation</samp>
+</pre>
+        <p>
+          The conversation continues at packet 7388. The response is a 1,950,208
+          PNG image. That suggests to me that my thought that the JPEG decoding
+          error was connected with the attack might have been a
+          red-herring.&nbsp; Look at the first 0x360 (864 bytes) it doesn't look
+          like a PNG file at all:</p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <h2><a id="mozTocId488140" class="mozTocH2"></a>Other interesting
+          tidbits</h2>
+        <p><a name="10.0.0.202_OS" id="10.0.0.202_OS"></a>10.0.0.202 is a Ubuntu
+          Linux machine.&nbsp; Only ubuntu linux machines look for
+          daisy.ubuntu.com.&nbsp; It comes from a service called whoopsie, and
+          it can be safely removed.</p>
+        <ol>
+          <li>packet 4188 from 10.0.0.10/88 is protocol KRB5<sup><a href="#fn_01">[1]</a></sup>
+            and it is a TGS-REP.&nbsp; It has a CNameString <b>elmer.obrien</b>
+            .</li>
+        </ol>
+        <p><br>
+        </p>
+        <h2><a id="mozTocId373768" class="mozTocH2"></a>The malware listing</h2>
+        <p>This is what I think is interesting in the malware.&nbsp; I don't
+          know enough about the internals of a Windows .exe file.</p>
+        <ol id="mozToc">
+          <!--mozToc h1 1 h2 2 h3 3 h4 4 h5 5 h6 6-->
+          <li><a href="#mozTocId431752">Jeff Silverman Wireshark analysis</a>
+            <ol>
+              <li><a href="#mozTocId96557">How do we know that a computer is
+                  infected with something?</a></li>
+              <li><a href="#mozTocId600139">What hosts are in the capture?</a></li>
+              <li><a href="#mozTocId655425">What protocols are in use?</a>
+                <ol>
+                  <li><a href="#mozTocId271494">What can I learn from LDAP and
+                      Kerberos?</a></li>
+                </ol>
+              </li>
+              <li><a href="#mozTocId173246">The malware that went to 10.0.0.167,
+                  Elmer O'Brien's PC.</a></li>
+              <li><a href="#mozTocId488140">Other interesting tidbits</a></li>
+              <li><a href="#mozTocId373768">The malware listing</a></li>
+            </ol>
+          </li>
+        </ol>
+        <pre>HTTP/1.1 200 OK
+Date: Thu, 23 Apr 2020 23:18:35 GMT
+Server: Apache
+Connection: keep-alive, Keep-Alive
+X-Powered-By: PHP/5.4.16
+Accept-Ranges: bytes
+Expires: 0
+Cache-Control: no-cache, no-store, must-revalidate
+Content-Disposition: attachment; filename="8888.png"
+Upgrade: h2
+Connection: Upgrade
+Content-Length: 1950208
+Vary: Accept-Encoding
+Keep-Alive: timeout=2, max=50
+Content-Type: image/png
+
+MZÿÿ¸@º´	Í!¸LÍ!This program cannot be run in DOS mode.
+
+
+$PEL}¡^à2&lt;&nbsp;&nbsp;@ð´´à&nbsp;
+»¸.textM `.rdataÉ&nbsp;@@.data+°,@À.rsrc&nbsp;
+...
+ØØ¦ØºØÔØðØÙÙ6ÙNÙ`ÙpÙÙÙ¦Ù¾ÙØÙäÙîÙúÙÚÚ4ÚFÚXÚlÚÚÚ²ÚTVirtualAllocùGetModuleHandleW¶lstrlenW©lstrcmpAWriteProcessMemoryWriteFilezWideCharToMultiBytedWaitForSingleObjectcWaitForMultipleObjectsEx]VirtualQueryEx\VirtualQuery[VirtualProtectExZVirtualProtectWVirtualFreeAUnmapViewOfFile.TerminateThread-TerminateProcess*SystemTimeToFileTime'SuspendThread!Sleep SizeofResourceSetThreadPrioritySetThreadContextSetThreadAffinityMasköSetPriorityClassìSetLastErrorßSetFilePointerÓSetEventResumeThreadResetEvent{ReleaseSemaphorewReleaseMutexkReadProcessMemoryhReadFileUQueryPerformanceFrequencyTQueryPerformanceCounterHPulseEvent;OutputDebugStringW3OpenProcess0OpenMutexW+OpenFileMappingA,OpenFileMappingW'OpenEventAMultiByteToWideCharMulDiv
+MapViewOfFileLockResourceýLocalFreeùLocalAllocöLoadResourceòLoadLibraryExAóLoadLibraryExWñLoadLibraryAôLoadLibraryWïLeaveCriticalSection´InitializeCriticalSectionGlobalUnlockGlobalSizeGlobalReAllocGlobalHandleGlobalLockGlobalFreeGlobalFindAtomWGlobalDeleteAtomGlobalAllocGlobalAddAtomWGetWindowsDirectoryAGetWindowsDirectoryWwGetVolumeInformationAuGetVersionExAvGetVersionExWtGetVersionfGetTickCountaGetThreadPriority_GetThreadLocale\GetThreadContext[GetTempPathWMGetSystemTimeEGetSystemDirectoryAFGetSystemDirectoryW:GetStartupInfoW+GetProcessVersion!GetProcessAffinityMask GetProcAddressGetPriorityClassöGetModuleHandleAôGetModuleFileNameAõGetModuleFileNameWíGetLogicalDrivesæGetLastErrorÔGetFileSizeÉGetFileAttributesAÎGetFileAttributesWÆGetExitCodeThreadÅGetExitCodeProcessÁGetEnvironmentStringsW»GetDriveTypeWGetCurrentThreadId¬GetCurrentThreadªGetCurrentProcessId©GetCurrentProcessxGetComputerNameWoGetCommandLineAOFreeResourceÀInterlockedIncrement¼InterlockedDecrementLFreeLibraryGFormatMessageAHFormatMessageW6FindResourceA9FindResourceW0FindNextFileWFindFirstFileA$FindFirstFileWFindCloseFileTimeToDosDateTimeExitProcessíEnumResourceNamesWÙEnterCriticalSectionÔDuplicateHandle¾DeleteCriticalSection£CreateThreadCreateSemaphoreWCreateMutexACreateMutexWyCreateFileMappingA|CreateFileMappingWxCreateFileACreateFileWrCreateEventAuCreateEventWUCompareStringWCCloseHandle1GetProfileSectionA
+FatalExitExitThread7GetShortPathNameAµGetDiskFreeSpaceExAïGetLongPathNameAGetConsoleTitleAHeap32ListNextÜIsValidLanguageGroupFileTimeToSystemTimeRtlZeroMemory_lclose-OpenJobObjectAóGetMailslotInfoºGetDriveTypeA)SwitchToThreadÕIsProcessorFeaturePresent¤_lwriteNCommConfigDialogA½InterlockedExchange¾InterlockedExchangeAdd9GetStartupInfoAKERNEL32.dll×LoadIconWÔLoadCursorFromFileWGetAsyncKeyState%GetForegroundWindow2GetKeyboardLayoutGetDCoGetSystemMetricsGetDlgCtrlID;GetListBoxInfosGetThreadDesktop²ShowCaret&nbsp;DestroyWindowGetClipboardVieweruGetTopWindow)CharLowerAÖLoadIconAüWaitForInputIdleÕTranslateMessageÅSystemParametersInfoWAnimateWindow¸ShowWindow´ShowOwnedPopups¨SetWindowRgn§SetWindowPos¦SetWindowPlacement¥SetWindowLongWSetTimerSetPropASetParentzSetForegroundWindowrSetCursorPoskSetClassLongWaSendMessageTimeoutAbSendMessageTimeoutW_SendMessageCallbackA^SendMessageAcSendMessageWORemovePropALReleaseDCJRegisterWindowMessageW!PostThreadMessageAPostMessageAPostMessageWOffsetRectMsgWaitForMultipleObjectsÙLoadImageWÕLoadCursorWÑLoadBitmapWÍKillTimerÌIsZoomedÊIsWindowVisibleÉIsWindowUnicodeÆIsWindowEnabledÅIsWindow½IsIconicªInvalidateRect¡InflateRectGetWindowThreadProcessIdGetWindowRectGetWindowPlacementGetWindowLongWnGetSystemMenu[GetPropAUGetParent}GetWindowNGetMessageW&lt;GetMenu
+GetClientRect
+GetClassNameA	GetClassLongWöFrameRectñFindWindowExAòFindWindowExWóFindWindowWëEnumWindowsèEnumThreadWindowsÑEnableWindowÏEnableMenuItemÈDrawTextW¾DrawFrameControl¼DrawFocusRect©DispatchMessageWDestroyIconBChildWindowFromPointEx:CharUpperW,CharLowerWAttachThreadInputAdjustWindowRectExUSER32.dllôGetStockObject£UnrealizeObjectDCreateMetaFileAHCreatePatternBrushíGetPolyFillModeÍDeleteDC,FillPath¡TranslateCharsetInfo^SelectObjectGetTextExtentPointWGetTextExtentPoint32WÐDeleteObjectOCreateRoundRectRgn&gt;CreateFontIndirectWBitBlt©GetCharacterPlacementW4CreateDIBitmapIGdiDeleteSpoolFileHandleèGetPathCLIPOBJ_cEnumStart7CreateEllipticRgnIndirect)CreateBitmapIndirect®GetCurrentObjectGDI32.dllYRegOpenKeyAgRegQueryValueExA°SetSecurityDescriptorDacl{RegUnLoadKeyWZRegOpenKeyExATRegLoadKeyW*RegCloseKeyñOpenProcessTokenLookupAccountSidALookupAccountSidWqInitializeSecurityDescriptor_GetUserNameWTGetTokenInformation0GetLengthSid"QueryServiceStatusõOpenServiceWóOpenSCManagerWSCloseServiceHandle/GetKernelObjectSecurityÊCryptSetProvParamÂCryptGetProvParam²CryptDestroyHashÏCryptSignHashAÈCryptSetHashParam¯CryptCreateHashÆCryptImportKey»CryptExportKeyÇCryptReleaseContext³CryptDestroyKeyÃCryptGetUserKey¬CryptAcquireContextA°CryptDecryptADVAPI32.dll¹SHGetFileInfoAShellExecuteW#Shell_NotifyIconW¼SHGetFolderPathAÀSHGetFolderPathWØSHGetSpecialFolderLocation»SHGetFolderLocationÏSHGetPathFromIDListAÑSHGetPathFromIDListWxSHBrowseForFolderW!Shell_NotifyIcon(ExtractIconAwSHBrowseForFolderAèSHLoadNonloadedIconOverlayIdentifiersShellAboutW.FindExecutableWShellExecuteAçSHLoadInProc¨SHFileOperationA"Shell_NotifyIconADoEnvironmentSubstWuSHBindToParent³SHGetDesktopFolderSHCreateDirectoryExA*ExtractIconExAÉSHGetMallocCheckEscapesWÙSHGetSpecialFolderPathA&amp;ExtractAssociatedIconExWDoEnvironmentSubstA|SHChangeNotify±SHGetDataFromIDListADragQueryFileAorWÃSHGetIconOverlayIndexWåSHIsFileAvailableOffline-FindExecutableADragFinish'ExtractAssociatedIconWSHELL32.dllCreateStreamOnHGlobalOleUninitializegCoTaskMemFreeCoCreateInstancekCoUninitialize=CoInitializeGetHGlobalFromStreamCoCreateGuidole32.dllBStrStrIW@StrStrAStrChrIA7StrRStrIA
+StrChrASHLWAPI.dllbImageList_GetIconSizewImageList_WritejImageList_ReadaImageList_GetIconnImageList_ReplaceIconcImageList_GetImageCountTImageList_DestroySImageList_CreateCOMCTL32.dll}¡^À@ÊÀ
+@}¡^X}¡^	pÜáè}¡^}¡^	°Äâ_}¡^Ø}¡^	ð$äè}¡^}¡^	0çÏ}¡^kX}¡^	pÜé}¡^}¡^	°ðé°MUIREGINSTÍþÍþèìçYL7ßíä«1?GG&amp;zZ¯C°"z´ÎO¨¸ÈØREGINSTMUIMUIen-US[Version]
+Signature=$CHICAGO$ 
+AdvancedINF=2.5,"You need a new version of advpack.dll"
+
+[Uninstall]
+Cleanup=1
+SmartReboot=N
+RunPreSetupCommands=PreSetupCommandsSection
+DelFiles=DelCmstp
+DelReg=RemoveRunKey
+
+[DestinationDirs]
+DelCmstp=11
+
+[DelCmstp]
+cmstp.exe
+
+[PreSetupCommandsSection]
+
+[SourceDisksNames]
+1 = , , 0 
+
+[Strings]
+( @ÀÀÀÿÿÿÿÿÿÿÿÿ"#E@"0ATPf@"Efwd"!TPgwv@"%Egfw`" P2wv""2wvUC"""@wvP"""&amp;wfvE	""&amp;wfgvP"&amp;wwwtwww@wfdw`w`Iw`«Dg`	ªª»°@ªªª»°D@Jªª«°D@Iºª»DDPIº¨4DP	º¤DUº¤UPIºªUª&nbsp;DKªªªÿÿÿÿÿÿÿÿøÿøÿøÿøø?ø?ðàÀÀÀÃÀÇÀ?ÏÁþÿüÿøÿøóøÃø`ø`ø øüüþÿÿþ?ÿÿÿÿÿÿÿÿ&lt;?xml version="1.0" encoding="UTF-8" standalone="yes"?&gt;
+&lt;!-- Copyright (c) Microsoft Corporation --&gt;
+&lt;assembly xmlns="urn:schemas-microsoft-com:asm.v1" manifestVersion="1.0"&gt;
+&lt;assemblyIdentity
+    version="5.1.0.0"
+    processorArchitecture="x86"
+    name="Microsoft.Windows.Net.cmstp"
+    type="win32"
+/&gt;
+&lt;description&gt;Microsoft Connection Manager Profile Installer&lt;/description&gt;
+
+&lt;trustInfo xmlns="urn:schemas-microsoft-com:asm.v3"&gt;
+    &lt;security&gt;
+        &lt;requestedPrivileges&gt;
+            &lt;requestedExecutionLevel
+                level="asInvoker"
+                uiAccess="false"&gt;
+            &lt;/requestedExecutionLevel&gt;
+        &lt;/requestedPrivileges&gt;
+    &lt;/security&gt;
+&lt;/trustInfo&gt;
+&lt;/assembly&gt;
+
+  è°4VS_VERSION_INFO½ïþjD±jD±?StringFileInfoì040904B0LCompanyNameMicrosoft Corporation/FileDescriptionMicrosoft Connection Manager Profile ikstallert*FileVersion7.02.7601.17514 (win7sp1_rtm.101119-1850),InternalNameCMSTP.LegalCopyright© Microsoft Corporation. All rights reserved.&lt;
+OriginalFilenameCMSTP.EXE` ProductNameMicrosoft(R) Connection ManagerDProductVersion7.02.7601.17514DVarFileInfo$Translation	°
+
+
+</pre>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <ol>
+        </ol>
+        <p><sup id="fn_01">[1]</sup> <a href="https://medium.com/@robert.broeckelmann/kerberos-wireshark-captures-a-windows-login-example-151fabf3375a">Kerberos
+            Wireshark Captures: A Windows Login Example</a><br>
+          by Robert Broeckelmann May 16, 2018 (Downloaded 15-Feb-2022).</p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+        <p><br>
+        </p>
+      </div>
+    </div>
+  </body>
+</html>
