@@ -1,0 +1,920 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+    <title>Jeff Silverman Windows Event File analysis</title>
+    <meta name="author" content="Jeff Silverman">
+    <meta name="description" content="My solution to https://login.codingdojo.com/m/306/9669/65142">
+    <meta name="generator" content="BlueGriffon wysiwyg editor">
+    <style type="text/css">
+A:link {
+  color: red;
+}
+
+A:visited {
+  color: maroon; 
+}
+
+A:active {
+  color: fuchsia;
+}
+
+H1.myclass {
+  border-width: medium;
+  border-style: solid;
+  text-align: center;
+}
+
+H1, .h1 {
+  font-size: 36pt;
+  font-weight: bold; 
+  background-color: #ffdcdc;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 18pt;
+}
+
+H2, .h2 {
+  font-size: 30pt;
+  font-weight: bold;
+  background-color: #ffffcc;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 36pt;
+}
+
+H3, .h3 {
+  font-size: 24pt;
+  font-weight: bold;
+  background-color: #ccffcc;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 54pt;
+}
+
+H4, .h4 {
+  font-size: 20pt;
+  font-weight: bold;
+  background-color: #ccffff;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 72pt;
+}
+
+H5, .h5 {
+  font-size: 16pt;
+  font-weight: bold;
+  background-color: #ccccff;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 72pt;
+}
+
+H6, .h6 {
+  font-size: 14pt;
+  font-weight: bold;
+  background-color: #cccccc;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+  margin-left: 90pt;
+}
+          
+          code, kbd, var {
+  white-space: pre;
+  font-size: 10pt;
+}
+
+kbd, .kbd {
+  text-decoration: underline;
+  font-family: monospace;
+  background-color: #eeeeff;
+}
+
+.code code {
+  font: 12px/12px monospace;
+  background-image: repeating-linear-gradient(0deg,
+      darkgray,
+      darkgray 12px,
+      lightgray 12px,
+      lightgray 24px);
+} 
+
+ACRONYM, .acronym {
+  text-decoration: underline;
+  font-family: monospace;
+  background-color: #eeeeff;
+}
+
+SAMP, .samp {
+  font-family: monospace;
+  background-color: Beige;
+}
+
+.var {
+  font-style: italic;
+  font-family: monospace;
+}
+
+pre {
+  background-color: #fefefe;
+  background-image: none;
+  background-repeat: repeat;
+  background-attachment: scroll;
+  background-position: 0% 0%;
+}
+          
+OL {
+  list-style-type: decimal;
+}
+
+OL OL {
+  list-style-type: upper-alpha;
+}
+
+OL OL OL {
+  list-style-type: decimal;
+}
+
+OL OL OL OL {
+  list-style-type: lower-alpha;
+}
+
+OL OL OL OL OL {
+  list-style-type: decimal;
+}
+
+blockquote {
+  border-left-color: blue;
+  border-left-style: groove;
+  padding: 20px;
+}
+
+    </style>
+  </head>
+  <body>
+    <h1 class="myclass"><a id="mozTocId578026" class="mozTocH1"></a>Windows
+      Event Log File analysis</h1>
+    <p class="myclass">Jeff Silverman</p>
+    <p class="myclass">Get the instructions from <a href="https://login.codingdojo.com/m/306/9671/65149">learn</a>.</p>
+    <p>Get the data from <a href="%20https://drive.google.com/drive/u/0/folders/1QPK-A6mq0qvjG0oqdvXwE1CGyKXLZheI">
+https://drive.google.com/drive/u/0/folders/1QPK-A6mq0qvjG0oqdvXwE1CGyKXLZheI</a><br>
+    </p>
+    <p><br>
+    </p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ <kbd>file *.evtx</kbd>
+<samp>DE_sysmon-3-rdp-tun.evtx:                                  MS Windows Vista Event Log, 1 chunks (no. 0 in use), next record no. 74
+privexchange_dirkjan.evtx:                                 MS Windows Vista Event Log, 1 chunks (no. 0 in use), next record no. 9
+RogueWinRM.evtx:                                           MS Windows Vista Event Log, 1 chunks (no. 0 in use), next record no. 8
+sysmon_11_1_lolbas_downldr_desktopimgdownldr.evtx:         MS Windows Vista Event Log, 1 chunks (no. 0 in use), next record no. 4
+Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.evtx: MS Windows Vista Event Log, 1 chunks (no. 0 in use), next record no. 14</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ 
+<br>
+    </pre>
+    <p><br>
+    </p>
+    <h2><a id="mozTocId665337" class="mozTocH2"></a>python-evtx</h2>
+    <p>I got python-evtx from github <a href="https://github.com/williballenthin/python-evtx">https://github.com/williballenthin/python-evtx</a>
+      .</p>
+    <h3><a id="mozTocId2835" class="mozTocH3"></a>evtxinfo.py or evtx_info.py</h3>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ <kbd>python3 evtxinfo.py DE_sysmon-3-rdp-tun.evtx</kbd><samp>
+Information from file header:
+Format version  : 3.1
+Flags           : 0x00000000
+File is         : clean
+Log is full     : no
+Current chunk   : 0 of 1
+Oldest chunk    : 1
+Next record#    : 74
+Check sum       : pass
+
+Information from chunks:
+  Chunk file (first/last)     log (first/last)      Header Data
+- ----- --------------------- --------------------- ------ ------
+*     1          1        73           1        73   pass   pass</samp>
+</pre>
+    <h3><a id="mozTocId225719" class="mozTocH3"></a>evtx_dump.py or evxtdump.py</h3>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ python3 evtxdump.py DE_sysmon-3-rdp-tun.evtx
+&lt;?xml version="1.1" encoding="utf-8" standalone="yes" ?&gt;
+
+&lt;Events&gt;
+&lt;Event xmlns="http://schemas.microsoft.com/win/2004/08/events/event"&gt;&lt;System&gt;&lt;Provider Name="Microsoft-Windows-Sysmon" Guid="{5770385f-c22a-43e0-bf4c-06f5698ffbd9}"&gt;&lt;/Provider&gt;
+&lt;EventID Qualifiers=""&gt;3&lt;/EventID&gt;
+&lt;Version&gt;5&lt;/Version&gt;
+&lt;Level&gt;4&lt;/Level&gt;
+&lt;Task&gt;3&lt;/Task&gt;
+&lt;Opcode&gt;0&lt;/Opcode&gt;
+&lt;Keywords&gt;0x8000000000000000&lt;/Keywords&gt;
+&lt;TimeCreated SystemTime="2019-02-16 10:01:46.884037"&gt;&lt;/TimeCreated&gt;
+&lt;EventRecordID&gt;1940897&lt;/EventRecordID&gt;
+&lt;Correlation ActivityID="" RelatedActivityID=""&gt;&lt;/Correlation&gt;
+&lt;Execution ProcessID="1728" ThreadID="316"&gt;&lt;/Execution&gt;
+&lt;Channel&gt;Microsoft-Windows-Sysmon/Operational&lt;/Channel&gt;
+&lt;Computer&gt;PC01.example.corp&lt;/Computer&gt;
+&lt;Security UserID="S-1-5-18"&gt;&lt;/Security&gt;
+&lt;/System&gt;
+&lt;EventData&gt;&lt;Data Name="RuleName"&gt;&lt;/Data&gt;
+&lt;Data Name="UtcTime"&gt;2019-02-16 10:01:45.887&lt;/Data&gt;
+&lt;Data Name="ProcessGuid"&gt;{365abb72-d695-5c67-0000-00103c3e0100}&lt;/Data&gt;
+&lt;Data Name="ProcessId"&gt;1608&lt;/Data&gt;
+&lt;Data Name="Image"&gt;C:\Windows\System32\svchost.exe&lt;/Data&gt;
+&lt;Data Name="User"&gt;NT AUTHORITY\LOCAL SERVICE&lt;/Data&gt;
+&lt;Data Name="Protocol"&gt;udp&lt;/Data&gt;
+&lt;Data Name="Initiated"&gt;False&lt;/Data&gt;
+&lt;Data Name="SourceIsIpv6"&gt;False&lt;/Data&gt;
+&lt;Data Name="SourceIp"&gt;239.255.255.250&lt;/Data&gt;
+&lt;Data Name="SourceHostname"&gt;&lt;/Data&gt;
+&lt;Data Name="SourcePort"&gt;1900&lt;/Data&gt;
+&lt;Data Name="SourcePortName"&gt;ssdp&lt;/Data&gt;
+&lt;Data Name="DestinationIsIpv6"&gt;False&lt;/Data&gt;
+&lt;Data Name="DestinationIp"&gt;10.0.2.16&lt;/Data&gt;
+&lt;Data Name="DestinationHostname"&gt;&lt;/Data&gt;
+&lt;Data Name="DestinationPort"&gt;57182&lt;/Data&gt;
+&lt;Data Name="DestinationPortName"&gt;&lt;/Data&gt;
+&lt;/EventData&gt;
+&lt;/Event&gt;<br>...<br>&nbsp;</pre>
+    <p>I would like pretty-print my XML.&nbsp; tidy(1) will prettyprint xml.</p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ <kbd>python3 evtxdump.py sysmon_1_7_11_sysprep_uacbypass.evtx | tidy -xml -i - &gt; sysmon_1_7_11_sysprep_uacbypass.xml</kbd>
+    jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ <kbd>ls -l sysmon_1_7_11_sysprep_uacbypass.*</kbd>
+<samp>-r--r--r-- 1 jeffs jeffs 69632 Feb 21 01:56 sysmon_1_7_11_sysprep_uacbypass.evtx
+-rw-rw-r-- 1 jeffs jeffs 45653 Feb 22 15:55 sysmon_1_7_11_sysprep_uacbypass.xml</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ 
+
+</pre>
+    <p>Now that I have the data in XML format, I can work with it using command
+      line tools.<br>
+    </p>
+    <p> </p>
+    <h4><a id="mozTocId874212" class="mozTocH4"></a> Parsing XML using <kbd>grep</kbd>
+    </h4>
+    <p> I wrote the script gen_xml.sh to convert the evtx files to XMLfiles.
+      Then I used grep to find the EventIDs </p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ fgrep EventID *.xml | sort -k 2 -u
+<font color="#75507B">Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.xml</font><font
+color="#06989A">:</font>        &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;10&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.xml</font><font
+color="#06989A">:</font>      &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;10&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_sysmon-3-rdp-tun.xml</font><font color="#06989A">:</font>        &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;1&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_sysmon-3-rdp-tun.xml</font><font color="#06989A">:</font>      &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;1&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">sysmon_11_1_lolbas_downldr_desktopimgdownldr.xml</font><font
+color="#06989A">:</font>        &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;11&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">sysmon_11_1_lolbas_downldr_desktopimgdownldr.xml</font><font
+color="#06989A">:</font>      &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;11&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">4624_LT3_AnonymousLogin_Localhost_-_JuicyPotato.xml</font><font
+color="#06989A">:</font>        &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;1102&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">4624_LT3_AnonymousLogin_Localhost_-_JuicyPotato.xml</font><font
+color="#06989A">:</font>      &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;1102&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">Exec_sysmon_meterpreter_reversetcp_msipackage.xml</font><font
+color="#06989A">:</font>        &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;13&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">Exec_sysmon_meterpreter_reversetcp_msipackage.xml</font><font
+color="#06989A">:</font>      &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;13&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">Exec_via_cpl_Application_Experience_EventID_17_ControlPanelApplet.xml</font><font
+color="#06989A">:</font>        &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;17&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">Exec_via_cpl_Application_Experience_EventID_17_ControlPanelApplet.xml</font><font
+color="#06989A">:</font>      &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;17&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">Exec_sysmon_meterpreter_reversetcp_msipackage.xml</font><font
+color="#06989A">:</font>        &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;2&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">Exec_sysmon_meterpreter_reversetcp_msipackage.xml</font><font
+color="#06989A">:</font>      &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;2&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_sysmon-3-rdp-tun.xml</font><font color="#06989A">:</font>        &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;3&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_sysmon-3-rdp-tun.xml</font><font color="#06989A">:</font>      &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;3&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">4624_LT3_AnonymousLogin_Localhost_-_JuicyPotato.xml</font><font
+color="#06989A">:</font>        &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;4624&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;  low
+<font color="#75507B">4624_LT3_AnonymousLogin_Localhost_-_JuicyPotato.xml</font><font
+color="#06989A">:</font>      &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;4624&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">4624_LT3_AnonymousLogin_Localhost_-_JuicyPotato.xml</font><font
+color="#06989A">:</font>        &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;4634&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;  low
+<font color="#75507B">4624_LT3_AnonymousLogin_Localhost_-_JuicyPotato.xml</font><font
+color="#06989A">:</font>      &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;4634&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_RDP_Tunnel_5156.xml</font><font color="#06989A">:</font>        &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;4648&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_RDP_Tunnel_5156.xml</font><font color="#06989A">:</font>      &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;4648&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;   low
+<font color="#75507B">privexchange_dirkjan.xml</font><font color="#06989A">:</font>        &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;4662&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;  low
+<font color="#75507B">privexchange_dirkjan.xml</font><font color="#06989A">:</font>      &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;4662&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_RDP_Tunnel_5156.xml</font><font color="#06989A">:</font>        &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;4672&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;  low?
+<font color="#75507B">DE_RDP_Tunnel_5156.xml</font><font color="#06989A">:</font>      &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;4672&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_RDP_Tunnel_5156.xml</font><font color="#06989A">:</font>        &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;4688&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;  Low?
+<font color="#75507B">DE_RDP_Tunnel_5156.xml</font><font color="#06989A">:</font>      &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;4688&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">privexchange_dirkjan.xml</font><font color="#06989A">:</font>        &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;4776&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;  Low
+<font color="#75507B">privexchange_dirkjan.xml</font><font color="#06989A">:</font>      &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;4776&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_sysmon-3-rdp-tun.xml</font><font color="#06989A">:</font>        &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;5&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_sysmon-3-rdp-tun.xml</font><font color="#06989A">:</font>      &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;5&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">privexchange_dirkjan.xml</font><font color="#06989A">:</font>        &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;5136&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">privexchange_dirkjan.xml</font><font color="#06989A">:</font>      &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;5136&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_RDP_Tunnel_5156.xml</font><font color="#06989A">:</font>        &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;5156&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_RDP_Tunnel_5156.xml</font><font color="#06989A">:</font>      &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;5156&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_RDP_Tunnel_5156.xml</font><font color="#06989A">:</font>        &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;5158&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_RDP_Tunnel_5156.xml</font><font color="#06989A">:</font>      &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;5158&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_sysmon-3-rdp-tun.xml</font><font color="#06989A">:</font>        &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;6&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">DE_sysmon-3-rdp-tun.xml</font><font color="#06989A">:</font>      &lt;<font
+color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;6&lt;/<font color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">Exec_sysmon_meterpreter_reversetcp_msipackage.xml</font><font
+color="#06989A">:</font>        &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;7&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">Exec_sysmon_meterpreter_reversetcp_msipackage.xml</font><font
+color="#06989A">:</font>      &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;7&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.xml</font><font
+color="#06989A">:</font>        &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;8&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+<font color="#75507B">Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.xml</font><font
+color="#06989A">:</font>      &lt;<font color="#EF2929"><b>EventID</b></font> Qualifiers=""&gt;8&lt;/<font
+color="#EF2929"><b>EventID</b></font>&gt;
+jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ 
+</pre>
+    <p></p>
+    <p>So now I need find a list of Windows Event IDs.&nbsp; I found: 1, 2, 3,
+      6, 7, 8, 10, 11, 13, 17, 1102, 4624, 4634, 4688, 4776, 5156, 5158.&nbsp; </p>
+    <p>Look at <a href="https://docs.microsoft.com/en-us/windows-server/identity/ad-ds/plan/appendix-l--events-to-monitor">Appendix
+        L: Events to monitor of&nbsp; ?</a>.</p>
+    <p><br>
+    </p>
+    <p></p>
+    <table>
+      <tbody>
+        <tr>
+          <th>Event ID</th>
+          <td>Meaning (from Appendix L)</td>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td> <br>
+          </td>
+        </tr>
+        <tr>
+          <td>2</td>
+          <td> <br>
+          </td>
+        </tr>
+        <tr>
+          <td>3</td>
+          <td> <br>
+          </td>
+        </tr>
+        <tr>
+          <td>6</td>
+          <td> <br>
+          </td>
+        </tr>
+        <tr>
+          <td>7</td>
+          <td> <br>
+          </td>
+        </tr>
+        <tr>
+          <td>8</td>
+          <td> <br>
+          </td>
+        </tr>
+        <tr>
+          <td>10</td>
+          <td> <br>
+          </td>
+        </tr>
+        <tr>
+          <td>11</td>
+          <td> <br>
+          </td>
+        </tr>
+        <tr>
+          <td>13</td>
+          <td> <br>
+          </td>
+        </tr>
+        <tr>
+          <td>17</td>
+          <td> <br>
+          </td>
+        </tr>
+        <tr>
+          <td>1102</td>
+          <td> The audit log was cleared</td>
+        </tr>
+        <tr>
+          <td>4624</td>
+          <td> An account was successfully logged on.</td>
+        </tr>
+        <tr>
+          <td>4634</td>
+          <td> An account was logged off.</td>
+        </tr>
+        <tr>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>4648</td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>4662</td>
+          <td>An operation was performed on an object.</td>
+        </tr>
+        <tr>
+          <td><br>
+          </td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>4672</td>
+          <td>Special privileges assigned to new logon. (This is listed as low,
+            but was it?)</td>
+        </tr>
+        <tr>
+          <td>4688</td>
+          <td> A new process has been created.</td>
+        </tr>
+        <tr>
+          <td>4765</td>
+          <td><br>
+          </td>
+        </tr>
+        <tr>
+          <td>4776</td>
+          <td> The domain controller attempted to validate the credentials for
+            an account.</td>
+        </tr>
+        <tr>
+          <td>5136</td>
+          <td>A directory service object was modified.</td>
+        </tr>
+        <tr>
+          <td>5156</td>
+          <td> The Windows Filtering Platform has allowed a connection.</td>
+        </tr>
+        <tr>
+          <td>5158.</td>
+          <td> The Windows Filtering Platform has permitted a bind to a local
+            port.</td>
+        </tr>
+      </tbody>
+    </table>
+    <pre></pre>
+    <h3>Get some more interesting files</h3>
+    <p>I'm interested in UAC bypass.&nbsp; That happened at expitors.</p>
+    <p>https://github.com/sbousseaden/EVTX-ATTACK-SAMPLES/tree/master/Privilege%20Escalation</p>
+    <p>Sysmon_13_1_UACBypass_SDCLTBypass.evtx and
+      Sysmon_13_1_UAC_Bypass_EventVwrBypass.evtx</p>
+    <p>From </p>
+    <blockquote>
+      <p>When XQuery fails to return data you are expecting it is often caused
+        by the presence XML namespaces.<br>
+        <br>
+        The Microsoft XML event log uses a XML namespace on Event nodes and it
+        is inherited by their children. This is the
+        xmlns='http://schemas.microsoft.com/win/2004/08/events/event' you can
+        see in the files. E.g<br>
+        <br>
+        &nbsp;&nbsp;&nbsp; &lt;?xml version="1.0" encoding="utf-8"
+        standalone="yes"?&gt;<br>
+        &nbsp;&nbsp;&nbsp; &lt;Events&gt;&lt;Event
+        xmlns='http://schemas.microsoft.com/win/2004/08/events/event'&gt;<br>
+        &nbsp;&nbsp; &lt;System&gt;&lt;Provider
+        Name='SideBySide'/&gt;&lt;EventID
+        Qualifiers='49409'&gt;59&lt;/EventID&gt;&lt;Version&gt;0&lt;/Version&gt;<br>
+        &nbsp;&nbsp;&nbsp; ...<br>
+        Your XQuery must adjust for that. Either by saying any namespace is ok
+        (using *:)<br>
+        <br>
+        //*:System/[*:EventID = '4688'] <br>
+        or by explicitly specifing the expected namespaces.<br>
+        <br>
+        declare namespace
+        ns="http://schemas.microsoft.com/win/2004/08/events/event";<br>
+        /Events/ns:Event/ns:System[ns:EventID= '4688' ]<br>
+        See this similar issue xquery-not-working-with-namespaces</p>
+    </blockquote>
+    <p><br>
+    </p>
+    <p>https://stackoverflow.com/questions/13682386/xquery-not-working-with-namespaces<br>
+      <br>
+      <br>
+      I'm a beginner to xQuery, and I'm trying to list all subclasses of the
+      root node in an XML file. However, the root node in the XML doc has
+      namespaces defined within it, which means my xQuery doesn't work when
+      referencing.<br>
+      <br>
+      for $x in doc("/db/books.xml")/bookstore/book return $x doesn't return
+      anything with namespaces defined in the bookstore tag<br>
+      <br>
+      When I remove the namespaces from the tag, the query works perfectly.<br>
+      <br>
+      Is there any way I can get around this without removing the namespaces in
+      the XML file?<br>
+      <br>
+      Edit: I'll eventually be executing these queries on hundreds of XML files
+      where the namespaces vary considerably<br>
+      <br>
+      Thank you in advance<br>
+      <br>
+      xml<br>
+      namespaces<br>
+      xquery<br>
+      Share<br>
+      Edit<br>
+      Follow<br>
+      Flag<br>
+      asked Dec 3, 2012 at 11:34<br>
+      <br>
+      user1872335<br>
+      1344 bronze badges<br>
+      Add a comment<br>
+      Start a bounty<br>
+      2 Answers<br>
+      <br>
+      0<br>
+      <br>
+      If you are even lazier (and can be sure to avoid name clashes like
+      &lt;a:foo /&gt; vs &lt;b:foo /&gt;) you might even want to use:<br>
+      <br>
+      for $x in doc("/db/books.xml")/*:bookstore/*:book return $x where the *
+      will match any given namespace (even the "no-namespace")<br>
+      <br>
+      Share<br>
+      Edit<br>
+      Follow<br>
+      Flag<br>
+      answered Dec 3, 2012 at 16:16<br>
+      <br>
+      michael<br>
+      1,56711 gold badge1212 silver badges1818 bronze badges<br>
+      Add a comment<br>
+      <br>
+      0<br>
+      <br>
+      did you declare your namespace in your query? like :<br>
+      <br>
+      declare namespace ns = "http://example.org";<br>
+      then you use it in your query:<br>
+      <br>
+      for $x in doc("/db/books.xml")/ns:bookstore/ns:book return $x<br>
+      Share<br>
+      Edit<br>
+      Follow<br>
+      Flag<br>
+      answered Dec 3, 2012 at 11:39<br>
+      <br>
+      florent<br>
+      80144 silver badges1717 bronze badges<br>
+      <br>
+      I could do that and it would work in this particular instance, but it
+      wouldn't work when I eventually run the query on many other XML files as
+      some of them have xml:base and ontologyIRI declared alongside the
+      namespaces. The xml:base and OntologyIRI are specific to each file. – <br>
+      user1872335<br>
+      &nbsp;Dec 3, 2012 at 11:59<br>
+      <br>
+      I tried that and it works even if I declare just one namespace. Thank you
+      for your help! – <br>
+      user1872335<br>
+      &nbsp;Dec 3, 2012 at 12:13<br>
+      Add a comment</p>
+    <p><br>
+    </p>
+    <h3>This is The Right way to solve the problem, just look at it.</h3>
+    <p><br>
+    </p>
+    <h3>This is where I made a typical "Jeff Silverman" stupid mistake.&nbsp; I
+      wanted to automate the process.&nbsp; Not a bad idea for the real world,
+      but overthinking the problem.</h3>
+    <p> It doesn't say "write a program", it just says, " </p>
+    <p><span style="font-family: sans-serif;">Viewing the two log files that you
+        chose, interpret them to the best of your ability. You may need to
+        research what some things mean. There is no particular "right or wrong"
+        interpretation this exercise is to get you used viewing these files and
+        trying to critically thing about them. Is there a security threat
+        present? if so why and why not. "</span></p>
+    <p>As you can see, I had a lot of trouble coming up with some workable
+      XPATHs </p>
+    <h4> Parsing XML using <kbd>/usrs/bin/xpath</kbd> (which is probably the
+      best way to do it if you don't know what you're doing) [Full disclosure: I
+      haven't a clue what I am doing]</h4>
+    <p><br>
+    </p>
+    <h4><a id="mozTocId251029" class="mozTocH4"></a>Parsing XML using python</h4>
+    <p>I did some work for Microsoft, working on a System on a Chip (SoC).&nbsp;
+      I did a little creative <kbd>fgrep</kbd>'ing and found</p>
+    <pre>/home/jeffs/work/Microsoft/test_soc_files/soctestutilities.py:<code>import xml.etree.ElementTree as xml</code></pre>
+    <p><br>
+    </p>
+    <h4><a id="mozTocId591264" class="mozTocH4"></a>Some things to look for:
+      EventIDs 4688 and 4670<br>
+    </h4>
+    <p>This is from
+      https://resources.infosecinstitute.com/topic/6-windows-event-log-ids-to-monitor-now/
+      (Generate an APA footnote)</p>
+    <p>Not very promising:</p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ <kbd>egrep -A 10 -B 3 "4688|4670" sysmon_1_7_11_sysprep_uacbypass.xml</kbd>
+jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ 
+</pre>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ fgrep EventRecordID sysmon_1_7_11_sysprep_uacbypass.xml
+          &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15986&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+        &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15986&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+        &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15986&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+      &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15986&lt;/<font color="#EF2929"><b>EventRecordID</b></font>&gt;
+          &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15987&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+        &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15987&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+        &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15987&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+      &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15987&lt;/<font color="#EF2929"><b>EventRecordID</b></font>&gt;
+          &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15988&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+        &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15988&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+        &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15988&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+      &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15988&lt;/<font color="#EF2929"><b>EventRecordID</b></font>&gt;
+          &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15989&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+        &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15989&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+        &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15989&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+      &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15989&lt;/<font color="#EF2929"><b>EventRecordID</b></font>&gt;
+          &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15990&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+        &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15990&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+        &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15990&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+      &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15990&lt;/<font color="#EF2929"><b>EventRecordID</b></font>&gt;
+          &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15991&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+        &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15991&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+        &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15991&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+      &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15991&lt;/<font color="#EF2929"><b>EventRecordID</b></font>&gt;
+          &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15992&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+        &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15992&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+        &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15992&lt;/<font
+color="#EF2929"><b>EventRecordID</b></font>&gt;
+      &lt;<font color="#EF2929"><b>EventRecordID</b></font>&gt;15992&lt;/<font color="#EF2929"><b>EventRecordID</b></font>&gt;
+</pre>
+    <p><br>
+    </p>
+    <p></p>
+    <h3><a id="mozTocId298976" class="mozTocH3"></a>evtx_templates.py or
+      evtxtemplates.py</h3>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ <kbd>for p in *.evtx; do echo -n "$p        "; python3 evtxdump.py $p | wc -l; done</kbd><samp></samp>
+<samp>4624_LT3_AnonymousLogin_Localhost_-_JuicyPotato.evtx	89
+DE_RDP_Tunnel_5156.evtx	3049
+DE_sysmon-3-rdp-tun.evtx	2449
+Exec_sysmon_meterpreter_reversetcp_msipackage.evtx	270
+Exec_via_cpl_Application_Experience_EventID_17_ControlPanelApplet.evtx	88
+privexchange_dirkjan.evtx	284
+RogueWinRM.evtx	259
+sysmon_11_1_lolbas_downldr_desktopimgdownldr.evtx	109
+sysmon_1_7_11_sysprep_uacbypass.evtx	242
+Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.evtx	407</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ 
+
+
+</pre>
+    <p><br>
+    </p>
+    <h4><a id="mozTocId632087" class="mozTocH4"></a>Bug in
+      evtx_templates.py?&nbsp;</h4>
+    <p>This may be data dependent</p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ python3 python-evtx/scripts/evtx_templates.py RogueWinRM.evtx
+<samp>Template {f5a513a6-6561-50d4-252e-678a9f2e92fa} at chunk 0, offset 0x1226
+Traceback (most recent call last):
+  File "python-evtx/scripts/evtx_templates.py", line 43, in &lt;module&gt;
+    main()
+  File "python-evtx/scripts/evtx_templates.py", line 39, in main
+    print(e_views.evtx_template_readable_view(template))
+  File "/home/jeffs/.local/lib/python3.8/site-packages/Evtx/Views.py", line 296, in evtx_template_readable_view
+    for c in root_node.template().children():
+AttributeError: 'TemplateNode' object has no attribute 'template'</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ 
+</pre>
+    <p><span style="font-family: monospace;">DE_sysmon-3-rdp-tun.evtx</span>, <span
+        style="font-family: monospace;">privexchange_dirkjan.evtx</span>, <span
+        style="font-family: monospace;">privexchange_dirkjan.evtx</span>, and <span
+        style="font-family: monospace;">privexchange_dirkjan.evtx</span> have
+      the same problem. In fact. all 10 of them have the same problem.</p>
+    <p>In the python debugger, set a breakpoint at <span style="font-family: monospace;">/home/jeffs/.local/lib/python3.8/site-packages/Evtx/Views.py:evtx_template_readable_view()</span>
+      .</p>
+    <h5><a id="mozTocId501082" class="mozTocH5"></a>Hypothesis: if there are no
+      templates in an event log, would that be the reason why it is raising the
+      AttributeError?</h5>
+    <p>I used the following one-liner to test all of the test files and in all
+      cases, I get the same error (the newlines were inserted for clarity): </p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event/python-evtx$ <kbd>date; date &gt;&gt; evtx_stacktraces.txt; pwd; ls tests/data/*.evtx; \<br>	time for p in tests/data/*.evtx; do echo "-" &gt;&gt;evtx_stacktraces.txt; echo "$p  " &gt;&gt;evtx_stacktraces.txt; \</kbd><kbd><br>	python3 scripts/evtx_templates.py $p 2&gt;&gt; evtx_stacktraces.txt  ; done</kbd>
+</pre>
+    <pre><samp>Tue 22 Feb 2022 10:53:45 AM PST
+/home/jeffs/Coding_DoJo/Windows_event/python-evtx
+tests/data/4624_LT3_AnonymousLogin_Localhost_-_JuicyPotato.evtx                    tests/data/issue_43.evtx
+tests/data/DE_RDP_Tunnel_5156.evtx                                                 tests/data/privexchange_dirkjan.evtx
+tests/data/DE_sysmon-3-rdp-tun.evtx                                                tests/data/RogueWinRM.evtx
+tests/data/dns_log_malformed.evtx                                                  tests/data/security.evtx
+tests/data/Exec_sysmon_meterpreter_reversetcp_msipackage.evtx                      tests/data/sysmon_11_1_lolbas_downldr_desktopimgdownldr.evtx
+tests/data/Exec_via_cpl_Application_Experience_EventID_17_ControlPanelApplet.evtx  tests/data/sysmon_1_7_11_sysprep_uacbypass.evtx
+tests/data/issue_38.evtx                                                           tests/data/Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.evtx
+tests/data/issue_39.evtx                                                           tests/data/system.evtx
+Template {8cd9b26f-b790-13fd-9cd4-fdc0ea91d5ae} at chunk 0, offset 0x1226
+Template {ab780fae-1f43-0882-c593-c22d02059e1c} at chunk 0, offset 0x7155
+Template {12d43be2-a011-a6db-f994-934a4e78257d} at chunk 0, offset 0x1e8b
+Template {fe3ee50f-8d29-cb6a-af9a-f0c504697b76} at chunk 0, offset 0x1d45
+Template {71332429-c5f1-c1b2-76a9-d70a327b278d} at chunk 0, offset 0x1226
+Template {aa09ed10-ebd9-594b-36b4-9afd550b995b} at chunk 0, offset 0x1226
+Template {ab780fae-1f43-0882-c593-c22d02059e1c} at chunk 0, offset 0x17af
+Template {5bda15af-b3c6-cab5-10ee-7a7eb4ee1523} at chunk 0, offset 0x1cf9
+Template {2cd53f0a-e9df-51c9-0c08-05f4f1e40a6c} at chunk 0, offset 0x1226
+Template {88c9cf8f-9803-5dab-5272-20cb077b183c} at chunk 0, offset 0x1226
+Template {f5a513a6-6561-50d4-252e-678a9f2e92fa} at chunk 0, offset 0x1226
+Template {d602ab20-0814-f064-a145-a2005d578bb6} at chunk 0, offset 0x8eee
+Template {f5a513a6-6561-50d4-252e-678a9f2e92fa} at chunk 0, offset 0x1226
+Template {71332429-c5f1-c1b2-76a9-d70a327b278d} at chunk 0, offset 0x1226
+Template {71332429-c5f1-c1b2-76a9-d70a327b278d} at chunk 0, offset 0x1226
+Template {ecd34601-0225-3e67-b639-d77b70281ce9} at chunk 0, offset 0x6fbc
+
+real	0m2.482s
+user	0m2.169s
+sys	0m0.312s</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event/python-evtx$ 
+    </pre>
+    <p> </p>
+    <p>If there is a template in these files, I would expect evtx_dump.py to
+      find it:</p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event/python-evtx$ <kbd>date; date &gt;&gt; evtx_stacktraces.txt; pwd; ls tests/data/*.evtx; time for p in tests/data/*.evtx; do echo "-" &gt;&gt;evtx_stacktraces.txt; echo "$p  " &gt;&gt;evtx_stacktraces.txt; python3 <b>scripts/evtx_dump.py</b> $p 2&gt;&gt; evtx_stacktraces.txt  ; done | fgrep -i template</kbd>
+<samp>Tue 22 Feb 2022 11:05:55 AM PST
+/home/jeffs/Coding_DoJo/Windows_event/python-evtx
+tests/data/4624_LT3_AnonymousLogin_Localhost_-_JuicyPotato.evtx                    tests/data/issue_43.evtx
+tests/data/DE_RDP_Tunnel_5156.evtx                                                 tests/data/privexchange_dirkjan.evtx
+tests/data/DE_sysmon-3-rdp-tun.evtx                                                tests/data/RogueWinRM.evtx
+tests/data/dns_log_malformed.evtx                                                  tests/data/security.evtx
+tests/data/Exec_sysmon_meterpreter_reversetcp_msipackage.evtx                      tests/data/sysmon_11_1_lolbas_downldr_desktopimgdownldr.evtx
+tests/data/Exec_via_cpl_Application_Experience_EventID_17_ControlPanelApplet.evtx  tests/data/sysmon_1_7_11_sysprep_uacbypass.evtx
+tests/data/issue_38.evtx                                                           tests/data/Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.evtx
+tests/data/issue_39.evtx                                                           tests/data/system.evtx
+&lt;Data Name="TargetFilename"&gt;<b>C:\tool-test\tools\python-evtx-master\python-evtx-master\scripts\evtx_record_<font
+color="#EF2929">template</font>.py</b>&lt;/Data&gt;
+&lt;Data Name="TargetFilename"&gt;<b>C:\tool-test\tools\python-evtx-master\python-evtx-master\scripts\evtx_<font
+color="#EF2929">template</font>s.py</b>&lt;/Data&gt;
+
+real	0m26.926s
+user	0m26.769s
+sys	0m0.195s</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event/python-evtx$ 
+
+</pre>
+    <p>Hmmm - a hard coded filename.<br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <h5><a id="mozTocId530965" class="mozTocH5"></a>Hypothesis: Operator error?</h5>
+    <h4> Parsing using xmlstarlet</h4>
+    <p> I used this years ago.&nbsp; It only works with XML 1.0, and
+      evtx_dump.py says it produces XML 1.1 (but I can convert to XML 1.0)</p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p>How many different kinds of event codes am I worrying about?</p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ <kbd>grep "&lt;EventID Qualifiers=\".*\"&gt;.*&lt;/EventID&gt;" *.xml | sort -b  -k 2  -u</kbd><samp>
+Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.xml:        &lt;EventID Qualifiers=""&gt;10&lt;/EventID&gt;
+4624_LT3_AnonymousLogin_Localhost_-_JuicyPotato.xml:        &lt;EventID Qualifiers=""&gt;1102&lt;/EventID&gt;
+sysmon_11_1_lolbas_downldr_desktopimgdownldr.xml:        &lt;EventID Qualifiers=""&gt;11&lt;/EventID&gt;
+Exec_sysmon_meterpreter_reversetcp_msipackage.xml:        &lt;EventID Qualifiers=""&gt;13&lt;/EventID&gt;
+Exec_via_cpl_Application_Experience_EventID_17_ControlPanelApplet.xml:        &lt;EventID Qualifiers=""&gt;17&lt;/EventID&gt;
+DE_sysmon-3-rdp-tun.xml:        &lt;EventID Qualifiers=""&gt;1&lt;/EventID&gt;
+Exec_sysmon_meterpreter_reversetcp_msipackage.xml:        &lt;EventID Qualifiers=""&gt;2&lt;/EventID&gt;
+DE_sysmon-3-rdp-tun.xml:        &lt;EventID Qualifiers=""&gt;3&lt;/EventID&gt;
+4624_LT3_AnonymousLogin_Localhost_-_JuicyPotato.xml:        &lt;EventID Qualifiers=""&gt;4624&lt;/EventID&gt;
+4624_LT3_AnonymousLogin_Localhost_-_JuicyPotato.xml:        &lt;EventID Qualifiers=""&gt;4634&lt;/EventID&gt;
+DE_RDP_Tunnel_5156.xml:        &lt;EventID Qualifiers=""&gt;4648&lt;/EventID&gt;
+privexchange_dirkjan.xml:        &lt;EventID Qualifiers=""&gt;4662&lt;/EventID&gt;
+DE_RDP_Tunnel_5156.xml:        &lt;EventID Qualifiers=""&gt;4672&lt;/EventID&gt;
+DE_RDP_Tunnel_5156.xml:        &lt;EventID Qualifiers=""&gt;4688&lt;/EventID&gt;
+privexchange_dirkjan.xml:        &lt;EventID Qualifiers=""&gt;4776&lt;/EventID&gt;
+privexchange_dirkjan.xml:        &lt;EventID Qualifiers=""&gt;5136&lt;/EventID&gt;
+DE_RDP_Tunnel_5156.xml:        &lt;EventID Qualifiers=""&gt;5156&lt;/EventID&gt;
+DE_RDP_Tunnel_5156.xml:        &lt;EventID Qualifiers=""&gt;5158&lt;/EventID&gt;
+DE_sysmon-3-rdp-tun.xml:        &lt;EventID Qualifiers=""&gt;5&lt;/EventID&gt;
+DE_sysmon-3-rdp-tun.xml:        &lt;EventID Qualifiers=""&gt;6&lt;/EventID&gt;
+Exec_sysmon_meterpreter_reversetcp_msipackage.xml:        &lt;EventID Qualifiers=""&gt;7&lt;/EventID&gt;
+Sysmon_meterpreter_ReflectivePEInjection_to_notepad_.xml:        &lt;EventID Qualifiers=""&gt;8&lt;/EventID&gt;</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ <br>jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ <kbd>grep "&lt;EventID Qualifiers=\".*\"&gt;.*&lt;/EventID&gt;" *.xml | sort -b  -k 2  -u | wc -l</kbd><samp>&gt;
+22</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ <br>jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ xmlstarlet sel -N x="http://schemas.microsoft.com/win/2004/08/events/event" -t -m "//x:EventID[text()=4648 or text()=4672]" -c . -n  DE_RDP_Tunnel_5156.xml
+<samp>&lt;EventID xmlns="http://schemas.microsoft.com/win/2004/08/events/event" Qualifiers=""&gt;4648&lt;/EventID&gt;
+&lt;EventID xmlns="http://schemas.microsoft.com/win/2004/08/events/event" Qualifiers=""&gt;4648&lt;/EventID&gt;
+&lt;EventID xmlns="http://schemas.microsoft.com/win/2004/08/events/event" Qualifiers=""&gt;4648&lt;/EventID&gt;
+&lt;EventID xmlns="http://schemas.microsoft.com/win/2004/08/events/event" Qualifiers=""&gt;4648&lt;/EventID&gt;
+&lt;EventID xmlns="http://schemas.microsoft.com/win/2004/08/events/event" Qualifiers=""&gt;4672&lt;/EventID&gt;
+&lt;EventID xmlns="http://schemas.microsoft.com/win/2004/08/events/event" Qualifiers=""&gt;4672&lt;/EventID&gt;
+&lt;EventID xmlns="http://schemas.microsoft.com/win/2004/08/events/event" Qualifiers=""&gt;4672&lt;/EventID&gt;
+&lt;EventID xmlns="http://schemas.microsoft.com/win/2004/08/events/event" Qualifiers=""&gt;4672&lt;/EventID&gt;
+&lt;EventID xmlns="http://schemas.microsoft.com/win/2004/08/events/event" Qualifiers=""&gt;4648&lt;/EventID&gt;
+&lt;EventID xmlns="http://schemas.microsoft.com/win/2004/08/events/event" Qualifiers=""&gt;4648&lt;/EventID&gt;
+&lt;EventID xmlns="http://schemas.microsoft.com/win/2004/08/events/event" Qualifiers=""&gt;4672&lt;/EventID&gt;
+&lt;EventID xmlns="http://schemas.microsoft.com/win/2004/08/events/event" Qualifiers=""&gt;4672&lt;/EventID&gt;</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/Windows_event$ 
+
+
+
+</pre>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <hr>
+    <ol id="mozToc">
+      <!--mozToc h1 1 h2 2 h3 3 h4 4 h5 5 h6 6-->
+      <li><a href="#mozTocId578026">Windows Event Log File analysis</a>
+        <ol>
+          <li><a href="#mozTocId665337">python-evtx</a>
+            <ol>
+              <li><a href="#mozTocId2835">evtxinfo.py or evtx_info.py</a></li>
+              <li><a href="#mozTocId225719">evtx_dump.py or evxtdump.py</a>
+                <ol>
+                  <li><a href="#mozTocId874212">Parsing XML using grep</a></li>
+                  <li><a href="#mozTocId251029">Parsing XML using python</a></li>
+                  <li><a href="#mozTocId591264">Some things to look for:
+                      EventIDs 4688 and 4670</a></li>
+                </ol>
+              </li>
+              <li><a href="#mozTocId298976">evtx_templates.py or
+                  evtxtemplates.py</a>
+                <ol>
+                  <li><a href="#mozTocId632087">Bug in evtx_templates.py?</a>
+                    <ol>
+                      <li><a href="#mozTocId501082">Hypothesis: if there are no
+                          templates in an event log, would that be the reason
+                          why it is raising the AttributeError?</a></li>
+                      <li><a href="#mozTocId530965">Hypothesis: Operator error?</a></li>
+                    </ol>
+                  </li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+    </ol>
+    <hr>
+  </body>
+</html>
